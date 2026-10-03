@@ -76,5 +76,7 @@
  "check_now": "Check now",
  "upload_outdated": "Update required to share catches",
  "update_blocked": "The update was blocked: its files disappeared right after unpacking - most likely your antivirus removed them (a false alarm, BiteMap is not code-signed). Please download the update manually, or add the BiteMap folder as an exception in your antivirus.",
- "fish_not_here": "{fish} doesn’t live in {water} - is the right waterbody selected? Such catches aren’t shared; fix it with Edit."
+ "fish_not_here": "{fish} doesn’t live in {water} - is the right waterbody selected? Such catches aren’t shared; fix it with Edit.",
+ "new_session": "New session",
+ "new_session_confirm": "Start a new session?\n\nOnly the counters at the top (catches, fish/hour, trophies, time) start again from zero. Your catch list and the catches shared on the map are kept."
 }

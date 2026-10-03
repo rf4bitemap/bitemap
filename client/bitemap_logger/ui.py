@@ -122,6 +122,8 @@ class App(ctk.CTk):
         self.warn = ctk.CTkLabel(self, text=t('waterbody_missing'), text_color='#ffb454', anchor='w')
         stats = ctk.CTkFrame(self)
         stats.pack(fill='x', padx=14, pady=(6, 6))
+        ctk.CTkButton(stats, text='↺ ' + t('new_session'), width=110, fg_color='#3a4a44', hover_color='#46594f',
+                      command=self.new_session).pack(side='right', padx=10)
         self.stat_vals = {}
         for key in ('stat_catches', 'stat_per_hour', 'stat_trophies', 'stat_session'):
             f = ctk.CTkFrame(stats, fg_color='transparent')
@@ -398,6 +400,15 @@ class App(ctk.CTk):
         self.after(30000, self._tick_stats)
 
     # ------------------------------------------------------------------ controls
+    def new_session(self):
+        """Restart the session counters (catches, fish/hour, trophies, time). Deletes nothing - the catch list,
+        the local database and the shared catches on the map stay as they are."""
+        if not messagebox.askyesno(APP_NAME, t('new_session_confirm'), parent=self):
+            return
+        self.session_start = datetime.now(timezone.utc).isoformat(timespec='seconds')
+        self.session_t0 = time.time()
+        self._update_stats()
+
     def _on_water(self, name):
         wid = self.water_ids[self.water_names.index(name)]
         self.settings.set('waterbody', wid)
