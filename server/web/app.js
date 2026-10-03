@@ -181,7 +181,7 @@
   function fillFishFilter() {
     // only the fish that live in the selected waterbody (fish without that data: everywhere)
     const water = $('#f-water').value;
-    const fish = Object.keys(state.fish).filter((f) => !state.fish[f].waters || state.fish[f].waters.includes(water))
+    const fish = Object.keys(state.fish).filter((f) => !(state.fish[f].waters || []).length || state.fish[f].waters.includes(water))
       .sort((a, b) => fishName(a).localeCompare(fishName(b)));
     const cur = $('#f-fish').value;
     fillSelect($('#f-fish'), [['', t('all_fish')], ...fish.map((f) => [f, fishName(f)])], fish.includes(cur) ? cur : '');

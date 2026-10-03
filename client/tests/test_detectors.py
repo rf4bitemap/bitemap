@@ -151,7 +151,7 @@ def test_trophy_levels_by_weight():
     # Largemouth bass: trophy 6 kg, super trophy 7.5 kg
     assert [gd.trophy_level('lm_b_bass', w) for w in (5999, 6000, 7499, 7500)] == [0, 1, 1, 2]
     assert gd.trophy_level('chimaera', 9000) == 1          # European chimaera has no super trophy
-    assert gd.trophy_level('bs_salmon', 50000) == 0        # Black Sea trout: no trophy data
+    assert [gd.trophy_level('bs_salmon', w) for w in (13999, 14000, 20000)] == [0, 1, 2]   # Black Sea trout
     assert gd.trophy_level(None, 5000) == 0
 
 
@@ -159,7 +159,8 @@ def test_fish_per_waterbody():
     from bitemap_logger.gamedata import GameData
     gd = GameData()
     assert gd.lives_in('lm_b_bass', 'elk_lake') and not gd.lives_in('lm_b_bass', 'belaya_river')
-    assert gd.lives_in('bs_salmon', 'norwegian_sea')       # no data: allowed anywhere
+    assert gd.lives_in('bs_salmon', 'norwegian_sea')       # waterbodies unknown: allowed anywhere
+    assert gd.lives_in('c_bleak', 'old_burg_lake')
     # a garbled name prefers the fish that lives here (anywhere these match Beluga-Stör / Neiva) ...
     name = lambda fid: gd.fish[fid]['names']
     assert name(gd.match_fish('Lauga-Stör', langs=('de',), water='ladoga_archipelago')[0])['de'] == 'Ladoga-Stör'

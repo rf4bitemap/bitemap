@@ -5,7 +5,8 @@ Source: data/trophies.tsv (fish, trophy weight, super trophy weight, found at - 
     python tools/build_trophies.py
 
 Adds per fish: trophy_g, super_trophy_g (null: the fish has no super trophy) and waters (waterbody ids).
-Fish missing from the table keep none of these (no trophy levels, found anywhere). build_data.py runs this too.
+Fish missing from the table keep none of these (no trophy levels, found anywhere); an empty "found at"
+means the waterbodies aren't known yet (accepted everywhere). build_data.py runs this too.
 """
 import csv
 import json
@@ -56,7 +57,11 @@ def merge(fish, waters):
                 ids.append(wid)
             elif w.strip():
                 problems.append(f'unknown waterbody {w.strip()!r} for {name!r}')
-        f['trophy_g'], f['super_trophy_g'], f['waters'] = grams(trophy), grams(super_trophy), sorted(set(ids))
+        f['trophy_g'], f['super_trophy_g'] = grams(trophy), grams(super_trophy)
+        if ids:
+            f['waters'] = sorted(set(ids))
+        else:
+            f.pop('waters', None)   # waterbodies unknown: the fish is accepted everywhere
         if f['trophy_g'] is None:
             problems.append(f'no trophy weight for {name!r}')
         seen.add(f['id'])
@@ -77,6 +82,9 @@ def main():
     missing = [f['names']['en'] for f in data['fish'] if 'trophy_g' not in f]
     if missing:
         print('fish without trophy data (no trophy levels, no waterbody check):', ', '.join(missing))
+    anywhere = [f['names']['en'] for f in data['fish'] if 'trophy_g' in f and not f.get('waters')]
+    if anywhere:
+        print('fish without known waterbodies (accepted everywhere):', ', '.join(anywhere))
     with open(fpath, 'w', encoding='utf-8') as fh:
         json.dump(data, fh, ensure_ascii=False, indent=1)
     print(f'{len(data["fish"]) - len(missing)} of {len(data["fish"])} fish have trophy data')

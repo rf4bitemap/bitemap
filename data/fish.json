@@ -486,7 +486,9 @@
     "ru": "Кумжа черноморская"
    },
    "record_g": 21345,
-   "record_water": "seversky_donets_river"
+   "record_water": "seversky_donets_river",
+   "trophy_g": 14000,
+   "super_trophy_g": 20000
   },
   {
    "id": "buffalo",
@@ -653,6 +655,7 @@
     "belaya_river",
     "ladoga_lake",
     "mosquito_lake",
+    "old_burg_lake",
     "sura_river",
     "volkhov_river",
     "winding_rivulet"
