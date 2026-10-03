@@ -1,0 +1,15 @@
+# Site block for an existing Caddy (append to its Caddyfile, then: docker exec <caddy> caddy reload --config /etc/caddy/Caddyfile)
+bitemap.dev {
+	encode zstd gzip
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+	reverse_proxy bitemap-api:8000
+}
+
+www.bitemap.dev {
+	redir https://bitemap.dev{uri} permanent
+}

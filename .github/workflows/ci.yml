@@ -1,0 +1,39 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install -r server/requirements.txt pytest httpx
+      - run: pytest -q server/tests
+
+  client:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install -r requirements-dev.txt
+      - name: Install Tesseract
+        run: choco install tesseract -y --no-progress
+      - name: Build
+        run: python tools/build_client.py
+      - name: Tests (use the vendored Tesseract)
+        run: pytest -q client/tests
+      - name: Self-test of the frozen app
+        shell: pwsh
+        run: |
+          $p = Start-Process dist/BiteMapLogger/BiteMapLogger.exe -ArgumentList '--selftest' -Wait -PassThru
+          Get-Content "$env:APPDATA/BiteMap/selftest.txt"
+          if ($p.ExitCode -ne 0) { exit 1 }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BiteMapLogger-win64
+          path: dist/*.zip

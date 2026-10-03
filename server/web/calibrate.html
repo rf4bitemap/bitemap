@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BiteMap – map calibration</title>
+<link rel="stylesheet" href="/static/style.css">
+<style>
+  .wrap { padding: 16px 20px; }
+  #stage { position: relative; display: inline-block; cursor: crosshair; border: 1px solid var(--line); }
+  #stage img { display: block; max-width: none; }
+  .pin { position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; border: 2px solid var(--gold); border-radius: 50%; }
+  .pin span { position: absolute; left: 14px; top: -6px; color: var(--gold); font-weight: 700; }
+  textarea { width: 100%; height: 150px; background: #0f1820; color: var(--text); border: 1px solid var(--line); border-radius: 8px; font: 13px monospace; }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin: 8px 0; }
+  .viewport { overflow: auto; max-height: 70vh; max-width: 100%; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h2>Map calibration</h2>
+  <p class="muted">1. Save an in-game map screenshot (press M, crop to the map) as <code>data/maps/&lt;waterbody_id&gt;.jpg</code>.
+    2. Load it here, click two points that are far apart (ideally opposite corners of the grid) and type their in-game coordinates.
+    3. Copy the JSON into the waterbody's <code>"map"</code> entry in <code>data/waterbodies.json</code>.</p>
+  <div class="row">
+    <label>Waterbody id <input id="wid" placeholder="mosquito_lake"></label>
+    <label>Image <input type="file" id="file" accept="image/*"></label>
+    <label>Zoom <input type="range" id="zoom" min="25" max="200" value="100"></label>
+  </div>
+  <div class="row">
+    <b>A</b> X <input id="ax" size="4"> Y <input id="ay" size="4"> <span id="apx" class="muted">click the map…</span>
+    &nbsp; <b>B</b> X <input id="bx" size="4"> Y <input id="by" size="4"> <span id="bpx" class="muted"></span>
+  </div>
+  <div class="viewport"><div id="stage"><img id="img" alt=""></div></div>
+  <p><textarea id="out" readonly></textarea></p>
+</div>
+<script>
+(function () {
+  const $ = (s) => document.querySelector(s);
+  let pts = [], file = null, nat = { w: 0, h: 0 };
+  $('#file').addEventListener('change', (e) => {
+    file = e.target.files[0];
+    if (!file) return;
+    $('#img').src = URL.createObjectURL(file);
+    pts = []; render();
+  });
+  $('#img').addEventListener('load', () => { nat = { w: $('#img').naturalWidth, h: $('#img').naturalHeight }; zoom(); });
+  function zoom() { $('#img').style.width = (nat.w * $('#zoom').value / 100) + 'px'; render(); }
+  $('#zoom').addEventListener('input', zoom);
+  $('#stage').addEventListener('click', (e) => {
+    const r = $('#img').getBoundingClientRect(), k = nat.w / r.width;
+    const p = { x: Math.round((e.clientX - r.left) * k), y: Math.round((e.clientY - r.top) * k) };
+    pts = pts.length >= 2 ? [p] : [...pts, p];
+    render();
+  });
+  ['#ax', '#ay', '#bx', '#by', '#wid'].forEach((s) => $(s).addEventListener('input', render));
+  function render() {
+    document.querySelectorAll('.pin').forEach((p) => p.remove());
+    const r = nat.w ? $('#img').clientWidth / nat.w : 1;
+    pts.forEach((p, i) => {
+      const d = document.createElement('div');
+      d.className = 'pin'; d.style.left = p.x * r + 'px'; d.style.top = p.y * r + 'px';
+      d.innerHTML = '<span>' + 'AB'[i] + '</span>';
+      $('#stage').appendChild(d);
+    });
+    $('#apx').textContent = pts[0] ? `pixel ${pts[0].x}, ${pts[0].y}` : 'click the map…';
+    $('#bpx').textContent = pts[1] ? `pixel ${pts[1].x}, ${pts[1].y}` : '';
+    const n = (s) => parseFloat($(s).value);
+    if (pts.length < 2 || [n('#ax'), n('#ay'), n('#bx'), n('#by')].some(isNaN)) { $('#out').value = ''; return; }
+    // pixel = (x - min_x) * kx ;  pixel_y = (max_y - y) * ky   (north up, like the in-game map)
+    const kx = (pts[1].x - pts[0].x) / (n('#bx') - n('#ax'));
+    const ky = (pts[1].y - pts[0].y) / (n('#ay') - n('#by'));
+    const min_x = n('#ax') - pts[0].x / kx, max_x = min_x + nat.w / kx;
+    const max_y = n('#ay') + pts[0].y / ky, min_y = max_y - nat.h / ky;
+    const id = $('#wid').value || 'waterbody_id';
+    const ext = file ? file.name.split('.').pop() : 'webp';
+    const r = (v) => Math.round(v * 10) / 10;
+    $('#out').value = JSON.stringify({ map: { image: `${id}.${ext}`, width: nat.w, height: nat.h,
+      min_x: r(min_x), max_x: r(max_x), min_y: r(min_y), max_y: r(max_y) },
+      coord_range: [Math.floor(Math.min(min_x, min_y)), Math.ceil(Math.max(max_x, max_y))] }, null, 1);
+  }
+})();
+</script>
+</body>
+</html>

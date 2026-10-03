@@ -1,0 +1,14 @@
+{
+ "weight_icon.png": {
+  "base_h": 1125,
+  "source": "catch_de_2000.webp (resized 2560x1440 screenshot)"
+ },
+ "ruler_icon.png": {
+  "base_h": 1125,
+  "source": "catch_de_2000.webp (resized 2560x1440 screenshot)"
+ },
+ "bite_icon.png": {
+  "base_h": 1125,
+  "source": "bite_de_2000.webp"
+ }
+}

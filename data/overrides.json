@@ -1,0 +1,5 @@
+{
+ "_comment": "Manual fixes applied by tools/build_data.py on top of the scraped names.",
+ "waterbodies": {"volkhov_river": {"de": "Fluss Wolchow"}},
+ "fish": {}
+}

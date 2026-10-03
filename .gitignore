@@ -1,0 +1,20 @@
+.venv/
+__pycache__/
+*.pyc
+build/
+dist/
+client/vendor/
+*.db
+.env
+.pytest_cache/
+.claude/
+
+# map images: RF4 artwork (via rf4-stat.com) - kept out of the public repo, copied to the server separately
+data/maps/*.webp
+data/maps/*.png
+data/maps/*.jpg
+/maps/
+.local/
+
+# test screenshots are private (game screenshots of the maintainer)
+tools/samples/

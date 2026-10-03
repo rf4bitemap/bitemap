@@ -1,0 +1,2525 @@
+{
+ "source": "official RF4 absolute record tables",
+ "fish": [
+  {
+   "id": "a.sleeper",
+   "names": {
+    "en": "Chinese Sleeper",
+    "de": "Schläfergrundel",
+    "ru": "Ротан"
+   },
+   "record_g": 798,
+   "record_water": "mosquito_lake"
+  },
+  {
+   "id": "a_catfish",
+   "names": {
+    "en": "Amur Catfish",
+    "de": "Amurwels",
+    "ru": "Сом амурский"
+   },
+   "record_g": 7912,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "a_char",
+   "names": {
+    "en": "Arctic Char",
+    "de": "Seesaibling",
+    "ru": "Голец арктический"
+   },
+   "record_g": 19716,
+   "record_water": "kuori_lake"
+  },
+  {
+   "id": "a_grayling",
+   "names": {
+    "en": "Grayling",
+    "de": "Europäische Äsche",
+    "ru": "Хариус европейский"
+   },
+   "record_g": 5916,
+   "record_water": "belaya_river"
+  },
+  {
+   "id": "a_omul",
+   "names": {
+    "en": "Arctic Omul",
+    "de": "Arktische Maräne",
+    "ru": "Омуль арктический"
+   },
+   "record_g": 4919,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "a_salmon",
+   "names": {
+    "en": "Atlantic Salmon",
+    "de": "Atlantischer Lachs",
+    "ru": "Лосось атлантический"
+   },
+   "record_g": 42423,
+   "record_water": "ladoga_archipelago"
+  },
+  {
+   "id": "a_smelt",
+   "names": {
+    "en": "Asian Smelt",
+    "de": "Regenbogenstint",
+    "ru": "Корюшка азиатская"
+   },
+   "record_g": 348,
+   "record_water": "yama_river"
+  },
+  {
+   "id": "agar",
+   "names": {
+    "en": "Alligator gar",
+    "de": "Alligatorhecht",
+    "ru": "Щука панцирная"
+   },
+   "record_g": 59404,
+   "record_water": "elk_lake"
+  },
+  {
+   "id": "alb_barbel",
+   "names": {
+    "en": "Albino barbel",
+    "de": "Albino-Barbe",
+    "ru": "Усач альбинос"
+   },
+   "record_g": 13430,
+   "record_water": "bear_lake"
+  },
+  {
+   "id": "alfonsino",
+   "names": {
+    "en": "Alfonsino",
+    "de": "Alfonsino",
+    "ru": "Берикс красный"
+   },
+   "record_g": 13595,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "ambl_h",
+   "names": {
+    "en": "Arctic skate",
+    "de": "Arktischer Rochen",
+    "ru": "Скат полярный"
+   },
+   "record_g": 12997,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "ambl_r",
+   "names": {
+    "en": "Thorny skate",
+    "de": "Sternrochen",
+    "ru": "Скат колючий"
+   },
+   "record_g": 16281,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "asp",
+   "names": {
+    "en": "Asp",
+    "de": "Rapfen",
+    "ru": "Жерех"
+   },
+   "record_g": 14761,
+   "record_water": "sura_river"
+  },
+  {
+   "id": "atl_cod",
+   "names": {
+    "en": "Atlantic cod",
+    "de": "Atlantischer Kabeljau",
+    "ru": "Треска атлантическая"
+   },
+   "record_g": 99338,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "atl_herring",
+   "names": {
+    "en": "Atlantic herring",
+    "de": "Atlantischer Hering",
+    "ru": "Сельдь атлантическая"
+   },
+   "record_g": 1196,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "b_bream",
+   "names": {
+    "en": "Blue Bream",
+    "de": "Zope",
+    "ru": "Синец"
+   },
+   "record_g": 1221,
+   "record_water": "sura_river"
+  },
+  {
+   "id": "b_carp",
+   "names": {
+    "en": "Black Carp",
+    "de": "Schwarzer Amur",
+    "ru": "Амур чёрный"
+   },
+   "record_g": 49243,
+   "record_water": "bear_lake"
+  },
+  {
+   "id": "b_gill",
+   "names": {
+    "en": "Bluegill",
+    "de": "Blauer Sonnenbarsch",
+    "ru": "Солнечник синежаберный"
+   },
+   "record_g": 2198,
+   "record_water": "elk_lake"
+  },
+  {
+   "id": "b_herring",
+   "names": {
+    "en": "Brazhnikov Herring",
+    "de": "Braschnikow-Hering",
+    "ru": "Сельдь Бражникова"
+   },
+   "record_g": 1010,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "b_omul",
+   "names": {
+    "en": "Baikal Omul",
+    "de": "Baikal-Maräne",
+    "ru": "Омуль байкальский"
+   },
+   "record_g": 8291,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "b_scabbardfish",
+   "names": {
+    "en": "Black scabbardfish",
+    "de": "Schwarzer Degenfisch",
+    "ru": "Угольщик обыкновенный"
+   },
+   "record_g": 5868,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "barb_toni",
+   "names": {
+    "en": "Siberian Char Loach",
+    "de": "Bachschmerle",
+    "ru": "Голец сибирский-усач"
+   },
+   "record_g": 99,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "barsch",
+   "names": {
+    "en": "Volga Zander",
+    "de": "Steinschill",
+    "ru": "Берш"
+   },
+   "record_g": 2495,
+   "record_water": "sura_river"
+  },
+  {
+   "id": "beluga",
+   "names": {
+    "en": "Beluga",
+    "de": "Beluga-Stör",
+    "ru": "Белуга каспийская"
+   },
+   "record_g": 971999,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "bh_carp",
+   "names": {
+    "en": "Bighead Carp",
+    "de": "Marmorkarpfen",
+    "ru": "Толстолобик пёстрый"
+   },
+   "record_g": 59101,
+   "record_water": "sura_river"
+  },
+  {
+   "id": "bl_buffalo",
+   "names": {
+    "en": "Black Buffalo",
+    "de": "Schwarzer Büffelfisch",
+    "ru": "Буффало чёрный"
+   },
+   "record_g": 24695,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "black_crappie",
+   "names": {
+    "en": "Black crappie",
+    "de": "Schwarzer Crappie",
+    "ru": "Краппи чёрный"
+   },
+   "record_g": 2664,
+   "record_water": "elk_lake"
+  },
+  {
+   "id": "bp_bass",
+   "names": {
+    "en": "Butterfly Peacock bass",
+    "de": "Augenfleckenkammbarsch",
+    "ru": "Окунь павлиний"
+   },
+   "record_g": 6647,
+   "record_water": "elk_lake"
+  },
+  {
+   "id": "bream",
+   "names": {
+    "en": "Bream",
+    "de": "Brachse",
+    "ru": "Лещ"
+   },
+   "record_g": 7733,
+   "record_water": "volkhov_river"
+  },
+  {
+   "id": "bs_salmon",
+   "names": {
+    "en": "Black Sea trout",
+    "de": "Schwarzmeerforelle",
+    "ru": "Кумжа черноморская"
+   },
+   "record_g": 21345,
+   "record_water": "seversky_donets_river"
+  },
+  {
+   "id": "buffalo",
+   "names": {
+    "en": "Buffalo",
+    "de": "Großmäuliger Büffelfisch",
+    "ru": "Буффало большеротый"
+   },
+   "record_g": 24984,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "bullhead_syb",
+   "names": {
+    "en": "Siberian Sculpin",
+    "de": "Sibirische Groppe",
+    "ru": "Подкаменщик сибирский"
+   },
+   "record_g": 59,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "burbot",
+   "names": {
+    "en": "Burbot",
+    "de": "Quappe",
+    "ru": "Налим"
+   },
+   "record_g": 17785,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "c.carp",
+   "names": {
+    "en": "Crucian Carp",
+    "de": "Karausche",
+    "ru": "Карась золотой"
+   },
+   "record_g": 3496,
+   "record_water": "mosquito_lake"
+  },
+  {
+   "id": "c.roach",
+   "names": {
+    "en": "Common Roach",
+    "de": "Rotauge",
+    "ru": "Плотва обыкновенная"
+   },
+   "record_g": 2498,
+   "record_water": "ladoga_lake"
+  },
+  {
+   "id": "c_anguineus",
+   "names": {
+    "en": "Frilled shark",
+    "de": "Kragenhai",
+    "ru": "Акула плащеносная"
+   },
+   "record_g": 85529,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "c_barbel",
+   "names": {
+    "en": "Common Barbel",
+    "de": "Barbe",
+    "ru": "Усач обыкновенный"
+   },
+   "record_g": 14882,
+   "record_water": "bear_lake"
+  },
+  {
+   "id": "c_bleak",
+   "names": {
+    "en": "Bleak",
+    "de": "Laube",
+    "ru": "Уклейка"
+   },
+   "record_g": 199,
+   "record_water": "mosquito_lake"
+  },
+  {
+   "id": "c_herring",
+   "names": {
+    "en": "Black-spined Herring",
+    "de": "Kaspi-Maifisch",
+    "ru": "Пузанок каспийский"
+   },
+   "record_g": 396,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "c_lamprey",
+   "names": {
+    "en": "Caspian Lamprey",
+    "de": "Kaspineunauge",
+    "ru": "Минога каспийская"
+   },
+   "record_g": 122,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "c_nase",
+   "names": {
+    "en": "Nase",
+    "de": "Nase",
+    "ru": "Подуст"
+   },
+   "record_g": 1553,
+   "record_water": "winding_rivulet"
+  },
+  {
+   "id": "c_squid",
+   "names": {
+    "en": "European squid",
+    "de": "Gemeiner Kalmar",
+    "ru": "Кальмар обыкновенный"
+   },
+   "record_g": 2999,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "carp",
+   "names": {
+    "en": "Common Carp",
+    "de": "Schuppenkarpfen",
+    "ru": "Карп чешуйчатый"
+   },
+   "record_g": 39998,
+   "record_water": "the_amber_lake"
+  },
+  {
+   "id": "carp_albino",
+   "names": {
+    "en": "Common Scaly Albino Carp",
+    "de": "Albino-Schuppenkarpfen",
+    "ru": "Карп чешуйчатый - альбинос"
+   },
+   "record_g": 39771,
+   "record_water": "the_amber_lake"
+  },
+  {
+   "id": "carp_ghost",
+   "names": {
+    "en": "Common Ghost Carp",
+    "de": "Geister-Schuppenkarpfen",
+    "ru": "Карп чешуйчатый - призрак"
+   },
+   "record_g": 39654,
+   "record_water": "the_amber_lake"
+  },
+  {
+   "id": "carp_red",
+   "names": {
+    "en": "Red Starvas Carp - Scaly",
+    "de": "Goldkarpfen",
+    "ru": "Карп красный Старвас - чешуйчатый"
+   },
+   "record_g": 39112,
+   "record_water": "the_amber_lake"
+  },
+  {
+   "id": "centroloph_n",
+   "names": {
+    "en": "Black ruff",
+    "de": "Schwarzfisch",
+    "ru": "Центролоф чёрный"
+   },
+   "record_g": 39522,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "cetorhinus_m",
+   "names": {
+    "en": "Basking shark",
+    "de": "Riesenhai",
+    "ru": "Акула гигантская"
+   },
+   "record_g": 2519264,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "ch_beluga",
+   "names": {
+    "en": "Black Sea Beluga",
+    "de": "Schwarzmeer-Beluga",
+    "ru": "Белуга черноморская"
+   },
+   "record_g": 472260,
+   "record_water": "seversky_donets_river"
+  },
+  {
+   "id": "ch_catfish",
+   "names": {
+    "en": "Channel catfish",
+    "de": "Getüpfelter Gabelwels",
+    "ru": "Сомик канальный"
+   },
+   "record_g": 25472,
+   "record_water": "elk_lake"
+  },
+  {
+   "id": "cha_herring",
+   "names": {
+    "en": "Pontic shad",
+    "de": "Donauhering",
+    "ru": "Сельдь черноморская"
+   },
+   "record_g": 1099,
+   "record_water": "seversky_donets_river"
+  },
+  {
+   "id": "chan_m",
+   "names": {
+    "en": "Mongolian redfin",
+    "de": "Mongolische Rotfeder",
+    "ru": "Краснопёр монгольский"
+   },
+   "record_g": 3863,
+   "record_water": "yama_river"
+  },
+  {
+   "id": "chartus_kuoriius",
+   "names": {
+    "en": "Kuori Char",
+    "de": "Seesaibling Kuorsky",
+    "ru": "Голец Куорский"
+   },
+   "record_g": 36779,
+   "record_water": "kuori_lake"
+  },
+  {
+   "id": "chavycha",
+   "names": {
+    "en": "Chinook Salmon",
+    "de": "Königslachs",
+    "ru": "Чавыча"
+   },
+   "record_g": 67706,
+   "record_water": "yama_river"
+  },
+  {
+   "id": "chimaera",
+   "names": {
+    "en": "European chimaera",
+    "de": "Seekatze",
+    "ru": "Химера европейская"
+   },
+   "record_g": 1785,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "chir",
+   "names": {
+    "en": "Broad Whitefish",
+    "de": "Große Bodenrenke",
+    "ru": "Чир"
+   },
+   "record_g": 11659,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "chlamys_isl",
+   "names": {
+    "en": "Icelandic scallop",
+    "de": "Isländische Kammmuschel",
+    "ru": "Гребешок исландский"
+   },
+   "record_g": 538,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "chukuchan",
+   "names": {
+    "en": "Longnose Sucker",
+    "de": "Langnasen-Saugdöbel",
+    "ru": "Чукучан"
+   },
+   "record_g": 2480,
+   "record_water": "yama_river"
+  },
+  {
+   "id": "coalfish",
+   "names": {
+    "en": "Saithe",
+    "de": "Köhler",
+    "ru": "Сайда"
+   },
+   "record_g": 31997,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "common_carp",
+   "names": {
+    "en": "Wild Carp",
+    "de": "Wildkarpfen",
+    "ru": "Сазан"
+   },
+   "record_g": 49880,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "conger",
+   "names": {
+    "en": "Conger",
+    "de": "Conger",
+    "ru": "Конгер"
+   },
+   "record_g": 91484,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "crawfish",
+   "names": {
+    "en": "Freshwater Crayfish",
+    "de": "Flusskrebs",
+    "ru": "Рак речной"
+   },
+   "record_g": 382,
+   "record_water": "belaya_river"
+  },
+  {
+   "id": "crucian",
+   "names": {
+    "en": "Gibel Carp",
+    "de": "Giebel",
+    "ru": "Карась серебряный"
+   },
+   "record_g": 3998,
+   "record_water": "ladoga_lake"
+  },
+  {
+   "id": "d_zubatka",
+   "names": {
+    "en": "Northern wolffish",
+    "de": "Blauer Seewolf",
+    "ru": "Зубатка синяя"
+   },
+   "record_g": 19722,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "dace",
+   "names": {
+    "en": "Dace",
+    "de": "Hasel",
+    "ru": "Елец"
+   },
+   "record_g": 448,
+   "record_water": "winding_rivulet"
+  },
+  {
+   "id": "din_l_carp",
+   "names": {
+    "en": "Dinks linear carp",
+    "de": "Dinkelsbühler Zeilenkarpfen",
+    "ru": "Карп Динкенбюльский линейный"
+   },
+   "record_g": 56842,
+   "record_water": "copper_lake"
+  },
+  {
+   "id": "din_m_carp",
+   "names": {
+    "en": "Dinks mirror carp",
+    "de": "Dinkelsbühler Spiegelkarpfen",
+    "ru": "Карп Динкенбюльский зеркальный"
+   },
+   "record_g": 59135,
+   "record_water": "copper_lake"
+  },
+  {
+   "id": "din_n_carp",
+   "names": {
+    "en": "Dinks leather carp",
+    "de": "Dinkelsbühler Lederkarpfen",
+    "ru": "Карп Динкенбюльский голый"
+   },
+   "record_g": 54755,
+   "record_water": "copper_lake"
+  },
+  {
+   "id": "dr_char",
+   "names": {
+    "en": "Dryagin Char",
+    "de": "Dryagin-Saibling",
+    "ru": "Голец Дрягина"
+   },
+   "record_g": 14623,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "dreissena",
+   "names": {
+    "en": "Zebra Mussel",
+    "de": "Fluss - Wandermuschel",
+    "ru": "Дрейссена речная"
+   },
+   "record_g": 249,
+   "record_water": "seversky_donets_river"
+  },
+  {
+   "id": "e.chub",
+   "names": {
+    "en": "Chub",
+    "de": "Döbel",
+    "ru": "Голавль"
+   },
+   "record_g": 7979,
+   "record_water": "seversky_donets_river"
+  },
+  {
+   "id": "e.pikeperch",
+   "names": {
+    "en": "Zander",
+    "de": "Zander",
+    "ru": "Судак"
+   },
+   "record_g": 15892,
+   "record_water": "sura_river"
+  },
+  {
+   "id": "e_bream",
+   "names": {
+    "en": "Eastern Bream",
+    "de": "Ostbrasse",
+    "ru": "Лещ восточный"
+   },
+   "record_g": 7995,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "e_smelt",
+   "names": {
+    "en": "Smelt",
+    "de": "Stint",
+    "ru": "Корюшка"
+   },
+   "record_g": 246,
+   "record_water": "ladoga_archipelago"
+  },
+  {
+   "id": "ed_crab",
+   "names": {
+    "en": "Edible crab",
+    "de": "Taschenkrebs",
+    "ru": "Краб съедобный"
+   },
+   "record_g": 2825,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "eel",
+   "names": {
+    "en": "Eel",
+    "de": "Aal",
+    "ru": "Угорь"
+   },
+   "record_g": 8871,
+   "record_water": "old_burg_lake"
+  },
+  {
+   "id": "fe_lamprey",
+   "names": {
+    "en": "Far Eastern Brook Lamprey",
+    "de": "Fernöstliches Neunauge",
+    "ru": "Минога дальневосточная ручьевая"
+   },
+   "record_g": 37,
+   "record_water": "yama_river"
+  },
+  {
+   "id": "fhcatfish",
+   "names": {
+    "en": "Flathead Catfish",
+    "de": "Flachkopfwels",
+    "ru": "Сомик оливковый"
+   },
+   "record_g": 54096,
+   "record_water": "elk_lake"
+  },
+  {
+   "id": "freshwater_mussel",
+   "names": {
+    "en": "River mussel",
+    "de": "Flussmuschel",
+    "ru": "Перловица"
+   },
+   "record_g": 349,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "frog",
+   "names": {
+    "en": "Frog",
+    "de": "Grasfrosch",
+    "ru": "Лягушка"
+   },
+   "record_g": 299,
+   "record_water": "mosquito_lake"
+  },
+  {
+   "id": "fwdrum",
+   "names": {
+    "en": "Freshwater drum",
+    "de": "Süßwassertrommler",
+    "ru": "Горбыль речной"
+   },
+   "record_g": 23704,
+   "record_water": "elk_lake"
+  },
+  {
+   "id": "g_carp",
+   "names": {
+    "en": "Grass Carp",
+    "de": "Weißer Amur",
+    "ru": "Амур белый"
+   },
+   "record_g": 49964,
+   "record_water": "bear_lake"
+  },
+  {
+   "id": "g_carp_albino",
+   "names": {
+    "en": "Albino Grass Carp",
+    "de": "Albino-Graskarpfen",
+    "ru": "Амур белый альбинос"
+   },
+   "record_g": 37246,
+   "record_water": "bear_lake"
+  },
+  {
+   "id": "g_shad",
+   "names": {
+    "en": "Gizzard shad",
+    "de": "Amerikanischer Maifisch",
+    "ru": "Доросома северная"
+   },
+   "record_g": 1996,
+   "record_water": "elk_lake"
+  },
+  {
+   "id": "g_tench",
+   "names": {
+    "en": "Golden Tench",
+    "de": "Goldschleie",
+    "ru": "Линь золотистый"
+   },
+   "record_g": 7456,
+   "record_water": "mosquito_lake"
+  },
+  {
+   "id": "gc_smelt",
+   "names": {
+    "en": "Lake Trout",
+    "de": "Seeforelle",
+    "ru": "Форель озерная"
+   },
+   "record_g": 17973,
+   "record_water": "kuori_lake"
+  },
+  {
+   "id": "golets_lev",
+   "names": {
+    "en": "Levanidov's Char",
+    "de": "Chereshnev Saibling",
+    "ru": "Голец Леванидова"
+   },
+   "record_g": 2126,
+   "record_water": "yama_river"
+  },
+  {
+   "id": "golyan",
+   "names": {
+    "en": "Common Minnow",
+    "de": "Sumpfelritze",
+    "ru": "Гольян"
+   },
+   "record_g": 181,
+   "record_water": "ladoga_lake"
+  },
+  {
+   "id": "gorbusha",
+   "names": {
+    "en": "Pink Salmon",
+    "de": "Buckellachs",
+    "ru": "Горбуша"
+   },
+   "record_g": 5256,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "gudgeon",
+   "names": {
+    "en": "Gudgeon",
+    "de": "Gründling",
+    "ru": "Пескарь обыкновенный"
+   },
+   "record_g": 199,
+   "record_water": "winding_rivulet"
+  },
+  {
+   "id": "halibut_b",
+   "names": {
+    "en": "Greenland Halibut",
+    "de": "Schwarzer Heilbutt",
+    "ru": "Палтус синекорый"
+   },
+   "record_g": 42398,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "halibut_w",
+   "names": {
+    "en": "Atlantic halibut",
+    "de": "Heilbutt",
+    "ru": "Палтус атлантический"
+   },
+   "record_g": 298299,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "hi_utsri",
+   "names": {
+    "en": "Hi Utsuri",
+    "de": "Hi Utsuri",
+    "ru": "Карп Кои Хи Уцури"
+   },
+   "record_g": 31497,
+   "record_water": "copper_lake"
+  },
+  {
+   "id": "himant_g",
+   "names": {
+    "en": "Atlantic footballfish",
+    "de": "Fußballfisch",
+    "ru": "Гимантолоф атлантический"
+   },
+   "record_g": 7775,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "hippoglos_p",
+   "names": {
+    "en": "American plaice",
+    "de": "Doggerscharbe",
+    "ru": "Камбала палтусовидная"
+   },
+   "record_g": 6350,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "hs_bass",
+   "names": {
+    "en": "Hybrid Striped Bass (Whiterock Bass)",
+    "de": "Streifenbarsch",
+    "ru": "Лаврак полосатый гибридный"
+   },
+   "record_g": 10879,
+   "record_water": "elk_lake"
+  },
+  {
+   "id": "k_herring",
+   "names": {
+    "en": "Kessler's Herring",
+    "de": "Kaspischer Schwarzrücken-Hering",
+    "ru": "Сельдь Кесслера"
+   },
+   "record_g": 1980,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "k_salmon",
+   "names": {
+    "en": "Caspian Brown Trout",
+    "de": "Kaspische Forelle",
+    "ru": "Лосось каспийский"
+   },
+   "record_g": 47991,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "kaluga",
+   "names": {
+    "en": "Kaluga",
+    "de": "Kaluga-Hausen",
+    "ru": "Калуга"
+   },
+   "record_g": 515624,
+   "record_water": "yama_river"
+  },
+  {
+   "id": "karasekarp",
+   "names": {
+    "en": "F1",
+    "de": "F1 Karpfen",
+    "ru": "Карасекарп"
+   },
+   "record_g": 4998,
+   "record_water": "copper_lake"
+  },
+  {
+   "id": "katran",
+   "names": {
+    "en": "Spiny dogfish",
+    "de": "Dornhai",
+    "ru": "Катран"
+   },
+   "record_g": 11931,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "keta",
+   "names": {
+    "en": "Chum Salmon",
+    "de": "Keta-Lachs",
+    "ru": "Кета"
+   },
+   "record_g": 11983,
+   "record_water": "yama_river"
+  },
+  {
+   "id": "kijuch",
+   "names": {
+    "en": "Coho Salmon",
+    "de": "Silberlachs",
+    "ru": "Кижуч"
+   },
+   "record_g": 7830,
+   "record_water": "yama_river"
+  },
+  {
+   "id": "kohaku",
+   "names": {
+    "en": "Kohaku",
+    "de": "Kohaku",
+    "ru": "Карп Кои Кохаку"
+   },
+   "record_g": 31994,
+   "record_water": "copper_lake"
+  },
+  {
+   "id": "kunja",
+   "names": {
+    "en": "Whitespotted Char",
+    "de": "Japanischer Saibling",
+    "ru": "Кунджа"
+   },
+   "record_g": 15574,
+   "record_water": "yama_river"
+  },
+  {
+   "id": "kutum",
+   "names": {
+    "en": "Caspian Kutum",
+    "de": "Kutum",
+    "ru": "Кутум"
+   },
+   "record_g": 7544,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "kw_tench",
+   "names": {
+    "en": "Kvolsdorfsky tench",
+    "de": "Kvolsdorfsky-Schleie",
+    "ru": "Линь Квольсдорфский"
+   },
+   "record_g": 7489,
+   "record_water": "copper_lake"
+  },
+  {
+   "id": "l_carp",
+   "names": {
+    "en": "Linear carp",
+    "de": "Zeilkarpfen",
+    "ru": "Карп линейный"
+   },
+   "record_g": 49422,
+   "record_water": "the_amber_lake"
+  },
+  {
+   "id": "l_carp_albino",
+   "names": {
+    "en": "Linear albino carp",
+    "de": "Albino-Zeilkarpfen",
+    "ru": "Карп линейный - альбинос"
+   },
+   "record_g": 40875,
+   "record_water": "the_amber_lake"
+  },
+  {
+   "id": "l_carp_ghost",
+   "names": {
+    "en": "Linear Ghost Carp",
+    "de": "Geister Zeilkarpfen",
+    "ru": "Карп линейный - призрак"
+   },
+   "record_g": 42844,
+   "record_water": "the_amber_lake"
+  },
+  {
+   "id": "l_minnow",
+   "names": {
+    "en": "Lake Minnow",
+    "de": "See-Elritze",
+    "ru": "Гольян озёрный"
+   },
+   "record_g": 199,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "l_salmon",
+   "names": {
+    "en": "Ladoga salmon",
+    "de": "Ladoga Lachs",
+    "ru": "Лосось ладожский"
+   },
+   "record_g": 24936,
+   "record_water": "ladoga_archipelago"
+  },
+  {
+   "id": "l_sturgeon",
+   "names": {
+    "en": "Ladoga sturgeon",
+    "de": "Ladoga-Stör",
+    "ru": "Осётр ладожский"
+   },
+   "record_g": 62907,
+   "record_water": "ladoga_archipelago"
+  },
+  {
+   "id": "lamna_n",
+   "names": {
+    "en": "Porbeagle",
+    "de": "Heringshai",
+    "ru": "Акула сельдевая атлантическая"
+   },
+   "record_g": 211993,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "lampris_g",
+   "names": {
+    "en": "Opah",
+    "de": "Gotteslachs",
+    "ru": "Опах краснопёрый"
+   },
+   "record_g": 251942,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "lenok_o",
+   "names": {
+    "en": "Sharp-snouted Lenok",
+    "de": "Lenok",
+    "ru": "Ленок острорылый"
+   },
+   "record_g": 7585,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "lenok_t",
+   "names": {
+    "en": "Blunt-snouted lenok",
+    "de": "Brachymystax",
+    "ru": "Ленок тупорылый"
+   },
+   "record_g": 11316,
+   "record_water": "yama_river"
+  },
+  {
+   "id": "lh_kambala",
+   "names": {
+    "en": "Longhead dab",
+    "de": "Kliesche",
+    "ru": "Камбала хоботная"
+   },
+   "record_g": 4954,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "lm_b_bass",
+   "names": {
+    "en": "Largemouth bass",
+    "de": "Forellenbarsch",
+    "ru": "Окунь большеротый"
+   },
+   "record_g": 9941,
+   "record_water": "elk_lake"
+  },
+  {
+   "id": "lophius_p",
+   "names": {
+    "en": "European Angler",
+    "de": "Seeteufel",
+    "ru": "Морской чёрт"
+   },
+   "record_g": 59584,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "lycodes_e",
+   "names": {
+    "en": "Esmark’s eelpout",
+    "de": "Esmarks Aalmutter",
+    "ru": "Ликод Эсмарка"
+   },
+   "record_g": 3770,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "lycodes_s",
+   "names": {
+    "en": "Longear eelpout",
+    "de": "Langohr-Aalmutter",
+    "ru": "Ликод полуголый"
+   },
+   "record_g": 1819,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "m_carp",
+   "names": {
+    "en": "Mirror Carp",
+    "de": "Spiegelkarpfen",
+    "ru": "Карп зеркальный"
+   },
+   "record_g": 49961,
+   "record_water": "the_amber_lake"
+  },
+  {
+   "id": "m_carp_albino",
+   "names": {
+    "en": "Mirror Albino Carp",
+    "de": "Albino-Spiegelkarpfen",
+    "ru": "Карп зеркальный - альбинос"
+   },
+   "record_g": 45179,
+   "record_water": "the_amber_lake"
+  },
+  {
+   "id": "m_carp_ghost",
+   "names": {
+    "en": "Mirror ghost carp",
+    "de": "Geister-Spiegelkarpfen",
+    "ru": "Карп зеркальный - призрак"
+   },
+   "record_g": 47467,
+   "record_water": "the_amber_lake"
+  },
+  {
+   "id": "m_carp_red",
+   "names": {
+    "en": "Starvas Red Carp - Mirror",
+    "de": "Goldener Spiegelkarpfen",
+    "ru": "Карп красный Старвас - зеркальный"
+   },
+   "record_g": 44720,
+   "record_water": "the_amber_lake"
+  },
+  {
+   "id": "m_goshiki",
+   "names": {
+    "en": "Mameshibori Goshiki",
+    "de": "Mameshibori Goshiki",
+    "ru": "Карп Кои Мамэсибори Госики"
+   },
+   "record_g": 38078,
+   "record_water": "copper_lake"
+  },
+  {
+   "id": "m_molva",
+   "names": {
+    "en": "Common ling",
+    "de": "Gewöhnlicher Leng",
+    "ru": "Мольва обыкновенная"
+   },
+   "record_g": 49036,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "m_scorpius",
+   "names": {
+    "en": "Shorthorn sculpin",
+    "de": "Seeskorpion",
+    "ru": "Керчак европейский"
+   },
+   "record_g": 4997,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "m_zubatka",
+   "names": {
+    "en": "Spotted wolffish",
+    "de": "Gefleckter Seewolf",
+    "ru": "Зубатка пятнистая"
+   },
+   "record_g": 27946,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "macrourus_b",
+   "names": {
+    "en": "Roughhead grenadier",
+    "de": "Grenadierfisch",
+    "ru": "Макрурус северный"
+   },
+   "record_g": 3900,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "makrel",
+   "names": {
+    "en": "Atlantic mackerel",
+    "de": "Makrele",
+    "ru": "Макрель атлантическая"
+   },
+   "record_g": 3490,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "malma",
+   "names": {
+    "en": "Dolly Varden Trout",
+    "de": "Dolly-Varden-Forelle",
+    "ru": "Мальма"
+   },
+   "record_g": 11878,
+   "record_water": "yama_river"
+  },
+  {
+   "id": "meagre",
+   "names": {
+    "en": "Meagre",
+    "de": "Adlerfisch",
+    "ru": "Горбыль серебристый"
+   },
+   "record_g": 97836,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "menek",
+   "names": {
+    "en": "Cusk",
+    "de": "Lumb",
+    "ru": "Менёк"
+   },
+   "record_g": 29943,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "merlang",
+   "names": {
+    "en": "Whiting",
+    "de": "Wittling",
+    "ru": "Мерланг"
+   },
+   "record_g": 4952,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "merluza",
+   "names": {
+    "en": "European hake",
+    "de": "Europäischer Seehecht",
+    "ru": "Мерлуза"
+   },
+   "record_g": 14938,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "midori_g",
+   "names": {
+    "en": "Midori goi",
+    "de": "Midori goi",
+    "ru": "Карп Кои Мидори-гои"
+   },
+   "record_g": 29525,
+   "record_water": "mosquito_lake"
+  },
+  {
+   "id": "mikija",
+   "names": {
+    "en": "Kamchatkan Rainbow Trout",
+    "de": "Kamtschatka-Regenbogenforelle",
+    "ru": "Микижа"
+   },
+   "record_g": 11905,
+   "record_water": "yama_river"
+  },
+  {
+   "id": "molva",
+   "names": {
+    "en": "Blue ling",
+    "de": "Blauleng",
+    "ru": "Мольва голубая"
+   },
+   "record_g": 44854,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "muksun",
+   "names": {
+    "en": "Muksun",
+    "de": "Muksun",
+    "ru": "Муксун"
+   },
+   "record_g": 10328,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "mytilus_ed",
+   "names": {
+    "en": "Mussel",
+    "de": "Gemeine Miesmuschel",
+    "ru": "Мидия"
+   },
+   "record_g": 168,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "n.pike",
+   "names": {
+    "en": "Pike",
+    "de": "Hecht",
+    "ru": "Щука обыкновенная"
+   },
+   "record_g": 29688,
+   "record_water": "ladoga_archipelago"
+  },
+  {
+   "id": "n_asagi",
+   "names": {
+    "en": "Narumi Asagi",
+    "de": "Narumi Asagi",
+    "ru": "Карп Кои Наруми Асаги"
+   },
+   "record_g": 38533,
+   "record_water": "copper_lake"
+  },
+  {
+   "id": "n_carp",
+   "names": {
+    "en": "Leather Carp",
+    "de": "Lederkarpfen",
+    "ru": "Карп голый"
+   },
+   "record_g": 59890,
+   "record_water": "the_amber_lake"
+  },
+  {
+   "id": "n_carp_albino",
+   "names": {
+    "en": "Scaleless Albino Carp",
+    "de": "Albino-Lederkarpfen",
+    "ru": "Карп голый - альбинос"
+   },
+   "record_g": 41924,
+   "record_water": "the_amber_lake"
+  },
+  {
+   "id": "n_carp_ghost",
+   "names": {
+    "en": "Scaleless Ghost Carp",
+    "de": "Geister-Lederkarpfen",
+    "ru": "Карп голый - призрак"
+   },
+   "record_g": 54417,
+   "record_water": "the_amber_lake"
+  },
+  {
+   "id": "neiva",
+   "names": {
+    "en": "Neiva",
+    "de": "Neiva",
+    "ru": "Нейва"
+   },
+   "record_g": 1586,
+   "record_water": "yama_river"
+  },
+  {
+   "id": "nelma",
+   "names": {
+    "en": "Nelma",
+    "de": "Nelma",
+    "ru": "Нельма"
+   },
+   "record_g": 29029,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "nerka",
+   "names": {
+    "en": "Sockeye Salmon",
+    "de": "Rotlachs",
+    "ru": "Нерка"
+   },
+   "record_g": 6767,
+   "record_water": "yama_river"
+  },
+  {
+   "id": "o_ogon",
+   "names": {
+    "en": "Orenji Ogon",
+    "de": "Orenji Ogon",
+    "ru": "Карп Кои Орэндзи Огон"
+   },
+   "record_g": 38691,
+   "record_water": "copper_lake"
+  },
+  {
+   "id": "onkor_m",
+   "names": {
+    "en": "Masu",
+    "de": "Masu-Lachs",
+    "ru": "Сима"
+   },
+   "record_g": 9353,
+   "record_water": "yama_river"
+  },
+  {
+   "id": "onkor_mg",
+   "names": {
+    "en": "Masu sedentary",
+    "de": "Masu-Lachs (Sesshaft)",
+    "ru": "Сима жилая"
+   },
+   "record_g": 7882,
+   "record_water": "yama_river"
+  },
+  {
+   "id": "os_grayling",
+   "names": {
+    "en": "East Siberian Grayling",
+    "de": "Ostsibirische Äsche",
+    "ru": "Хариус восточносибирский"
+   },
+   "record_g": 2993,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "osetr_balt",
+   "names": {
+    "en": "Baltic Sturgeon",
+    "de": "Baltischer Stör",
+    "ru": "Осётр балтийский"
+   },
+   "record_g": 303409,
+   "record_water": "ladoga_archipelago"
+  },
+  {
+   "id": "osetr_ship",
+   "names": {
+    "en": "Bastard Sturgeon",
+    "de": "Glatt-Stör",
+    "ru": "Шип"
+   },
+   "record_g": 63845,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "ostrea_ed",
+   "names": {
+    "en": "Oyster",
+    "de": "Auster",
+    "ru": "Устрица съедобная"
+   },
+   "record_g": 423,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "p_sturgeon",
+   "names": {
+    "en": "Persian Sturgeon",
+    "de": "Persischer Stör",
+    "ru": "Осётр персидский"
+   },
+   "record_g": 152030,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "p_zubatka",
+   "names": {
+    "en": "Atlantic wolffish",
+    "de": "Gestreifter Seewolf",
+    "ru": "Зубатка полосатая"
+   },
+   "record_g": 23996,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "palia_kr",
+   "names": {
+    "en": "Gray Char",
+    "de": "Klotzsaibling",
+    "ru": "Палия кряжевая"
+   },
+   "record_g": 5868,
+   "record_water": "ladoga_archipelago"
+  },
+  {
+   "id": "palia_lud",
+   "names": {
+    "en": "Red Char",
+    "de": "Ludoga-Saibling",
+    "ru": "Палия лудожная"
+   },
+   "record_g": 9428,
+   "record_water": "ladoga_archipelago"
+  },
+  {
+   "id": "peled",
+   "names": {
+    "en": "Peled",
+    "de": "Peledmaräne",
+    "ru": "Пелядь"
+   },
+   "record_g": 4736,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "perch",
+   "names": {
+    "en": "Perch",
+    "de": "Flussbarsch",
+    "ru": "Окунь"
+   },
+   "record_g": 3498,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "piksha",
+   "names": {
+    "en": "Haddock",
+    "de": "Schellfisch",
+    "ru": "Пикша"
+   },
+   "record_g": 16981,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "pinagor",
+   "names": {
+    "en": "Lumpfish",
+    "de": "Seehase",
+    "ru": "Пинагор"
+   },
+   "record_g": 9105,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "pollachius",
+   "names": {
+    "en": "Pollock",
+    "de": "Steinköhler",
+    "ru": "Поллак"
+   },
+   "record_g": 17912,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "polyprion",
+   "names": {
+    "en": "Atlantic wreckfish",
+    "de": "Wrackbarsch",
+    "ru": "Окунь каменный"
+   },
+   "record_g": 98948,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "poutassou",
+   "names": {
+    "en": "Blue whiting",
+    "de": "Blauer Wittling",
+    "ru": "Путассу северная"
+   },
+   "record_g": 1493,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "pumps_sunfish",
+   "names": {
+    "en": "Pumpkinseed Sunfish",
+    "de": "Kürbiskernbarsch",
+    "ru": "Окунь солнечный"
+   },
+   "record_g": 668,
+   "record_water": "seversky_donets_river"
+  },
+  {
+   "id": "r_carp",
+   "names": {
+    "en": "Frame-sided carp",
+    "de": "Gerahmter Spiegelkarpfen",
+    "ru": "Карп рамчатый"
+   },
+   "record_g": 49949,
+   "record_water": "the_amber_lake"
+  },
+  {
+   "id": "r_carp_albino",
+   "names": {
+    "en": "Frame-sided albino carp",
+    "de": "Albino Gerahmter Spiegelkarpfen",
+    "ru": "Карп рамчатый - альбинос"
+   },
+   "record_g": 30093,
+   "record_water": "the_amber_lake"
+  },
+  {
+   "id": "r_carp_ghost",
+   "names": {
+    "en": "Frame-sided Ghost Carp",
+    "de": "Geister-Gerahmter Spiegelkarpfen",
+    "ru": "Карп рамчатый - призрак"
+   },
+   "record_g": 45672,
+   "record_water": "the_amber_lake"
+  },
+  {
+   "id": "r_sturgeon",
+   "names": {
+    "en": "Russian Sturgeon",
+    "de": "Russischer Stör",
+    "ru": "Осётр русский"
+   },
+   "record_g": 124558,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "red_fish",
+   "names": {
+    "en": "Small redfish",
+    "de": "Kleiner Rotbarsch",
+    "ru": "Окунь морской норвежский"
+   },
+   "record_g": 4995,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "resfish",
+   "names": {
+    "en": "Redear sunfish",
+    "de": "Rotohr-Sonnenbarsch",
+    "ru": "Солнечник красноухий"
+   },
+   "record_g": 2891,
+   "record_water": "elk_lake"
+  },
+  {
+   "id": "ripus",
+   "names": {
+    "en": "Ripus",
+    "de": "Ripus-Maräne",
+    "ru": "Рипус"
+   },
+   "record_g": 1994,
+   "record_water": "ladoga_lake"
+  },
+  {
+   "id": "riv_brown_trout",
+   "names": {
+    "en": "Brown Trout",
+    "de": "Bachforelle",
+    "ru": "Форель ручьевая"
+   },
+   "record_g": 6984,
+   "record_water": "belaya_river"
+  },
+  {
+   "id": "riv_rb_trout",
+   "names": {
+    "en": "Rainbow Trout",
+    "de": "Regenbogenforelle",
+    "ru": "Форель радужная"
+   },
+   "record_g": 15802,
+   "record_water": "kuori_lake"
+  },
+  {
+   "id": "rk_crab",
+   "names": {
+    "en": "Red king crab",
+    "de": "Königskrabbe",
+    "ru": "Краб камчатский"
+   },
+   "record_g": 12530,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "rudd",
+   "names": {
+    "en": "Rudd",
+    "de": "Rotfeder",
+    "ru": "Краснопёрка"
+   },
+   "record_g": 2376,
+   "record_water": "seversky_donets_river"
+  },
+  {
+   "id": "ruffe",
+   "names": {
+    "en": "Ruffe",
+    "de": "Kaulbarsch",
+    "ru": "Ёрш"
+   },
+   "record_g": 249,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "ruffe_n",
+   "names": {
+    "en": "Donets Ruffe",
+    "de": "Don-Kaulbarsch",
+    "ru": "Ёрш-носарь"
+   },
+   "record_g": 434,
+   "record_water": "seversky_donets_river"
+  },
+  {
+   "id": "s.bream",
+   "names": {
+    "en": "White Bream",
+    "de": "Güster",
+    "ru": "Густера"
+   },
+   "record_g": 1398,
+   "record_water": "winding_rivulet"
+  },
+  {
+   "id": "s.orfe",
+   "names": {
+    "en": "Ide",
+    "de": "Aland",
+    "ru": "Язь"
+   },
+   "record_g": 7892,
+   "record_water": "belaya_river"
+  },
+  {
+   "id": "s_bass",
+   "names": {
+    "en": "Striped Bass (Striper)",
+    "de": "Felsenbarsch",
+    "ru": "Лаврак полосатый"
+   },
+   "record_g": 48575,
+   "record_water": "elk_lake"
+  },
+  {
+   "id": "s_carp",
+   "names": {
+    "en": "Silver Carp",
+    "de": "Silberkarpfen",
+    "ru": "Толстолобик белый"
+   },
+   "record_g": 47979,
+   "record_water": "sura_river"
+  },
+  {
+   "id": "s_freaks",
+   "names": {
+    "en": "C2 SuperFreak",
+    "de": "C2 SuperFreak",
+    "ru": "Карп Супер Фрикс"
+   },
+   "record_g": 47622,
+   "record_water": "copper_lake"
+  },
+  {
+   "id": "s_lamprey",
+   "names": {
+    "en": "Siberian Lamprey",
+    "de": "Sibirisches Bachneunauge",
+    "ru": "Минога сибирская"
+   },
+   "record_g": 36,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "s_saurus",
+   "names": {
+    "en": "Atlantic saury",
+    "de": "Makrelenhecht",
+    "ru": "Сайра атлантическая"
+   },
+   "record_g": 999,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "sabrefish",
+   "names": {
+    "en": "Sichel",
+    "de": "Sichling",
+    "ru": "Чехонь"
+   },
+   "record_g": 2474,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "salvel_l",
+   "names": {
+    "en": "Char",
+    "de": "Bachsaibling",
+    "ru": "Палия обыкновенная"
+   },
+   "record_g": 9620,
+   "record_water": "ladoga_archipelago"
+  },
+  {
+   "id": "sardina_p",
+   "names": {
+    "en": "Sardine",
+    "de": "Europäische Sardine",
+    "ru": "Сардина европейская"
+   },
+   "record_g": 299,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "sea_kambala",
+   "names": {
+    "en": "European plaice",
+    "de": "Scholle",
+    "ru": "Камбала морская"
+   },
+   "record_g": 6997,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "sebastes_m",
+   "names": {
+    "en": "Beaked redfish",
+    "de": "Tiefenrotbarsch",
+    "ru": "Окунь-клювач"
+   },
+   "record_g": 8897,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "sebastes_n",
+   "names": {
+    "en": "Atlantic redfish",
+    "de": "Rotbarsch",
+    "ru": "Окунь морской золотистый"
+   },
+   "record_g": 14736,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "sevan_trout",
+   "names": {
+    "en": "Sevan Trout",
+    "de": "Sewan-Forelle",
+    "ru": "Форель севанская"
+   },
+   "record_g": 17663,
+   "record_water": "kuori_lake"
+  },
+  {
+   "id": "sgar",
+   "names": {
+    "en": "Spotted Gar",
+    "de": "Gefleckter Knochenhecht",
+    "ru": "Панцирник пятнистый"
+   },
+   "record_g": 3495,
+   "record_water": "elk_lake"
+  },
+  {
+   "id": "sh_barbel",
+   "names": {
+    "en": "Short-headed Barbel",
+    "de": "Aral-Barbe",
+    "ru": "Усач короткоголовый"
+   },
+   "record_g": 20984,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "shemaya",
+   "names": {
+    "en": "Shemaya",
+    "de": "Seelaube",
+    "ru": "Шемая каспийская"
+   },
+   "record_g": 1042,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "shemaya_cha",
+   "names": {
+    "en": "Black Sea Shemaya",
+    "de": "Schwarzmeer-Seelaube",
+    "ru": "Шемая черноморская"
+   },
+   "record_g": 791,
+   "record_water": "seversky_donets_river"
+  },
+  {
+   "id": "sig",
+   "names": {
+    "en": "Volkhov Whitefish",
+    "de": "Wolchow-Renke",
+    "ru": "Сиг волховский"
+   },
+   "record_g": 7543,
+   "record_water": "ladoga_lake"
+  },
+  {
+   "id": "sig_black",
+   "names": {
+    "en": "Black whitefish",
+    "de": "Schwarzes Felchen",
+    "ru": "Сиг чёрный"
+   },
+   "record_g": 5827,
+   "record_water": "ladoga_archipelago"
+  },
+  {
+   "id": "sig_kuor",
+   "names": {
+    "en": "Kuori Whitefish",
+    "de": "Kuori Felchen",
+    "ru": "Сиг куорский"
+   },
+   "record_g": 5891,
+   "record_water": "kuori_lake"
+  },
+  {
+   "id": "sig_ludoga",
+   "names": {
+    "en": "Ludoga Whitefish",
+    "de": "Ludoga-Renke",
+    "ru": "Сиг-лудога"
+   },
+   "record_g": 5992,
+   "record_water": "ladoga_archipelago"
+  },
+  {
+   "id": "sig_o_l",
+   "names": {
+    "en": "Ladoga Lake Whitefish",
+    "de": "Ladogasee Felchen",
+    "ru": "Сиг ладожский озёрный"
+   },
+   "record_g": 4503,
+   "record_water": "ladoga_archipelago"
+  },
+  {
+   "id": "sig_ostr",
+   "names": {
+    "en": "Ostrog Whitefish",
+    "de": "Ostrog Felchen",
+    "ru": "Сиг острожский"
+   },
+   "record_g": 4662,
+   "record_water": "old_burg_lake"
+  },
+  {
+   "id": "sig_p",
+   "names": {
+    "en": "Humpback Whitefish",
+    "de": "Kleine Bodenrenke",
+    "ru": "Сиг-пыжьян"
+   },
+   "record_g": 6260,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "sig_valaam",
+   "names": {
+    "en": "Valaam Whitefish",
+    "de": "Valaam-Buckelmaräne",
+    "ru": "Сиг валаамский"
+   },
+   "record_g": 2669,
+   "record_water": "ladoga_archipelago"
+  },
+  {
+   "id": "sig_vouksa",
+   "names": {
+    "en": "Vuoksa Whitefish",
+    "de": "Vuoksi-Renke",
+    "ru": "Сиг вуоксинский"
+   },
+   "record_g": 5829,
+   "record_water": "ladoga_archipelago"
+  },
+  {
+   "id": "sm_bass",
+   "names": {
+    "en": "Smallmouth bass",
+    "de": "Schwarzbarsch",
+    "ru": "Окунь малоротый"
+   },
+   "record_g": 5221,
+   "record_water": "elk_lake"
+  },
+  {
+   "id": "somniosus_m",
+   "names": {
+    "en": "Greenland shark",
+    "de": "Grönlandhai",
+    "ru": "Акула гренландская полярная"
+   },
+   "record_g": 905108,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "sp_bass",
+   "names": {
+    "en": "Spotted bass",
+    "de": "Gepunkteter Barsch",
+    "ru": "Окунь пятнистый"
+   },
+   "record_g": 4538,
+   "record_water": "elk_lake"
+  },
+  {
+   "id": "st_sturgeon",
+   "names": {
+    "en": "Stellate Sturgeon",
+    "de": "Scherg",
+    "ru": "Севрюга"
+   },
+   "record_g": 77870,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "sterlet",
+   "names": {
+    "en": "Sterlet",
+    "de": "Sterlet",
+    "ru": "Стерлядь"
+   },
+   "record_g": 15939,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "stickleback_ninesp",
+   "names": {
+    "en": "Nine-Spined Stickleback",
+    "de": "Neunstachliger Stichling",
+    "ru": "Колюшка девятииглая"
+   },
+   "record_g": 96,
+   "record_water": "yama_river"
+  },
+  {
+   "id": "stickleback_ss",
+   "names": {
+    "en": "Small Southern Stickleback",
+    "de": "Südl. Neunstachliger Stichling",
+    "ru": "Колюшка малая южная"
+   },
+   "record_g": 98,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "stickleback_threesp",
+   "names": {
+    "en": "Three-spined Stickleback",
+    "de": "Dreistachliger Stichling",
+    "ru": "Колюшка трёхиглая"
+   },
+   "record_g": 99,
+   "record_water": "ladoga_lake"
+  },
+  {
+   "id": "sv_sig",
+   "names": {
+    "en": "Svir Whitefish",
+    "de": "Svir Felchen",
+    "ru": "Сиг свирский"
+   },
+   "record_g": 4195,
+   "record_water": "ladoga_archipelago"
+  },
+  {
+   "id": "syb_elets",
+   "names": {
+    "en": "Siberian Dace",
+    "de": "Sibirischer Hasel",
+    "ru": "Елец сибирский"
+   },
+   "record_g": 428,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "syb_gudgeon",
+   "names": {
+    "en": "Siberian Gudgeon",
+    "de": "Sibirischer Gründling",
+    "ru": "Пескарь сибирский"
+   },
+   "record_g": 227,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "syb_roach",
+   "names": {
+    "en": "Siberian Roach",
+    "de": "Tunguska Rotauge",
+    "ru": "Плотва сибирская"
+   },
+   "record_g": 799,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "syb_sterlet",
+   "names": {
+    "en": "Siberian Sterlet",
+    "de": "Sibirischer Sterlet",
+    "ru": "Стерлядь сибирская"
+   },
+   "record_g": 17215,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "syb_vendace",
+   "names": {
+    "en": "Siberian Sardine Cisco",
+    "de": "Kleine Sibirische Maräne",
+    "ru": "Ряпушка сибирская"
+   },
+   "record_g": 1297,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "taimen",
+   "names": {
+    "en": "Taimen",
+    "de": "Taimen",
+    "ru": "Таймень"
+   },
+   "record_g": 99577,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "taran",
+   "names": {
+    "en": "Taran",
+    "de": "Sibirische Plötze",
+    "ru": "Тарань"
+   },
+   "record_g": 1998,
+   "record_water": "seversky_donets_river"
+  },
+  {
+   "id": "tench",
+   "names": {
+    "en": "Tench",
+    "de": "Schleie",
+    "ru": "Линь"
+   },
+   "record_g": 7470,
+   "record_water": "copper_lake"
+  },
+  {
+   "id": "thynnus_t",
+   "names": {
+    "en": "Atlantic bluefin tuna",
+    "de": "Blauflossen-Thunfisch",
+    "ru": "Тунец голубой"
+   },
+   "record_g": 485207,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "tiulka",
+   "names": {
+    "en": "Clupeonella",
+    "de": "Tyulka-Sardine",
+    "ru": "Тюлька черноморская"
+   },
+   "record_g": 29,
+   "record_water": "seversky_donets_river"
+  },
+  {
+   "id": "trib_h",
+   "names": {
+    "en": "Ugui",
+    "de": "Ugui",
+    "ru": "Краснопёр-Угай крупночешуйчатый"
+   },
+   "record_g": 1790,
+   "record_water": "yama_river"
+  },
+  {
+   "id": "trid_lamprey",
+   "names": {
+    "en": "Three Toothed Lamprey",
+    "de": "Pazifisches Neunauge",
+    "ru": "Минога трёхзубая"
+   },
+   "record_g": 62,
+   "record_water": "yama_river"
+  },
+  {
+   "id": "tugun",
+   "names": {
+    "en": "Tugun",
+    "de": "Tugun",
+    "ru": "Тугун"
+   },
+   "record_g": 79,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "turbot",
+   "names": {
+    "en": "Turbot",
+    "de": "Steinbutt",
+    "ru": "Тюрбо"
+   },
+   "record_g": 24783,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "u_lamprey",
+   "names": {
+    "en": "Ukrainian Lamprey",
+    "de": "Ukrainisches Bachneunauge",
+    "ru": "Минога украинская"
+   },
+   "record_g": 75,
+   "record_water": "seversky_donets_river"
+  },
+  {
+   "id": "v_bream",
+   "names": {
+    "en": "Vimba",
+    "de": "Zährte",
+    "ru": "Рыбец"
+   },
+   "record_g": 2887,
+   "record_water": "volkhov_river"
+  },
+  {
+   "id": "valyok",
+   "names": {
+    "en": "Round Whitefish",
+    "de": "Prosopium",
+    "ru": "Валёк"
+   },
+   "record_g": 1701,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "vendace",
+   "names": {
+    "en": "Vendace",
+    "de": "Zwergmaräne",
+    "ru": "Ряпушка"
+   },
+   "record_g": 993,
+   "record_water": "ladoga_lake"
+  },
+  {
+   "id": "vjun",
+   "names": {
+    "en": "Loach",
+    "de": "Schlammpeitzger",
+    "ru": "Вьюн"
+   },
+   "record_g": 297,
+   "record_water": "mosquito_lake"
+  },
+  {
+   "id": "vobla",
+   "names": {
+    "en": "Caspian Roach",
+    "de": "Wobla",
+    "ru": "Вобла"
+   },
+   "record_g": 986,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "vyrezub",
+   "names": {
+    "en": "Black Sea Kutum",
+    "de": "Schwarzmeer-Kutum",
+    "ru": "Вырезуб"
+   },
+   "record_g": 8949,
+   "record_water": "seversky_donets_river"
+  },
+  {
+   "id": "w_catfish",
+   "names": {
+    "en": "Catfish",
+    "de": "Wels",
+    "ru": "Сом"
+   },
+   "record_g": 251240,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "w_catfish_a",
+   "names": {
+    "en": "Albino Catfish",
+    "de": "Albino-Wels",
+    "ru": "Сом альбинос"
+   },
+   "record_g": 94772,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "wa_bream",
+   "names": {
+    "en": "White-eye Bream",
+    "de": "Zobel",
+    "ru": "Белоглазка"
+   },
+   "record_g": 1041,
+   "record_water": "winding_rivulet"
+  },
+  {
+   "id": "walleye",
+   "names": {
+    "en": "Walleye",
+    "de": "Walleye",
+    "ru": "Судак светлопёрый"
+   },
+   "record_g": 10789,
+   "record_water": "elk_lake"
+  },
+  {
+   "id": "warm",
+   "names": {
+    "en": "Warmouth",
+    "de": "Warmouth",
+    "ru": "Вармоус"
+   },
+   "record_g": 1099,
+   "record_water": "elk_lake"
+  },
+  {
+   "id": "wfish",
+   "names": {
+    "en": "Beloribitsa Whitefish",
+    "de": "Weißlachs",
+    "ru": "Белорыбица"
+   },
+   "record_g": 28682,
+   "record_water": "akhtuba_river"
+  },
+  {
+   "id": "wh_bass",
+   "names": {
+    "en": "White bass",
+    "de": "Weißbarsch",
+    "ru": "Окунь белый"
+   },
+   "record_g": 3096,
+   "record_water": "elk_lake"
+  },
+  {
+   "id": "white_crappie",
+   "names": {
+    "en": "White crappie",
+    "de": "Weißer Crappie",
+    "ru": "Краппи белый"
+   },
+   "record_g": 2491,
+   "record_water": "elk_lake"
+  },
+  {
+   "id": "x_gladius",
+   "names": {
+    "en": "Swordfish",
+    "de": "Schwertfisch",
+    "ru": "Меч-рыба"
+   },
+   "record_g": 622342,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "yotsushiro",
+   "names": {
+    "en": "Yotsushiro",
+    "de": "Yotsushiro",
+    "ru": "Карп Кои Ёцусиро"
+   },
+   "record_g": 36596,
+   "record_water": "copper_lake"
+  },
+  {
+   "id": "zoarces_v",
+   "names": {
+    "en": "Viviparous eelpout",
+    "de": "Aalmutter",
+    "ru": "Бельдюга европейская"
+   },
+   "record_g": 1495,
+   "record_water": "norwegian_sea"
+  },
+  {
+   "id": "zs_grayling",
+   "names": {
+    "en": "Arctic Grayling",
+    "de": "Arktische Äsche",
+    "ru": "Хариус западносибирский"
+   },
+   "record_g": 2990,
+   "record_water": "lower_tunguska_river"
+  },
+  {
+   "id": "zs_sturgeon",
+   "names": {
+    "en": "East Siberian Sturgeon",
+    "de": "Sibirischer Stör",
+    "ru": "Осётр восточносибирский"
+   },
+   "record_g": 176135,
+   "record_water": "lower_tunguska_river"
+  }
+ ]
+}

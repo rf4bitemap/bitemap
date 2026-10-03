@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BiteMap – Russian Fishing 4 community catch map</title>
+<meta name="description" content="Where the fish are biting in Russian Fishing 4 – live hotspots from the BiteMap community.">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="/static/style.css">
+<link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<header>
+  <div class="brand"><img src="/static/favicon.svg" alt=""> <span>BiteMap</span><small data-i18n="tagline"></small></div>
+  <nav>
+    <a href="#map" data-tab="map" data-i18n="tab_map"></a>
+    <a href="#fish" data-tab="fish" data-i18n="tab_fish"></a>
+    <a href="#trophies" data-tab="trophies" data-i18n="tab_trophies"></a>
+    <a href="#download" data-tab="download" data-i18n="tab_download"></a>
+  </nav>
+  <select id="lang" aria-label="Language">
+    <option value="en">EN</option><option value="de">DE</option><option value="ru">RU</option>
+  </select>
+</header>
+
+<section class="chips">
+  <div><b id="st-total">–</b><span data-i18n="st_total"></span></div>
+  <div><b id="st-week">–</b><span data-i18n="st_week"></span></div>
+  <div><b id="st-anglers">–</b><span data-i18n="st_anglers"></span></div>
+</section>
+
+<main>
+  <section id="tab-map" class="tab">
+    <div class="filters">
+      <label><span data-i18n="f_water"></span><select id="f-water"></select></label>
+      <label><span data-i18n="f_fish"></span><select id="f-fish"></select></label>
+      <label><span data-i18n="f_period"></span>
+        <select id="f-days">
+          <option value="1" data-i18n="p_1"></option>
+          <option value="7" data-i18n="p_7"></option>
+          <option value="30" selected data-i18n="p_30"></option>
+          <option value="3650" data-i18n="p_all"></option>
+        </select></label>
+      <label class="check"><input type="checkbox" id="f-trophy"> <span data-i18n="f_trophy"></span></label>
+    </div>
+    <div class="map-layout">
+      <div id="map"></div>
+      <aside>
+        <h3 data-i18n="hotspots"></h3>
+        <ol id="spot-list"></ol>
+        <p class="muted" id="spot-empty" data-i18n="no_data"></p>
+      </aside>
+    </div>
+  </section>
+
+  <section id="tab-fish" class="tab" hidden>
+    <div class="filters">
+      <label><span data-i18n="f_water"></span><select id="fish-water"></select></label>
+      <label><span data-i18n="f_period"></span>
+        <select id="fish-days">
+          <option value="7" data-i18n="p_7"></option>
+          <option value="30" selected data-i18n="p_30"></option>
+          <option value="3650" data-i18n="p_all"></option>
+        </select></label>
+    </div>
+    <table class="grid">
+      <thead><tr><th data-i18n="c_fish"></th><th data-i18n="c_count"></th><th data-i18n="c_avg"></th>
+        <th data-i18n="c_max"></th><th data-i18n="c_trophies"></th><th data-i18n="c_best"></th></tr></thead>
+      <tbody id="fish-rows"></tbody>
+    </table>
+  </section>
+
+  <section id="tab-trophies" class="tab" hidden>
+    <table class="grid">
+      <thead><tr><th data-i18n="c_when"></th><th data-i18n="c_fish"></th><th data-i18n="c_weight"></th>
+        <th data-i18n="c_water"></th><th data-i18n="c_spot"></th></tr></thead>
+      <tbody id="trophy-rows"></tbody>
+    </table>
+  </section>
+
+  <section id="tab-download" class="tab prose" hidden>
+    <h2 data-i18n="dl_title"></h2>
+    <p data-i18n="dl_intro"></p>
+    <p><a class="button" id="dl-link" href="https://github.com/" data-i18n="dl_button"></a></p>
+    <h3 data-i18n="how_title"></h3>
+    <ol>
+      <li data-i18n="how_1"></li><li data-i18n="how_2"></li><li data-i18n="how_3"></li><li data-i18n="how_4"></li>
+    </ol>
+    <h3 data-i18n="privacy_title"></h3>
+    <p data-i18n="privacy"></p>
+    <p class="muted" data-i18n="disclaimer"></p>
+  </section>
+</main>
+
+<footer><span data-i18n="disclaimer_short"></span> · <a href="/api/docs">API</a></footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+<script src="/static/i18n.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>

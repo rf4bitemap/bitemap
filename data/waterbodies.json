@@ -1,0 +1,382 @@
+{
+ "waterbodies": [
+  {
+   "id": "akhtuba_river",
+   "names": {
+    "en": "Akhtuba River",
+    "de": "Achtuba",
+    "ru": "р. Ахтуба"
+   },
+   "map": {
+    "image": "akhtuba_river.webp",
+    "width": 1024,
+    "height": 1024,
+    "min_x": -8,
+    "max_x": 208,
+    "min_y": -7,
+    "max_y": 207
+   },
+   "coord_range": [
+    -8,
+    208
+   ]
+  },
+  {
+   "id": "bear_lake",
+   "names": {
+    "en": "Bear Lake",
+    "de": "Bärensee",
+    "ru": "оз. Медвежье"
+   },
+   "map": {
+    "image": "bear_lake.webp",
+    "width": 1024,
+    "height": 1024,
+    "min_x": 4,
+    "max_x": 95,
+    "min_y": 3,
+    "max_y": 93
+   },
+   "coord_range": [
+    3,
+    95
+   ]
+  },
+  {
+   "id": "belaya_river",
+   "names": {
+    "en": "Belaya River",
+    "de": "Fluss Belaja",
+    "ru": "р. Белая"
+   },
+   "map": {
+    "image": "belaya_river.webp",
+    "width": 1024,
+    "height": 1024,
+    "min_x": 0,
+    "max_x": 114,
+    "min_y": -6,
+    "max_y": 107
+   },
+   "coord_range": [
+    -6,
+    114
+   ]
+  },
+  {
+   "id": "copper_lake",
+   "names": {
+    "en": "Copper lake",
+    "de": "Kupfersee",
+    "ru": "оз. Медное"
+   },
+   "map": {
+    "image": "copper_lake.webp",
+    "width": 1024,
+    "height": 1024,
+    "min_x": 23,
+    "max_x": 78,
+    "min_y": 23,
+    "max_y": 78
+   },
+   "coord_range": [
+    23,
+    78
+   ]
+  },
+  {
+   "id": "elk_lake",
+   "names": {
+    "en": "Elk Lake",
+    "de": "Elk Lake",
+    "ru": "оз. Лосиное"
+   },
+   "map": {
+    "image": "elk_lake.webp",
+    "width": 1024,
+    "height": 1024,
+    "min_x": 38,
+    "max_x": 162,
+    "min_y": 38,
+    "max_y": 162
+   },
+   "coord_range": [
+    38,
+    162
+   ]
+  },
+  {
+   "id": "kuori_lake",
+   "names": {
+    "en": "Kuori Lake",
+    "de": "Kuori",
+    "ru": "оз. Куори"
+   },
+   "map": {
+    "image": "kuori_lake.webp",
+    "width": 1024,
+    "height": 1024,
+    "min_x": 53,
+    "max_x": 149,
+    "min_y": 53,
+    "max_y": 149
+   },
+   "coord_range": [
+    53,
+    149
+   ]
+  },
+  {
+   "id": "ladoga_archipelago",
+   "names": {
+    "en": "Ladoga archipelago",
+    "de": "Der Ladoga-Archipel",
+    "ru": "Ладожский архипелаг"
+   },
+   "map": {
+    "image": "ladoga_archipelago.webp",
+    "width": 1024,
+    "height": 1024,
+    "min_x": -25,
+    "max_x": 625,
+    "min_y": -25,
+    "max_y": 625
+   },
+   "coord_range": [
+    -25,
+    625
+   ]
+  },
+  {
+   "id": "ladoga_lake",
+   "names": {
+    "en": "Ladoga Lake",
+    "de": "Ladogasee",
+    "ru": "Ладожское оз."
+   },
+   "map": {
+    "image": "ladoga_lake.webp",
+    "width": 1024,
+    "height": 1024,
+    "min_x": 5,
+    "max_x": 102,
+    "min_y": 0,
+    "max_y": 97
+   },
+   "coord_range": [
+    0,
+    102
+   ]
+  },
+  {
+   "id": "lower_tunguska_river",
+   "names": {
+    "en": "Lower Tunguska River",
+    "de": "Untere Tunguska",
+    "ru": "р. Нижняя Тунгуска"
+   },
+   "map": {
+    "image": "lower_tunguska_river.webp",
+    "width": 1024,
+    "height": 1024,
+    "min_x": -10,
+    "max_x": 251,
+    "min_y": -10,
+    "max_y": 251
+   },
+   "coord_range": [
+    -10,
+    251
+   ]
+  },
+  {
+   "id": "mosquito_lake",
+   "names": {
+    "en": "Mosquito Lake",
+    "de": "Moskito-See",
+    "ru": "оз. Комариное"
+   },
+   "map": {
+    "image": "mosquito_lake.webp",
+    "width": 1024,
+    "height": 1024,
+    "min_x": 30,
+    "max_x": 112,
+    "min_y": 34,
+    "max_y": 115
+   },
+   "coord_range": [
+    30,
+    115
+   ]
+  },
+  {
+   "id": "norwegian_sea",
+   "names": {
+    "en": "Norwegian Sea",
+    "de": "Europäisches Nordmeer",
+    "ru": "Норвежское море"
+   },
+   "map": {
+    "image": "norwegian_sea.webp",
+    "width": 1024,
+    "height": 1024,
+    "min_x": -40,
+    "max_x": 1036,
+    "min_y": -40,
+    "max_y": 1036
+   },
+   "coord_range": [
+    -40,
+    1036
+   ]
+  },
+  {
+   "id": "old_burg_lake",
+   "names": {
+    "en": "Old Burg Lake",
+    "de": "Alte Festung",
+    "ru": "оз. Старый Острог"
+   },
+   "map": {
+    "image": "old_burg_lake.webp",
+    "width": 1024,
+    "height": 1024,
+    "min_x": -2,
+    "max_x": 83,
+    "min_y": -2,
+    "max_y": 83
+   },
+   "coord_range": [
+    -2,
+    83
+   ]
+  },
+  {
+   "id": "seversky_donets_river",
+   "names": {
+    "en": "Seversky Donets River",
+    "de": "Siwerskyj Donez",
+    "ru": "р. Северский Донец"
+   },
+   "map": {
+    "image": "seversky_donets_river.webp",
+    "width": 1024,
+    "height": 1024,
+    "min_x": 5,
+    "max_x": 196,
+    "min_y": 4,
+    "max_y": 195
+   },
+   "coord_range": [
+    4,
+    196
+   ]
+  },
+  {
+   "id": "sura_river",
+   "names": {
+    "en": "Sura River",
+    "de": "Fluss Sura",
+    "ru": "р. Сура"
+   },
+   "map": {
+    "image": "sura_river.webp",
+    "width": 1024,
+    "height": 1024,
+    "min_x": -5,
+    "max_x": 162,
+    "min_y": -4,
+    "max_y": 165
+   },
+   "coord_range": [
+    -5,
+    165
+   ]
+  },
+  {
+   "id": "the_amber_lake",
+   "names": {
+    "en": "The Amber Lake",
+    "de": "Bernstein-See",
+    "ru": "оз. Янтарное"
+   },
+   "map": {
+    "image": "the_amber_lake.webp",
+    "width": 1024,
+    "height": 1024,
+    "min_x": 0,
+    "max_x": 194,
+    "min_y": 18,
+    "max_y": 213
+   },
+   "coord_range": [
+    0,
+    213
+   ]
+  },
+  {
+   "id": "volkhov_river",
+   "names": {
+    "en": "Volkhov River",
+    "de": "Fluss Wolchow",
+    "ru": "р. Волхов"
+   },
+   "map": {
+    "image": "volkhov_river.webp",
+    "width": 1024,
+    "height": 1024,
+    "min_x": -9,
+    "max_x": 210,
+    "min_y": -8,
+    "max_y": 208
+   },
+   "coord_range": [
+    -9,
+    210
+   ]
+  },
+  {
+   "id": "winding_rivulet",
+   "names": {
+    "en": "Winding Rivulet",
+    "de": "Windenbach",
+    "ru": "р. Вьюнок"
+   },
+   "map": {
+    "image": "winding_rivulet.webp",
+    "width": 1024,
+    "height": 1024,
+    "min_x": 45,
+    "max_x": 142,
+    "min_y": 54,
+    "max_y": 151
+   },
+   "coord_range": [
+    45,
+    151
+   ]
+  },
+  {
+   "id": "yama_river",
+   "names": {
+    "en": "Yama River",
+    "de": "Fluss Jama",
+    "ru": "р. Яма"
+   },
+   "map": {
+    "image": "yama_river.webp",
+    "width": 1024,
+    "height": 1024,
+    "min_x": -12,
+    "max_x": 310,
+    "min_y": -12,
+    "max_y": 311
+   },
+   "coord_range": [
+    -12,
+    311
+   ]
+  }
+ ]
+}

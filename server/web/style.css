@@ -1,0 +1,50 @@
+:root {
+  --bg: #0f1417; --panel: #172026; --line: #24313a; --text: #e7edf1; --muted: #8b9aa5;
+  --accent: #3fb68b; --gold: #ffd166; --hot: #ef8354;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+a { color: var(--accent); }
+header { display: flex; align-items: center; gap: 24px; padding: 12px 20px; background: var(--panel); border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 20px; }
+.brand img { width: 30px; height: 30px; }
+.brand small { font-weight: 400; font-size: 13px; color: var(--muted); }
+nav { display: flex; gap: 4px; flex: 1; flex-wrap: wrap; }
+nav a { color: var(--muted); text-decoration: none; padding: 6px 12px; border-radius: 8px; }
+nav a.on, nav a:hover { color: var(--text); background: #22303a; }
+select, input { background: #0f1820; color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; font: inherit; }
+.chips { display: flex; gap: 12px; padding: 14px 20px 0; flex-wrap: wrap; }
+.chips div { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 10px 16px; display: flex; gap: 8px; align-items: baseline; }
+.chips b { font-size: 22px; color: var(--gold); }
+.chips span { color: var(--muted); }
+main { padding: 14px 20px 30px; }
+.filters { display: flex; gap: 14px; flex-wrap: wrap; align-items: end; margin-bottom: 12px; }
+.filters label { display: flex; flex-direction: column; gap: 4px; color: var(--muted); font-size: 13px; }
+.filters label.check { flex-direction: row; align-items: center; padding-bottom: 6px; }
+.map-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 14px; }
+#map { width: 100%; height: calc(100vh - 260px); min-height: 420px; border-radius: 12px; background: #0b1114; border: 1px solid var(--line); position: relative; }
+#map[data-nomap]:not([data-nomap=""])::after { content: attr(data-nomap); position: absolute; left: 12px; bottom: 10px; z-index: 500; color: var(--muted); font-size: 12px; background: #0b1114cc; padding: 2px 8px; border-radius: 6px; }
+aside { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; overflow: auto; max-height: calc(100vh - 260px); }
+aside h3 { margin: 0 0 8px; }
+#spot-list { margin: 0; padding-left: 22px; }
+#spot-list li { padding: 6px 0; border-bottom: 1px solid var(--line); cursor: pointer; }
+#spot-list li:hover b { color: var(--gold); }
+#spot-list small { color: var(--muted); }
+.muted { color: var(--muted); }
+table.grid { width: 100%; border-collapse: collapse; background: var(--panel); border-radius: 12px; overflow: hidden; }
+.grid th, .grid td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); }
+.grid th { color: var(--muted); font-weight: 600; font-size: 13px; }
+.prose { max-width: 760px; }
+.button { display: inline-block; background: var(--accent); color: #062018; font-weight: 700; padding: 10px 18px; border-radius: 10px; text-decoration: none; }
+footer { color: var(--muted); font-size: 13px; padding: 18px 20px; border-top: 1px solid var(--line); }
+.leaflet-container { background: #0b1114; font: inherit; }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--panel); color: var(--text); }
+.pop h4 { margin: 0 0 4px; font-size: 16px; }
+.pop p { margin: 2px 0; }
+.pop ul { margin: 6px 0 0; padding-left: 18px; }
+.axis { color: var(--muted); font-size: 11px; text-align: center; }
+@media (max-width: 860px) {
+  .map-layout { grid-template-columns: minmax(0, 1fr); }
+  #map { height: 60vh; }
+  aside { max-height: none; }
+}

@@ -1,0 +1,77 @@
+import os
+import sys
+import uuid
+from datetime import datetime, timedelta, timezone
+
+import pytest
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+
+@pytest.fixture()
+def client(tmp_path, monkeypatch):
+    monkeypatch.setenv('DATABASE_URL', f'sqlite:///{tmp_path}/t.db')
+    for m in [m for m in sys.modules if m == 'app' or m.startswith('app.')]:
+        del sys.modules[m]
+    from fastapi.testclient import TestClient
+    from app.main import app
+    with TestClient(app) as c:
+        yield c
+
+
+def now(**delta):
+    return (datetime.now(timezone.utc) + timedelta(**delta)).isoformat(timespec='seconds')
+
+
+def catch(**kw):
+    c = {'uuid': str(uuid.uuid4()), 'caught_at': now(), 'fish_id': 'lm_b_bass', 'waterbody': 'elk_lake',
+         'x': 73, 'y': 48, 'weight_g': 6722, 'length_cm': 79, 'badge': 'trophy', 'coord_age': 4.0}
+    c.update(kw)
+    return c
+
+
+def register(client):
+    r = client.post('/api/v1/installs', json={'client_version': 'test'})
+    assert r.status_code == 200
+    return {'Authorization': 'Bearer ' + r.json()['token']}
+
+
+def test_upload_and_stats(client):
+    h = register(client)
+    good = [catch(), catch(x=73, y=48, fish_id='n.pike', weight_g=2100, badge=None), catch(x=45, y=60, badge=None)]
+    bad = [catch(fish_id='nope'), catch(weight_g=10_000_000), catch(x=5000), catch(caught_at=now(days=-60)),
+           catch(waterbody='atlantis'), catch(uuid='not-a-uuid-------------------------xx')]
+    r = client.post('/api/v1/catches', json={'client_version': 't', 'catches': good + bad}, headers=h)
+    assert r.status_code == 200, r.text
+    d = r.json()
+    assert sorted(d['accepted']) == sorted(c['uuid'] for c in good)
+    reasons = {x['reason'] for x in d['rejected']}
+    assert reasons == {'unknown_fish', 'implausible_weight', 'coords_out_of_range', 'time_out_of_range',
+                       'unknown_waterbody', 'bad_uuid'}
+    sp = client.get('/api/v1/stats/spots', params={'water': 'elk_lake', 'days': 7}).json()['spots']
+    assert sp[0]['x'] == 73 and sp[0]['count'] == 2 and sp[0]['trophies'] == 1
+    assert {f['fish_id'] for f in sp[0]['top_fish']} == {'lm_b_bass', 'n.pike'}
+    ov = client.get('/api/v1/stats/overview').json()
+    assert ov['catches_7d'] == 3 and ov['recent_trophies'][0]['fish_id'] == 'lm_b_bass'
+    fs = client.get('/api/v1/stats/fish', params={'water': 'elk_lake'}).json()['fish']
+    assert fs[0]['fish_id'] == 'lm_b_bass' and fs[0]['count'] == 2
+
+
+def test_auth_and_ownership(client):
+    c = catch()
+    assert client.post('/api/v1/catches', json={'catches': [c]}).status_code == 401
+    h1, h2 = register(client), register(client)
+    assert client.post('/api/v1/catches', json={'catches': [c]}, headers=h1).json()['accepted'] == [c['uuid']]
+    # re-upload by the owner updates (edit), another install cannot take the uuid
+    c2 = dict(c, weight_g=7000)
+    assert client.post('/api/v1/catches', json={'catches': [c2]}, headers=h1).json()['accepted'] == [c['uuid']]
+    r = client.post('/api/v1/catches', json={'catches': [c2]}, headers=h2).json()
+    assert r['rejected'][0]['reason'] == 'uuid_taken'
+    client.delete(f"/api/v1/catches/{c['uuid']}", headers=h2)  # not the owner: no effect
+    assert client.get('/api/v1/stats/overview').json()['catches_total'] >= 0
+    assert client.delete(f"/api/v1/catches/{c['uuid']}", headers=h1).status_code == 200
+
+
+def test_website(client):
+    assert client.get('/').status_code == 200
+    assert client.get('/api/v1/meta').json()['waterbodies']

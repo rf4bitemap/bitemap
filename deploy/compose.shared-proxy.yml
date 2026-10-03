@@ -1,0 +1,49 @@
+# BiteMap on a server that already runs a Caddy reverse proxy in Docker.
+# No ports are published and no own Caddy is started: the API joins the existing proxy's Docker network and the
+# existing Caddyfile gets a site block for the BiteMap domain (see deploy/Caddyfile.site).
+#
+#   PROXY_NETWORK=<docker network of the existing Caddy> docker compose -f deploy/compose.shared-proxy.yml --env-file .env up -d --build
+name: bitemap
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: bitemap
+      POSTGRES_USER: bitemap
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks: [internal]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bitemap"]
+      interval: 10s
+      retries: 10
+
+  api:
+    build:
+      context: ..
+      dockerfile: server/Dockerfile
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql+psycopg://bitemap:${POSTGRES_PASSWORD}@db:5432/bitemap
+      TRUST_PROXY: "1"
+    volumes:
+      - ../data/maps:/app/data/maps:ro
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      internal: {}
+      proxy:
+        aliases: [bitemap-api]   # the existing Caddy proxies to bitemap-api:8000
+
+volumes:
+  pgdata:
+
+networks:
+  internal: {}
+  proxy:
+    external: true
+    name: ${PROXY_NETWORK:?set PROXY_NETWORK to the Docker network of the existing Caddy}

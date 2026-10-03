@@ -1,0 +1,7 @@
+-r client/requirements.txt
+-r server/requirements.txt
+pytest>=8
+httpx>=0.27
+pyinstaller>=6.10
+pefile>=2024.8
+pillow>=10
