@@ -11,6 +11,7 @@ from . import gamewindow, ocr, sound
 from .detect.bite import BiteDetector
 from .detect.catchcard import CatchCardDetector
 from .detect.coords import CoordTracker, read_coords, region as coord_region
+from .gamedata import LEVELS
 from .paths import DEBUG_DIR
 from .store import utcnow
 
@@ -184,7 +185,7 @@ class Engine(threading.Thread):
                 time.sleep(0.2)
                 band = self.grab.grab(rect, (0, 0, W, int(H * 0.32)))
             g = self.card.find(band, H) or geom
-            r = self.card.read(band, g, self.gd, self.langs())
+            r = self.card.read(band, g, self.gd, self.langs(), water=self.settings.get('waterbody'))
             readings.append((r, band))
             if self._confident(r):
                 break  # clear name, plausible weight, length read: no need to confirm
@@ -212,14 +213,15 @@ class Engine(threading.Thread):
                 xy, age = self._bite_spot[0], self._bite_spot[1] + (time.time() - self._last_bite)
         self._last_bite = None
         self._bite_spot = None
+        level = LEVELS[self.gd.trophy_level(r.fish_id, r.weight_g)]   # trophy / super trophy by weight
         if r.fish_id and r.weight_g and not self.gd.plausible_weight(r.fish_id, r.weight_g):
             log.info('implausible weight %s g for %s (text %r)', r.weight_g, r.fish_id, r.weight_text)
         catch = self.store.add(
             caught_at=utcnow(), fish_id=r.fish_id, name_text=r.name_text, weight_g=r.weight_g,
-            length_cm=r.length_cm, badge=r.badge, waterbody=self.settings.get('waterbody') or None,
+            length_cm=r.length_cm, badge=level, waterbody=self.settings.get('waterbody') or None,
             x=xy[0] if xy else None, y=xy[1] if xy else None, coord_age=round(age, 1) if xy else None,
             bite_at=bite_at, game_lang=r.lang)
-        log.info('catch: %s %r %s g %s cm at %s (%s)', r.fish_id, r.name_text, r.weight_g, r.length_cm, xy, r.badge)
+        log.info('catch: %s %r %s g %s cm at %s (%s)', r.fish_id, r.name_text, r.weight_g, r.length_cm, xy, level)
         if not r.fish_id or not r.weight_g or self.settings.get('save_debug_images'):
             self._save_debug(band, catch['uuid'])
         sound.play('catch')

@@ -9,7 +9,19 @@
     "ru": "Ротан"
    },
    "record_g": 798,
-   "record_water": "mosquito_lake"
+   "record_water": "mosquito_lake",
+   "trophy_g": 400,
+   "super_trophy_g": 700,
+   "waters": [
+    "bear_lake",
+    "copper_lake",
+    "mosquito_lake",
+    "old_burg_lake",
+    "sura_river",
+    "the_amber_lake",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "a_catfish",
@@ -19,7 +31,12 @@
     "ru": "Сом амурский"
    },
    "record_g": 7912,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 5000,
+   "super_trophy_g": 7000,
+   "waters": [
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "a_char",
@@ -29,7 +46,14 @@
     "ru": "Голец арктический"
    },
    "record_g": 19716,
-   "record_water": "kuori_lake"
+   "record_water": "kuori_lake",
+   "trophy_g": 11000,
+   "super_trophy_g": 16000,
+   "waters": [
+    "kuori_lake",
+    "lower_tunguska_river",
+    "yama_river"
+   ]
   },
   {
    "id": "a_grayling",
@@ -39,7 +63,12 @@
     "ru": "Хариус европейский"
    },
    "record_g": 5916,
-   "record_water": "belaya_river"
+   "record_water": "belaya_river",
+   "trophy_g": 3200,
+   "super_trophy_g": 5500,
+   "waters": [
+    "belaya_river"
+   ]
   },
   {
    "id": "a_omul",
@@ -49,7 +78,13 @@
     "ru": "Омуль арктический"
    },
    "record_g": 4919,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 3000,
+   "super_trophy_g": 4000,
+   "waters": [
+    "lower_tunguska_river",
+    "yama_river"
+   ]
   },
   {
    "id": "a_salmon",
@@ -59,7 +94,14 @@
     "ru": "Лосось атлантический"
    },
    "record_g": 42423,
-   "record_water": "ladoga_archipelago"
+   "record_water": "ladoga_archipelago",
+   "trophy_g": 30000,
+   "super_trophy_g": 40000,
+   "waters": [
+    "ladoga_archipelago",
+    "ladoga_lake",
+    "volkhov_river"
+   ]
   },
   {
    "id": "a_smelt",
@@ -69,7 +111,13 @@
     "ru": "Корюшка азиатская"
    },
    "record_g": 348,
-   "record_water": "yama_river"
+   "record_water": "yama_river",
+   "trophy_g": 270,
+   "super_trophy_g": 320,
+   "waters": [
+    "lower_tunguska_river",
+    "yama_river"
+   ]
   },
   {
    "id": "agar",
@@ -79,7 +127,12 @@
     "ru": "Щука панцирная"
    },
    "record_g": 59404,
-   "record_water": "elk_lake"
+   "record_water": "elk_lake",
+   "trophy_g": 70000,
+   "super_trophy_g": 100000,
+   "waters": [
+    "elk_lake"
+   ]
   },
   {
    "id": "alb_barbel",
@@ -89,7 +142,12 @@
     "ru": "Усач альбинос"
    },
    "record_g": 13430,
-   "record_water": "bear_lake"
+   "record_water": "bear_lake",
+   "trophy_g": 8000,
+   "super_trophy_g": 12000,
+   "waters": [
+    "bear_lake"
+   ]
   },
   {
    "id": "alfonsino",
@@ -99,7 +157,12 @@
     "ru": "Берикс красный"
    },
    "record_g": 13595,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 9000,
+   "super_trophy_g": 12000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "ambl_h",
@@ -109,7 +172,12 @@
     "ru": "Скат полярный"
    },
    "record_g": 12997,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 8000,
+   "super_trophy_g": 10000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "ambl_r",
@@ -119,7 +187,12 @@
     "ru": "Скат колючий"
    },
    "record_g": 16281,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 11000,
+   "super_trophy_g": 14000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "asp",
@@ -129,7 +202,17 @@
     "ru": "Жерех"
    },
    "record_g": 14761,
-   "record_water": "sura_river"
+   "record_water": "sura_river",
+   "trophy_g": 8000,
+   "super_trophy_g": 13000,
+   "waters": [
+    "akhtuba_river",
+    "belaya_river",
+    "seversky_donets_river",
+    "sura_river",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "atl_cod",
@@ -139,7 +222,12 @@
     "ru": "Треска атлантическая"
    },
    "record_g": 99338,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 50000,
+   "super_trophy_g": 65000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "atl_herring",
@@ -149,7 +237,12 @@
     "ru": "Сельдь атлантическая"
    },
    "record_g": 1196,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 800,
+   "super_trophy_g": 1000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "b_bream",
@@ -159,7 +252,17 @@
     "ru": "Синец"
    },
    "record_g": 1221,
-   "record_water": "sura_river"
+   "record_water": "sura_river",
+   "trophy_g": 750,
+   "super_trophy_g": 1100,
+   "waters": [
+    "akhtuba_river",
+    "ladoga_archipelago",
+    "ladoga_lake",
+    "sura_river",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "b_carp",
@@ -169,7 +272,13 @@
     "ru": "Амур чёрный"
    },
    "record_g": 49243,
-   "record_water": "bear_lake"
+   "record_water": "bear_lake",
+   "trophy_g": 28000,
+   "super_trophy_g": 40000,
+   "waters": [
+    "bear_lake",
+    "old_burg_lake"
+   ]
   },
   {
    "id": "b_gill",
@@ -179,7 +288,12 @@
     "ru": "Солнечник синежаберный"
    },
    "record_g": 2198,
-   "record_water": "elk_lake"
+   "record_water": "elk_lake",
+   "trophy_g": 1200,
+   "super_trophy_g": 1700,
+   "waters": [
+    "elk_lake"
+   ]
   },
   {
    "id": "b_herring",
@@ -189,7 +303,12 @@
     "ru": "Сельдь Бражникова"
    },
    "record_g": 1010,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 700,
+   "super_trophy_g": 1000,
+   "waters": [
+    "akhtuba_river"
+   ]
   },
   {
    "id": "b_omul",
@@ -199,7 +318,13 @@
     "ru": "Омуль байкальский"
    },
    "record_g": 8291,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 6000,
+   "super_trophy_g": 7000,
+   "waters": [
+    "ladoga_archipelago",
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "b_scabbardfish",
@@ -209,7 +334,12 @@
     "ru": "Угольщик обыкновенный"
    },
    "record_g": 5868,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 4000,
+   "super_trophy_g": 5500,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "barb_toni",
@@ -219,7 +349,13 @@
     "ru": "Голец сибирский-усач"
    },
    "record_g": 99,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 60,
+   "super_trophy_g": 80,
+   "waters": [
+    "lower_tunguska_river",
+    "yama_river"
+   ]
   },
   {
    "id": "barsch",
@@ -229,7 +365,14 @@
     "ru": "Берш"
    },
    "record_g": 2495,
-   "record_water": "sura_river"
+   "record_water": "sura_river",
+   "trophy_g": 1400,
+   "super_trophy_g": 2200,
+   "waters": [
+    "seversky_donets_river",
+    "sura_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "beluga",
@@ -239,7 +382,12 @@
     "ru": "Белуга каспийская"
    },
    "record_g": 971999,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 500000,
+   "super_trophy_g": 1000000,
+   "waters": [
+    "akhtuba_river"
+   ]
   },
   {
    "id": "bh_carp",
@@ -249,7 +397,13 @@
     "ru": "Толстолобик пёстрый"
    },
    "record_g": 59101,
-   "record_water": "sura_river"
+   "record_water": "sura_river",
+   "trophy_g": 30000,
+   "super_trophy_g": 45000,
+   "waters": [
+    "akhtuba_river",
+    "sura_river"
+   ]
   },
   {
    "id": "bl_buffalo",
@@ -259,7 +413,12 @@
     "ru": "Буффало чёрный"
    },
    "record_g": 24695,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 15000,
+   "super_trophy_g": 20000,
+   "waters": [
+    "akhtuba_river"
+   ]
   },
   {
    "id": "black_crappie",
@@ -269,7 +428,12 @@
     "ru": "Краппи чёрный"
    },
    "record_g": 2664,
-   "record_water": "elk_lake"
+   "record_water": "elk_lake",
+   "trophy_g": 1600,
+   "super_trophy_g": 2200,
+   "waters": [
+    "elk_lake"
+   ]
   },
   {
    "id": "bp_bass",
@@ -279,7 +443,12 @@
     "ru": "Окунь павлиний"
    },
    "record_g": 6647,
-   "record_water": "elk_lake"
+   "record_water": "elk_lake",
+   "trophy_g": 4000,
+   "super_trophy_g": 5500,
+   "waters": [
+    "elk_lake"
+   ]
   },
   {
    "id": "bream",
@@ -289,7 +458,25 @@
     "ru": "Лещ"
    },
    "record_g": 7733,
-   "record_water": "volkhov_river"
+   "record_water": "volkhov_river",
+   "trophy_g": 4400,
+   "super_trophy_g": 7000,
+   "waters": [
+    "akhtuba_river",
+    "bear_lake",
+    "belaya_river",
+    "copper_lake",
+    "kuori_lake",
+    "ladoga_archipelago",
+    "ladoga_lake",
+    "mosquito_lake",
+    "old_burg_lake",
+    "seversky_donets_river",
+    "sura_river",
+    "the_amber_lake",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "bs_salmon",
@@ -309,7 +496,12 @@
     "ru": "Буффало большеротый"
    },
    "record_g": 24984,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 15000,
+   "super_trophy_g": 20000,
+   "waters": [
+    "akhtuba_river"
+   ]
   },
   {
    "id": "bullhead_syb",
@@ -319,7 +511,12 @@
     "ru": "Подкаменщик сибирский"
    },
    "record_g": 59,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 45,
+   "super_trophy_g": 55,
+   "waters": [
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "burbot",
@@ -329,7 +526,26 @@
     "ru": "Налим"
    },
    "record_g": 17785,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 9000,
+   "super_trophy_g": 14000,
+   "waters": [
+    "akhtuba_river",
+    "bear_lake",
+    "belaya_river",
+    "copper_lake",
+    "kuori_lake",
+    "ladoga_archipelago",
+    "ladoga_lake",
+    "lower_tunguska_river",
+    "old_burg_lake",
+    "seversky_donets_river",
+    "sura_river",
+    "the_amber_lake",
+    "volkhov_river",
+    "winding_rivulet",
+    "yama_river"
+   ]
   },
   {
    "id": "c.carp",
@@ -339,7 +555,26 @@
     "ru": "Карась золотой"
    },
    "record_g": 3496,
-   "record_water": "mosquito_lake"
+   "record_water": "mosquito_lake",
+   "trophy_g": 1800,
+   "super_trophy_g": 2900,
+   "waters": [
+    "akhtuba_river",
+    "bear_lake",
+    "belaya_river",
+    "copper_lake",
+    "kuori_lake",
+    "ladoga_archipelago",
+    "ladoga_lake",
+    "lower_tunguska_river",
+    "mosquito_lake",
+    "old_burg_lake",
+    "seversky_donets_river",
+    "sura_river",
+    "the_amber_lake",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "c.roach",
@@ -349,7 +584,25 @@
     "ru": "Плотва обыкновенная"
    },
    "record_g": 2498,
-   "record_water": "ladoga_lake"
+   "record_water": "ladoga_lake",
+   "trophy_g": 1200,
+   "super_trophy_g": 2000,
+   "waters": [
+    "akhtuba_river",
+    "bear_lake",
+    "belaya_river",
+    "copper_lake",
+    "kuori_lake",
+    "ladoga_archipelago",
+    "ladoga_lake",
+    "mosquito_lake",
+    "old_burg_lake",
+    "seversky_donets_river",
+    "sura_river",
+    "the_amber_lake",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "c_anguineus",
@@ -359,7 +612,12 @@
     "ru": "Акула плащеносная"
    },
    "record_g": 85529,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 50000,
+   "super_trophy_g": 70000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "c_barbel",
@@ -369,7 +627,14 @@
     "ru": "Усач обыкновенный"
    },
    "record_g": 14882,
-   "record_water": "bear_lake"
+   "record_water": "bear_lake",
+   "trophy_g": 8000,
+   "super_trophy_g": 12000,
+   "waters": [
+    "bear_lake",
+    "copper_lake",
+    "the_amber_lake"
+   ]
   },
   {
    "id": "c_bleak",
@@ -379,7 +644,19 @@
     "ru": "Уклейка"
    },
    "record_g": 199,
-   "record_water": "mosquito_lake"
+   "record_water": "mosquito_lake",
+   "trophy_g": 110,
+   "super_trophy_g": 160,
+   "waters": [
+    "akhtuba_river",
+    "bear_lake",
+    "belaya_river",
+    "ladoga_lake",
+    "mosquito_lake",
+    "sura_river",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "c_herring",
@@ -389,7 +666,12 @@
     "ru": "Пузанок каспийский"
    },
    "record_g": 396,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 250,
+   "super_trophy_g": 340,
+   "waters": [
+    "akhtuba_river"
+   ]
   },
   {
    "id": "c_lamprey",
@@ -399,7 +681,12 @@
     "ru": "Минога каспийская"
    },
    "record_g": 122,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 150,
+   "super_trophy_g": 200,
+   "waters": [
+    "akhtuba_river"
+   ]
   },
   {
    "id": "c_nase",
@@ -409,7 +696,17 @@
     "ru": "Подуст"
    },
    "record_g": 1553,
-   "record_water": "winding_rivulet"
+   "record_water": "winding_rivulet",
+   "trophy_g": 800,
+   "super_trophy_g": 1200,
+   "waters": [
+    "akhtuba_river",
+    "belaya_river",
+    "seversky_donets_river",
+    "sura_river",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "c_squid",
@@ -419,7 +716,12 @@
     "ru": "Кальмар обыкновенный"
    },
    "record_g": 2999,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 2000,
+   "super_trophy_g": 2400,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "carp",
@@ -429,7 +731,25 @@
     "ru": "Карп чешуйчатый"
    },
    "record_g": 39998,
-   "record_water": "the_amber_lake"
+   "record_water": "the_amber_lake",
+   "trophy_g": 20000,
+   "super_trophy_g": 30000,
+   "waters": [
+    "akhtuba_river",
+    "bear_lake",
+    "belaya_river",
+    "copper_lake",
+    "kuori_lake",
+    "ladoga_archipelago",
+    "ladoga_lake",
+    "mosquito_lake",
+    "old_burg_lake",
+    "seversky_donets_river",
+    "sura_river",
+    "the_amber_lake",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "carp_albino",
@@ -439,7 +759,12 @@
     "ru": "Карп чешуйчатый - альбинос"
    },
    "record_g": 39771,
-   "record_water": "the_amber_lake"
+   "record_water": "the_amber_lake",
+   "trophy_g": 20000,
+   "super_trophy_g": 30000,
+   "waters": [
+    "the_amber_lake"
+   ]
   },
   {
    "id": "carp_ghost",
@@ -449,7 +774,12 @@
     "ru": "Карп чешуйчатый - призрак"
    },
    "record_g": 39654,
-   "record_water": "the_amber_lake"
+   "record_water": "the_amber_lake",
+   "trophy_g": 20000,
+   "super_trophy_g": 30000,
+   "waters": [
+    "the_amber_lake"
+   ]
   },
   {
    "id": "carp_red",
@@ -459,7 +789,12 @@
     "ru": "Карп красный Старвас - чешуйчатый"
    },
    "record_g": 39112,
-   "record_water": "the_amber_lake"
+   "record_water": "the_amber_lake",
+   "trophy_g": 20000,
+   "super_trophy_g": 30000,
+   "waters": [
+    "the_amber_lake"
+   ]
   },
   {
    "id": "centroloph_n",
@@ -469,7 +804,12 @@
     "ru": "Центролоф чёрный"
    },
    "record_g": 39522,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 24000,
+   "super_trophy_g": 29000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "cetorhinus_m",
@@ -479,7 +819,12 @@
     "ru": "Акула гигантская"
    },
    "record_g": 2519264,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 1300000,
+   "super_trophy_g": 2500000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "ch_beluga",
@@ -489,7 +834,12 @@
     "ru": "Белуга черноморская"
    },
    "record_g": 472260,
-   "record_water": "seversky_donets_river"
+   "record_water": "seversky_donets_river",
+   "trophy_g": 500000,
+   "super_trophy_g": 1000000,
+   "waters": [
+    "seversky_donets_river"
+   ]
   },
   {
    "id": "ch_catfish",
@@ -499,7 +849,12 @@
     "ru": "Сомик канальный"
    },
    "record_g": 25472,
-   "record_water": "elk_lake"
+   "record_water": "elk_lake",
+   "trophy_g": 14000,
+   "super_trophy_g": 20000,
+   "waters": [
+    "elk_lake"
+   ]
   },
   {
    "id": "cha_herring",
@@ -509,7 +864,12 @@
     "ru": "Сельдь черноморская"
    },
    "record_g": 1099,
-   "record_water": "seversky_donets_river"
+   "record_water": "seversky_donets_river",
+   "trophy_g": 650,
+   "super_trophy_g": 900,
+   "waters": [
+    "seversky_donets_river"
+   ]
   },
   {
    "id": "chan_m",
@@ -519,7 +879,12 @@
     "ru": "Краснопёр монгольский"
    },
    "record_g": 3863,
-   "record_water": "yama_river"
+   "record_water": "yama_river",
+   "trophy_g": 2500,
+   "super_trophy_g": 3200,
+   "waters": [
+    "yama_river"
+   ]
   },
   {
    "id": "chartus_kuoriius",
@@ -529,7 +894,12 @@
     "ru": "Голец Куорский"
    },
    "record_g": 36779,
-   "record_water": "kuori_lake"
+   "record_water": "kuori_lake",
+   "trophy_g": 22000,
+   "super_trophy_g": 30000,
+   "waters": [
+    "kuori_lake"
+   ]
   },
   {
    "id": "chavycha",
@@ -539,7 +909,12 @@
     "ru": "Чавыча"
    },
    "record_g": 67706,
-   "record_water": "yama_river"
+   "record_water": "yama_river",
+   "trophy_g": 40000,
+   "super_trophy_g": 60000,
+   "waters": [
+    "yama_river"
+   ]
   },
   {
    "id": "chimaera",
@@ -549,7 +924,12 @@
     "ru": "Химера европейская"
    },
    "record_g": 1785,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 1500,
+   "super_trophy_g": null,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "chir",
@@ -559,7 +939,12 @@
     "ru": "Чир"
    },
    "record_g": 11659,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 7000,
+   "super_trophy_g": 10000,
+   "waters": [
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "chlamys_isl",
@@ -569,7 +954,12 @@
     "ru": "Гребешок исландский"
    },
    "record_g": 538,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 350,
+   "super_trophy_g": 450,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "chukuchan",
@@ -579,7 +969,12 @@
     "ru": "Чукучан"
    },
    "record_g": 2480,
-   "record_water": "yama_river"
+   "record_water": "yama_river",
+   "trophy_g": 1800,
+   "super_trophy_g": 2200,
+   "waters": [
+    "yama_river"
+   ]
   },
   {
    "id": "coalfish",
@@ -589,7 +984,12 @@
     "ru": "Сайда"
    },
    "record_g": 31997,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 19000,
+   "super_trophy_g": 25000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "common_carp",
@@ -599,7 +999,14 @@
     "ru": "Сазан"
    },
    "record_g": 49880,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 25000,
+   "super_trophy_g": 35000,
+   "waters": [
+    "akhtuba_river",
+    "seversky_donets_river",
+    "sura_river"
+   ]
   },
   {
    "id": "conger",
@@ -609,7 +1016,12 @@
     "ru": "Конгер"
    },
    "record_g": 91484,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 60000,
+   "super_trophy_g": 75000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "crawfish",
@@ -619,7 +1031,17 @@
     "ru": "Рак речной"
    },
    "record_g": 382,
-   "record_water": "belaya_river"
+   "record_water": "belaya_river",
+   "trophy_g": 200,
+   "super_trophy_g": 330,
+   "waters": [
+    "akhtuba_river",
+    "belaya_river",
+    "seversky_donets_river",
+    "sura_river",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "crucian",
@@ -629,7 +1051,26 @@
     "ru": "Карась серебряный"
    },
    "record_g": 3998,
-   "record_water": "ladoga_lake"
+   "record_water": "ladoga_lake",
+   "trophy_g": 1900,
+   "super_trophy_g": 3200,
+   "waters": [
+    "akhtuba_river",
+    "bear_lake",
+    "belaya_river",
+    "copper_lake",
+    "kuori_lake",
+    "ladoga_archipelago",
+    "ladoga_lake",
+    "lower_tunguska_river",
+    "mosquito_lake",
+    "old_burg_lake",
+    "seversky_donets_river",
+    "sura_river",
+    "the_amber_lake",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "d_zubatka",
@@ -639,7 +1080,12 @@
     "ru": "Зубатка синяя"
    },
    "record_g": 19722,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 13000,
+   "super_trophy_g": 17000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "dace",
@@ -649,7 +1095,19 @@
     "ru": "Елец"
    },
    "record_g": 448,
-   "record_water": "winding_rivulet"
+   "record_water": "winding_rivulet",
+   "trophy_g": 250,
+   "super_trophy_g": 390,
+   "waters": [
+    "akhtuba_river",
+    "belaya_river",
+    "ladoga_archipelago",
+    "ladoga_lake",
+    "seversky_donets_river",
+    "sura_river",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "din_l_carp",
@@ -659,7 +1117,12 @@
     "ru": "Карп Динкенбюльский линейный"
    },
    "record_g": 56842,
-   "record_water": "copper_lake"
+   "record_water": "copper_lake",
+   "trophy_g": 35000,
+   "super_trophy_g": 45000,
+   "waters": [
+    "copper_lake"
+   ]
   },
   {
    "id": "din_m_carp",
@@ -669,7 +1132,12 @@
     "ru": "Карп Динкенбюльский зеркальный"
    },
    "record_g": 59135,
-   "record_water": "copper_lake"
+   "record_water": "copper_lake",
+   "trophy_g": 35000,
+   "super_trophy_g": 45000,
+   "waters": [
+    "copper_lake"
+   ]
   },
   {
    "id": "din_n_carp",
@@ -679,7 +1147,12 @@
     "ru": "Карп Динкенбюльский голый"
    },
    "record_g": 54755,
-   "record_water": "copper_lake"
+   "record_water": "copper_lake",
+   "trophy_g": 35000,
+   "super_trophy_g": 45000,
+   "waters": [
+    "copper_lake"
+   ]
   },
   {
    "id": "dr_char",
@@ -689,7 +1162,12 @@
     "ru": "Голец Дрягина"
    },
    "record_g": 14623,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 10000,
+   "super_trophy_g": 14000,
+   "waters": [
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "dreissena",
@@ -699,7 +1177,16 @@
     "ru": "Дрейссена речная"
    },
    "record_g": 249,
-   "record_water": "seversky_donets_river"
+   "record_water": "seversky_donets_river",
+   "trophy_g": 150,
+   "super_trophy_g": 210,
+   "waters": [
+    "akhtuba_river",
+    "seversky_donets_river",
+    "sura_river",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "e.chub",
@@ -709,7 +1196,24 @@
     "ru": "Голавль"
    },
    "record_g": 7979,
-   "record_water": "seversky_donets_river"
+   "record_water": "seversky_donets_river",
+   "trophy_g": 4000,
+   "super_trophy_g": 7000,
+   "waters": [
+    "akhtuba_river",
+    "bear_lake",
+    "belaya_river",
+    "copper_lake",
+    "ladoga_archipelago",
+    "ladoga_lake",
+    "mosquito_lake",
+    "old_burg_lake",
+    "seversky_donets_river",
+    "sura_river",
+    "the_amber_lake",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "e.pikeperch",
@@ -719,7 +1223,18 @@
     "ru": "Судак"
    },
    "record_g": 15892,
-   "record_water": "sura_river"
+   "record_water": "sura_river",
+   "trophy_g": 8000,
+   "super_trophy_g": 12000,
+   "waters": [
+    "akhtuba_river",
+    "belaya_river",
+    "ladoga_archipelago",
+    "ladoga_lake",
+    "seversky_donets_river",
+    "sura_river",
+    "volkhov_river"
+   ]
   },
   {
    "id": "e_bream",
@@ -729,7 +1244,13 @@
     "ru": "Лещ восточный"
    },
    "record_g": 7995,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 4400,
+   "super_trophy_g": 7000,
+   "waters": [
+    "akhtuba_river",
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "e_smelt",
@@ -739,7 +1260,13 @@
     "ru": "Корюшка"
    },
    "record_g": 246,
-   "record_water": "ladoga_archipelago"
+   "record_water": "ladoga_archipelago",
+   "trophy_g": 130,
+   "super_trophy_g": 200,
+   "waters": [
+    "ladoga_archipelago",
+    "ladoga_lake"
+   ]
   },
   {
    "id": "ed_crab",
@@ -749,7 +1276,12 @@
     "ru": "Краб съедобный"
    },
    "record_g": 2825,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 1800,
+   "super_trophy_g": 2200,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "eel",
@@ -759,7 +1291,13 @@
     "ru": "Угорь"
    },
    "record_g": 8871,
-   "record_water": "old_burg_lake"
+   "record_water": "old_burg_lake",
+   "trophy_g": 4000,
+   "super_trophy_g": 7500,
+   "waters": [
+    "old_burg_lake",
+    "volkhov_river"
+   ]
   },
   {
    "id": "fe_lamprey",
@@ -769,7 +1307,12 @@
     "ru": "Минога дальневосточная ручьевая"
    },
    "record_g": 37,
-   "record_water": "yama_river"
+   "record_water": "yama_river",
+   "trophy_g": 40,
+   "super_trophy_g": 45,
+   "waters": [
+    "yama_river"
+   ]
   },
   {
    "id": "fhcatfish",
@@ -779,7 +1322,12 @@
     "ru": "Сомик оливковый"
    },
    "record_g": 54096,
-   "record_water": "elk_lake"
+   "record_water": "elk_lake",
+   "trophy_g": 30000,
+   "super_trophy_g": 45000,
+   "waters": [
+    "elk_lake"
+   ]
   },
   {
    "id": "freshwater_mussel",
@@ -789,7 +1337,19 @@
     "ru": "Перловица"
    },
    "record_g": 349,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 190,
+   "super_trophy_g": 280,
+   "waters": [
+    "akhtuba_river",
+    "bear_lake",
+    "belaya_river",
+    "lower_tunguska_river",
+    "seversky_donets_river",
+    "sura_river",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "frog",
@@ -799,7 +1359,25 @@
     "ru": "Лягушка"
    },
    "record_g": 299,
-   "record_water": "mosquito_lake"
+   "record_water": "mosquito_lake",
+   "trophy_g": 190,
+   "super_trophy_g": 250,
+   "waters": [
+    "akhtuba_river",
+    "bear_lake",
+    "belaya_river",
+    "copper_lake",
+    "kuori_lake",
+    "ladoga_lake",
+    "lower_tunguska_river",
+    "mosquito_lake",
+    "old_burg_lake",
+    "seversky_donets_river",
+    "sura_river",
+    "the_amber_lake",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "fwdrum",
@@ -809,7 +1387,12 @@
     "ru": "Горбыль речной"
    },
    "record_g": 23704,
-   "record_water": "elk_lake"
+   "record_water": "elk_lake",
+   "trophy_g": 13500,
+   "super_trophy_g": 19000,
+   "waters": [
+    "elk_lake"
+   ]
   },
   {
    "id": "g_carp",
@@ -819,7 +1402,16 @@
     "ru": "Амур белый"
    },
    "record_g": 49964,
-   "record_water": "bear_lake"
+   "record_water": "bear_lake",
+   "trophy_g": 28000,
+   "super_trophy_g": 40000,
+   "waters": [
+    "akhtuba_river",
+    "bear_lake",
+    "old_burg_lake",
+    "seversky_donets_river",
+    "the_amber_lake"
+   ]
   },
   {
    "id": "g_carp_albino",
@@ -829,7 +1421,12 @@
     "ru": "Амур белый альбинос"
    },
    "record_g": 37246,
-   "record_water": "bear_lake"
+   "record_water": "bear_lake",
+   "trophy_g": 28000,
+   "super_trophy_g": 40000,
+   "waters": [
+    "bear_lake"
+   ]
   },
   {
    "id": "g_shad",
@@ -839,7 +1436,12 @@
     "ru": "Доросома северная"
    },
    "record_g": 1996,
-   "record_water": "elk_lake"
+   "record_water": "elk_lake",
+   "trophy_g": 1100,
+   "super_trophy_g": 1600,
+   "waters": [
+    "elk_lake"
+   ]
   },
   {
    "id": "g_tench",
@@ -849,7 +1451,13 @@
     "ru": "Линь золотистый"
    },
    "record_g": 7456,
-   "record_water": "mosquito_lake"
+   "record_water": "mosquito_lake",
+   "trophy_g": 4000,
+   "super_trophy_g": 6000,
+   "waters": [
+    "bear_lake",
+    "mosquito_lake"
+   ]
   },
   {
    "id": "gc_smelt",
@@ -859,7 +1467,14 @@
     "ru": "Форель озерная"
    },
    "record_g": 17973,
-   "record_water": "kuori_lake"
+   "record_water": "kuori_lake",
+   "trophy_g": 10000,
+   "super_trophy_g": 15000,
+   "waters": [
+    "kuori_lake",
+    "ladoga_archipelago",
+    "ladoga_lake"
+   ]
   },
   {
    "id": "golets_lev",
@@ -869,7 +1484,12 @@
     "ru": "Голец Леванидова"
    },
    "record_g": 2126,
-   "record_water": "yama_river"
+   "record_water": "yama_river",
+   "trophy_g": 1600,
+   "super_trophy_g": 2100,
+   "waters": [
+    "yama_river"
+   ]
   },
   {
    "id": "golyan",
@@ -879,7 +1499,14 @@
     "ru": "Гольян"
    },
    "record_g": 181,
-   "record_water": "ladoga_lake"
+   "record_water": "ladoga_lake",
+   "trophy_g": 100,
+   "super_trophy_g": 160,
+   "waters": [
+    "kuori_lake",
+    "ladoga_archipelago",
+    "ladoga_lake"
+   ]
   },
   {
    "id": "gorbusha",
@@ -889,7 +1516,13 @@
     "ru": "Горбуша"
    },
    "record_g": 5256,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 3000,
+   "super_trophy_g": 4000,
+   "waters": [
+    "lower_tunguska_river",
+    "yama_river"
+   ]
   },
   {
    "id": "gudgeon",
@@ -899,7 +1532,17 @@
     "ru": "Пескарь обыкновенный"
    },
    "record_g": 199,
-   "record_water": "winding_rivulet"
+   "record_water": "winding_rivulet",
+   "trophy_g": 100,
+   "super_trophy_g": 160,
+   "waters": [
+    "akhtuba_river",
+    "belaya_river",
+    "seversky_donets_river",
+    "sura_river",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "halibut_b",
@@ -909,7 +1552,12 @@
     "ru": "Палтус синекорый"
    },
    "record_g": 42398,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 25000,
+   "super_trophy_g": 32000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "halibut_w",
@@ -919,7 +1567,12 @@
     "ru": "Палтус атлантический"
    },
    "record_g": 298299,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 150000,
+   "super_trophy_g": 220000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "hi_utsri",
@@ -929,7 +1582,12 @@
     "ru": "Карп Кои Хи Уцури"
    },
    "record_g": 31497,
-   "record_water": "copper_lake"
+   "record_water": "copper_lake",
+   "trophy_g": 25000,
+   "super_trophy_g": 32000,
+   "waters": [
+    "copper_lake"
+   ]
   },
   {
    "id": "himant_g",
@@ -939,7 +1597,12 @@
     "ru": "Гимантолоф атлантический"
    },
    "record_g": 7775,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 7000,
+   "super_trophy_g": 9000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "hippoglos_p",
@@ -949,7 +1612,12 @@
     "ru": "Камбала палтусовидная"
    },
    "record_g": 6350,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 4000,
+   "super_trophy_g": 5000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "hs_bass",
@@ -959,7 +1627,12 @@
     "ru": "Лаврак полосатый гибридный"
    },
    "record_g": 10879,
-   "record_water": "elk_lake"
+   "record_water": "elk_lake",
+   "trophy_g": 8000,
+   "super_trophy_g": 10000,
+   "waters": [
+    "elk_lake"
+   ]
   },
   {
    "id": "k_herring",
@@ -969,7 +1642,12 @@
     "ru": "Сельдь Кесслера"
    },
    "record_g": 1980,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 1200,
+   "super_trophy_g": 1700,
+   "waters": [
+    "akhtuba_river"
+   ]
   },
   {
    "id": "k_salmon",
@@ -979,7 +1657,12 @@
     "ru": "Лосось каспийский"
    },
    "record_g": 47991,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 30000,
+   "super_trophy_g": 50000,
+   "waters": [
+    "akhtuba_river"
+   ]
   },
   {
    "id": "kaluga",
@@ -989,7 +1672,12 @@
     "ru": "Калуга"
    },
    "record_g": 515624,
-   "record_water": "yama_river"
+   "record_water": "yama_river",
+   "trophy_g": 500000,
+   "super_trophy_g": 1000000,
+   "waters": [
+    "yama_river"
+   ]
   },
   {
    "id": "karasekarp",
@@ -999,7 +1687,12 @@
     "ru": "Карасекарп"
    },
    "record_g": 4998,
-   "record_water": "copper_lake"
+   "record_water": "copper_lake",
+   "trophy_g": 3000,
+   "super_trophy_g": 4000,
+   "waters": [
+    "copper_lake"
+   ]
   },
   {
    "id": "katran",
@@ -1009,7 +1702,12 @@
     "ru": "Катран"
    },
    "record_g": 11931,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 7000,
+   "super_trophy_g": 10000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "keta",
@@ -1019,7 +1717,12 @@
     "ru": "Кета"
    },
    "record_g": 11983,
-   "record_water": "yama_river"
+   "record_water": "yama_river",
+   "trophy_g": 8000,
+   "super_trophy_g": 10000,
+   "waters": [
+    "yama_river"
+   ]
   },
   {
    "id": "kijuch",
@@ -1029,7 +1732,12 @@
     "ru": "Кижуч"
    },
    "record_g": 7830,
-   "record_water": "yama_river"
+   "record_water": "yama_river",
+   "trophy_g": 5500,
+   "super_trophy_g": 7000,
+   "waters": [
+    "yama_river"
+   ]
   },
   {
    "id": "kohaku",
@@ -1039,7 +1747,12 @@
     "ru": "Карп Кои Кохаку"
    },
    "record_g": 31994,
-   "record_water": "copper_lake"
+   "record_water": "copper_lake",
+   "trophy_g": 25000,
+   "super_trophy_g": 32000,
+   "waters": [
+    "copper_lake"
+   ]
   },
   {
    "id": "kunja",
@@ -1049,7 +1762,12 @@
     "ru": "Кунджа"
    },
    "record_g": 15574,
-   "record_water": "yama_river"
+   "record_water": "yama_river",
+   "trophy_g": 10000,
+   "super_trophy_g": 14000,
+   "waters": [
+    "yama_river"
+   ]
   },
   {
    "id": "kutum",
@@ -1059,7 +1777,12 @@
     "ru": "Кутум"
    },
    "record_g": 7544,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 5000,
+   "super_trophy_g": 7000,
+   "waters": [
+    "akhtuba_river"
+   ]
   },
   {
    "id": "kw_tench",
@@ -1069,7 +1792,12 @@
     "ru": "Линь Квольсдорфский"
    },
    "record_g": 7489,
-   "record_water": "copper_lake"
+   "record_water": "copper_lake",
+   "trophy_g": 4000,
+   "super_trophy_g": 6000,
+   "waters": [
+    "copper_lake"
+   ]
   },
   {
    "id": "l_carp",
@@ -1079,7 +1807,12 @@
     "ru": "Карп линейный"
    },
    "record_g": 49422,
-   "record_water": "the_amber_lake"
+   "record_water": "the_amber_lake",
+   "trophy_g": 25000,
+   "super_trophy_g": 40000,
+   "waters": [
+    "the_amber_lake"
+   ]
   },
   {
    "id": "l_carp_albino",
@@ -1089,7 +1822,12 @@
     "ru": "Карп линейный - альбинос"
    },
    "record_g": 40875,
-   "record_water": "the_amber_lake"
+   "record_water": "the_amber_lake",
+   "trophy_g": 25000,
+   "super_trophy_g": 40000,
+   "waters": [
+    "the_amber_lake"
+   ]
   },
   {
    "id": "l_carp_ghost",
@@ -1099,7 +1837,12 @@
     "ru": "Карп линейный - призрак"
    },
    "record_g": 42844,
-   "record_water": "the_amber_lake"
+   "record_water": "the_amber_lake",
+   "trophy_g": 25000,
+   "super_trophy_g": 40000,
+   "waters": [
+    "the_amber_lake"
+   ]
   },
   {
    "id": "l_minnow",
@@ -1109,7 +1852,12 @@
     "ru": "Гольян озёрный"
    },
    "record_g": 199,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 100,
+   "super_trophy_g": 160,
+   "waters": [
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "l_salmon",
@@ -1119,7 +1867,14 @@
     "ru": "Лосось ладожский"
    },
    "record_g": 24936,
-   "record_water": "ladoga_archipelago"
+   "record_water": "ladoga_archipelago",
+   "trophy_g": 14000,
+   "super_trophy_g": 20000,
+   "waters": [
+    "ladoga_archipelago",
+    "ladoga_lake",
+    "volkhov_river"
+   ]
   },
   {
    "id": "l_sturgeon",
@@ -1129,7 +1884,12 @@
     "ru": "Осётр ладожский"
    },
    "record_g": 62907,
-   "record_water": "ladoga_archipelago"
+   "record_water": "ladoga_archipelago",
+   "trophy_g": 60000,
+   "super_trophy_g": 85000,
+   "waters": [
+    "ladoga_archipelago"
+   ]
   },
   {
    "id": "lamna_n",
@@ -1139,7 +1899,12 @@
     "ru": "Акула сельдевая атлантическая"
    },
    "record_g": 211993,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 140000,
+   "super_trophy_g": 190000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "lampris_g",
@@ -1149,7 +1914,12 @@
     "ru": "Опах краснопёрый"
    },
    "record_g": 251942,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 140000,
+   "super_trophy_g": 200000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "lenok_o",
@@ -1159,7 +1929,13 @@
     "ru": "Ленок острорылый"
    },
    "record_g": 7585,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 5500,
+   "super_trophy_g": 7000,
+   "waters": [
+    "lower_tunguska_river",
+    "yama_river"
+   ]
   },
   {
    "id": "lenok_t",
@@ -1169,7 +1945,12 @@
     "ru": "Ленок тупорылый"
    },
    "record_g": 11316,
-   "record_water": "yama_river"
+   "record_water": "yama_river",
+   "trophy_g": 7500,
+   "super_trophy_g": 9000,
+   "waters": [
+    "yama_river"
+   ]
   },
   {
    "id": "lh_kambala",
@@ -1179,7 +1960,12 @@
     "ru": "Камбала хоботная"
    },
    "record_g": 4954,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 3000,
+   "super_trophy_g": 4000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "lm_b_bass",
@@ -1189,7 +1975,12 @@
     "ru": "Окунь большеротый"
    },
    "record_g": 9941,
-   "record_water": "elk_lake"
+   "record_water": "elk_lake",
+   "trophy_g": 6000,
+   "super_trophy_g": 7500,
+   "waters": [
+    "elk_lake"
+   ]
   },
   {
    "id": "lophius_p",
@@ -1199,7 +1990,12 @@
     "ru": "Морской чёрт"
    },
    "record_g": 59584,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 35000,
+   "super_trophy_g": 45000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "lycodes_e",
@@ -1209,7 +2005,12 @@
     "ru": "Ликод Эсмарка"
    },
    "record_g": 3770,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 2500,
+   "super_trophy_g": 3300,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "lycodes_s",
@@ -1219,7 +2020,12 @@
     "ru": "Ликод полуголый"
    },
    "record_g": 1819,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 1200,
+   "super_trophy_g": 1500,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "m_carp",
@@ -1229,7 +2035,15 @@
     "ru": "Карп зеркальный"
    },
    "record_g": 49961,
-   "record_water": "the_amber_lake"
+   "record_water": "the_amber_lake",
+   "trophy_g": 25000,
+   "super_trophy_g": 40000,
+   "waters": [
+    "bear_lake",
+    "copper_lake",
+    "mosquito_lake",
+    "the_amber_lake"
+   ]
   },
   {
    "id": "m_carp_albino",
@@ -1239,7 +2053,12 @@
     "ru": "Карп зеркальный - альбинос"
    },
    "record_g": 45179,
-   "record_water": "the_amber_lake"
+   "record_water": "the_amber_lake",
+   "trophy_g": 25000,
+   "super_trophy_g": 40000,
+   "waters": [
+    "the_amber_lake"
+   ]
   },
   {
    "id": "m_carp_ghost",
@@ -1249,7 +2068,12 @@
     "ru": "Карп зеркальный - призрак"
    },
    "record_g": 47467,
-   "record_water": "the_amber_lake"
+   "record_water": "the_amber_lake",
+   "trophy_g": 25000,
+   "super_trophy_g": 40000,
+   "waters": [
+    "the_amber_lake"
+   ]
   },
   {
    "id": "m_carp_red",
@@ -1259,7 +2083,12 @@
     "ru": "Карп красный Старвас - зеркальный"
    },
    "record_g": 44720,
-   "record_water": "the_amber_lake"
+   "record_water": "the_amber_lake",
+   "trophy_g": 25000,
+   "super_trophy_g": 40000,
+   "waters": [
+    "the_amber_lake"
+   ]
   },
   {
    "id": "m_goshiki",
@@ -1269,7 +2098,12 @@
     "ru": "Карп Кои Мамэсибори Госики"
    },
    "record_g": 38078,
-   "record_water": "copper_lake"
+   "record_water": "copper_lake",
+   "trophy_g": 25000,
+   "super_trophy_g": 32000,
+   "waters": [
+    "copper_lake"
+   ]
   },
   {
    "id": "m_molva",
@@ -1279,7 +2113,12 @@
     "ru": "Мольва обыкновенная"
    },
    "record_g": 49036,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 30000,
+   "super_trophy_g": 40000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "m_scorpius",
@@ -1289,7 +2128,12 @@
     "ru": "Керчак европейский"
    },
    "record_g": 4997,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 3000,
+   "super_trophy_g": 4000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "m_zubatka",
@@ -1299,7 +2143,12 @@
     "ru": "Зубатка пятнистая"
    },
    "record_g": 27946,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 17000,
+   "super_trophy_g": 22000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "macrourus_b",
@@ -1309,7 +2158,12 @@
     "ru": "Макрурус северный"
    },
    "record_g": 3900,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 3000,
+   "super_trophy_g": 4000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "makrel",
@@ -1319,7 +2173,12 @@
     "ru": "Макрель атлантическая"
    },
    "record_g": 3490,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 2000,
+   "super_trophy_g": 2800,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "malma",
@@ -1329,7 +2188,12 @@
     "ru": "Мальма"
    },
    "record_g": 11878,
-   "record_water": "yama_river"
+   "record_water": "yama_river",
+   "trophy_g": 7500,
+   "super_trophy_g": 10000,
+   "waters": [
+    "yama_river"
+   ]
   },
   {
    "id": "meagre",
@@ -1339,7 +2203,12 @@
     "ru": "Горбыль серебристый"
    },
    "record_g": 97836,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 65000,
+   "super_trophy_g": 90000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "menek",
@@ -1349,7 +2218,12 @@
     "ru": "Менёк"
    },
    "record_g": 29943,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 18000,
+   "super_trophy_g": 24000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "merlang",
@@ -1359,7 +2233,12 @@
     "ru": "Мерланг"
    },
    "record_g": 4952,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 3000,
+   "super_trophy_g": 4000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "merluza",
@@ -1369,7 +2248,12 @@
     "ru": "Мерлуза"
    },
    "record_g": 14938,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 9000,
+   "super_trophy_g": 12000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "midori_g",
@@ -1379,7 +2263,12 @@
     "ru": "Карп Кои Мидори-гои"
    },
    "record_g": 29525,
-   "record_water": "mosquito_lake"
+   "record_water": "mosquito_lake",
+   "trophy_g": 25000,
+   "super_trophy_g": 32000,
+   "waters": [
+    "mosquito_lake"
+   ]
   },
   {
    "id": "mikija",
@@ -1389,7 +2278,12 @@
     "ru": "Микижа"
    },
    "record_g": 11905,
-   "record_water": "yama_river"
+   "record_water": "yama_river",
+   "trophy_g": 8000,
+   "super_trophy_g": 10000,
+   "waters": [
+    "yama_river"
+   ]
   },
   {
    "id": "molva",
@@ -1399,7 +2293,12 @@
     "ru": "Мольва голубая"
    },
    "record_g": 44854,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 25000,
+   "super_trophy_g": 35000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "muksun",
@@ -1409,7 +2308,12 @@
     "ru": "Муксун"
    },
    "record_g": 10328,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 6000,
+   "super_trophy_g": 9000,
+   "waters": [
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "mytilus_ed",
@@ -1419,7 +2323,12 @@
     "ru": "Мидия"
    },
    "record_g": 168,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 130,
+   "super_trophy_g": 150,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "n.pike",
@@ -1429,7 +2338,23 @@
     "ru": "Щука обыкновенная"
    },
    "record_g": 29688,
-   "record_water": "ladoga_archipelago"
+   "record_water": "ladoga_archipelago",
+   "trophy_g": 12000,
+   "super_trophy_g": 20000,
+   "waters": [
+    "akhtuba_river",
+    "belaya_river",
+    "copper_lake",
+    "ladoga_archipelago",
+    "ladoga_lake",
+    "lower_tunguska_river",
+    "mosquito_lake",
+    "old_burg_lake",
+    "seversky_donets_river",
+    "sura_river",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "n_asagi",
@@ -1439,7 +2364,12 @@
     "ru": "Карп Кои Наруми Асаги"
    },
    "record_g": 38533,
-   "record_water": "copper_lake"
+   "record_water": "copper_lake",
+   "trophy_g": 25000,
+   "super_trophy_g": 32000,
+   "waters": [
+    "copper_lake"
+   ]
   },
   {
    "id": "n_carp",
@@ -1449,7 +2379,14 @@
     "ru": "Карп голый"
    },
    "record_g": 59890,
-   "record_water": "the_amber_lake"
+   "record_water": "the_amber_lake",
+   "trophy_g": 30000,
+   "super_trophy_g": 45000,
+   "waters": [
+    "bear_lake",
+    "copper_lake",
+    "the_amber_lake"
+   ]
   },
   {
    "id": "n_carp_albino",
@@ -1459,7 +2396,12 @@
     "ru": "Карп голый - альбинос"
    },
    "record_g": 41924,
-   "record_water": "the_amber_lake"
+   "record_water": "the_amber_lake",
+   "trophy_g": 30000,
+   "super_trophy_g": 45000,
+   "waters": [
+    "the_amber_lake"
+   ]
   },
   {
    "id": "n_carp_ghost",
@@ -1469,7 +2411,12 @@
     "ru": "Карп голый - призрак"
    },
    "record_g": 54417,
-   "record_water": "the_amber_lake"
+   "record_water": "the_amber_lake",
+   "trophy_g": 30000,
+   "super_trophy_g": 45000,
+   "waters": [
+    "the_amber_lake"
+   ]
   },
   {
    "id": "neiva",
@@ -1479,7 +2426,12 @@
     "ru": "Нейва"
    },
    "record_g": 1586,
-   "record_water": "yama_river"
+   "record_water": "yama_river",
+   "trophy_g": 1400,
+   "super_trophy_g": 1700,
+   "waters": [
+    "yama_river"
+   ]
   },
   {
    "id": "nelma",
@@ -1489,7 +2441,12 @@
     "ru": "Нельма"
    },
    "record_g": 29029,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 25000,
+   "super_trophy_g": 30000,
+   "waters": [
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "nerka",
@@ -1499,7 +2456,12 @@
     "ru": "Нерка"
    },
    "record_g": 6767,
-   "record_water": "yama_river"
+   "record_water": "yama_river",
+   "trophy_g": 4500,
+   "super_trophy_g": 6000,
+   "waters": [
+    "yama_river"
+   ]
   },
   {
    "id": "o_ogon",
@@ -1509,7 +2471,12 @@
     "ru": "Карп Кои Орэндзи Огон"
    },
    "record_g": 38691,
-   "record_water": "copper_lake"
+   "record_water": "copper_lake",
+   "trophy_g": 25000,
+   "super_trophy_g": 32000,
+   "waters": [
+    "copper_lake"
+   ]
   },
   {
    "id": "onkor_m",
@@ -1519,7 +2486,12 @@
     "ru": "Сима"
    },
    "record_g": 9353,
-   "record_water": "yama_river"
+   "record_water": "yama_river",
+   "trophy_g": 6500,
+   "super_trophy_g": 8000,
+   "waters": [
+    "yama_river"
+   ]
   },
   {
    "id": "onkor_mg",
@@ -1529,7 +2501,12 @@
     "ru": "Сима жилая"
    },
    "record_g": 7882,
-   "record_water": "yama_river"
+   "record_water": "yama_river",
+   "trophy_g": 5000,
+   "super_trophy_g": 6500,
+   "waters": [
+    "yama_river"
+   ]
   },
   {
    "id": "os_grayling",
@@ -1539,7 +2516,13 @@
     "ru": "Хариус восточносибирский"
    },
    "record_g": 2993,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 2000,
+   "super_trophy_g": 2500,
+   "waters": [
+    "lower_tunguska_river",
+    "yama_river"
+   ]
   },
   {
    "id": "osetr_balt",
@@ -1549,7 +2532,13 @@
     "ru": "Осётр балтийский"
    },
    "record_g": 303409,
-   "record_water": "ladoga_archipelago"
+   "record_water": "ladoga_archipelago",
+   "trophy_g": 200000,
+   "super_trophy_g": 300000,
+   "waters": [
+    "ladoga_archipelago",
+    "ladoga_lake"
+   ]
   },
   {
    "id": "osetr_ship",
@@ -1559,7 +2548,12 @@
     "ru": "Шип"
    },
    "record_g": 63845,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 50000,
+   "super_trophy_g": 70000,
+   "waters": [
+    "akhtuba_river"
+   ]
   },
   {
    "id": "ostrea_ed",
@@ -1569,7 +2563,12 @@
     "ru": "Устрица съедобная"
    },
    "record_g": 423,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 300,
+   "super_trophy_g": 370,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "p_sturgeon",
@@ -1579,7 +2578,12 @@
     "ru": "Осётр персидский"
    },
    "record_g": 152030,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 100000,
+   "super_trophy_g": 150000,
+   "waters": [
+    "akhtuba_river"
+   ]
   },
   {
    "id": "p_zubatka",
@@ -1589,7 +2593,12 @@
     "ru": "Зубатка полосатая"
    },
    "record_g": 23996,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 14500,
+   "super_trophy_g": 19000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "palia_kr",
@@ -1599,7 +2608,13 @@
     "ru": "Палия кряжевая"
    },
    "record_g": 5868,
-   "record_water": "ladoga_archipelago"
+   "record_water": "ladoga_archipelago",
+   "trophy_g": 3000,
+   "super_trophy_g": 4500,
+   "waters": [
+    "ladoga_archipelago",
+    "ladoga_lake"
+   ]
   },
   {
    "id": "palia_lud",
@@ -1609,7 +2624,13 @@
     "ru": "Палия лудожная"
    },
    "record_g": 9428,
-   "record_water": "ladoga_archipelago"
+   "record_water": "ladoga_archipelago",
+   "trophy_g": 5000,
+   "super_trophy_g": 7600,
+   "waters": [
+    "ladoga_archipelago",
+    "ladoga_lake"
+   ]
   },
   {
    "id": "peled",
@@ -1619,7 +2640,13 @@
     "ru": "Пелядь"
    },
    "record_g": 4736,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 3000,
+   "super_trophy_g": 4000,
+   "waters": [
+    "kuori_lake",
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "perch",
@@ -1629,7 +2656,27 @@
     "ru": "Окунь"
    },
    "record_g": 3498,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 1600,
+   "super_trophy_g": 2700,
+   "waters": [
+    "akhtuba_river",
+    "bear_lake",
+    "belaya_river",
+    "copper_lake",
+    "kuori_lake",
+    "ladoga_archipelago",
+    "ladoga_lake",
+    "lower_tunguska_river",
+    "mosquito_lake",
+    "old_burg_lake",
+    "seversky_donets_river",
+    "sura_river",
+    "the_amber_lake",
+    "volkhov_river",
+    "winding_rivulet",
+    "yama_river"
+   ]
   },
   {
    "id": "piksha",
@@ -1639,7 +2686,12 @@
     "ru": "Пикша"
    },
    "record_g": 16981,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 11000,
+   "super_trophy_g": 13000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "pinagor",
@@ -1649,7 +2701,12 @@
     "ru": "Пинагор"
    },
    "record_g": 9105,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 6000,
+   "super_trophy_g": 7500,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "pollachius",
@@ -1659,7 +2716,12 @@
     "ru": "Поллак"
    },
    "record_g": 17912,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 11000,
+   "super_trophy_g": 14000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "polyprion",
@@ -1669,7 +2731,12 @@
     "ru": "Окунь каменный"
    },
    "record_g": 98948,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 60000,
+   "super_trophy_g": 75000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "poutassou",
@@ -1679,7 +2746,12 @@
     "ru": "Путассу северная"
    },
    "record_g": 1493,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 900,
+   "super_trophy_g": 1200,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "pumps_sunfish",
@@ -1689,7 +2761,12 @@
     "ru": "Окунь солнечный"
    },
    "record_g": 668,
-   "record_water": "seversky_donets_river"
+   "record_water": "seversky_donets_river",
+   "trophy_g": 450,
+   "super_trophy_g": 600,
+   "waters": [
+    "seversky_donets_river"
+   ]
   },
   {
    "id": "r_carp",
@@ -1699,7 +2776,12 @@
     "ru": "Карп рамчатый"
    },
    "record_g": 49949,
-   "record_water": "the_amber_lake"
+   "record_water": "the_amber_lake",
+   "trophy_g": 25000,
+   "super_trophy_g": 40000,
+   "waters": [
+    "the_amber_lake"
+   ]
   },
   {
    "id": "r_carp_albino",
@@ -1709,7 +2791,12 @@
     "ru": "Карп рамчатый - альбинос"
    },
    "record_g": 30093,
-   "record_water": "the_amber_lake"
+   "record_water": "the_amber_lake",
+   "trophy_g": 25000,
+   "super_trophy_g": 40000,
+   "waters": [
+    "the_amber_lake"
+   ]
   },
   {
    "id": "r_carp_ghost",
@@ -1719,7 +2806,12 @@
     "ru": "Карп рамчатый - призрак"
    },
    "record_g": 45672,
-   "record_water": "the_amber_lake"
+   "record_water": "the_amber_lake",
+   "trophy_g": 25000,
+   "super_trophy_g": 40000,
+   "waters": [
+    "the_amber_lake"
+   ]
   },
   {
    "id": "r_sturgeon",
@@ -1729,7 +2821,13 @@
     "ru": "Осётр русский"
    },
    "record_g": 124558,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 50000,
+   "super_trophy_g": 100000,
+   "waters": [
+    "akhtuba_river",
+    "seversky_donets_river"
+   ]
   },
   {
    "id": "red_fish",
@@ -1739,7 +2837,12 @@
     "ru": "Окунь морской норвежский"
    },
    "record_g": 4995,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 3000,
+   "super_trophy_g": 4000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "resfish",
@@ -1749,7 +2852,12 @@
     "ru": "Солнечник красноухий"
    },
    "record_g": 2891,
-   "record_water": "elk_lake"
+   "record_water": "elk_lake",
+   "trophy_g": 1700,
+   "super_trophy_g": 2300,
+   "waters": [
+    "elk_lake"
+   ]
   },
   {
    "id": "ripus",
@@ -1759,7 +2867,13 @@
     "ru": "Рипус"
    },
    "record_g": 1994,
-   "record_water": "ladoga_lake"
+   "record_water": "ladoga_lake",
+   "trophy_g": 1200,
+   "super_trophy_g": 1700,
+   "waters": [
+    "ladoga_archipelago",
+    "ladoga_lake"
+   ]
   },
   {
    "id": "riv_brown_trout",
@@ -1769,7 +2883,13 @@
     "ru": "Форель ручьевая"
    },
    "record_g": 6984,
-   "record_water": "belaya_river"
+   "record_water": "belaya_river",
+   "trophy_g": 3000,
+   "super_trophy_g": 5000,
+   "waters": [
+    "belaya_river",
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "riv_rb_trout",
@@ -1779,7 +2899,12 @@
     "ru": "Форель радужная"
    },
    "record_g": 15802,
-   "record_water": "kuori_lake"
+   "record_water": "kuori_lake",
+   "trophy_g": 10000,
+   "super_trophy_g": 13000,
+   "waters": [
+    "kuori_lake"
+   ]
   },
   {
    "id": "rk_crab",
@@ -1789,7 +2914,12 @@
     "ru": "Краб камчатский"
    },
    "record_g": 12530,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 7500,
+   "super_trophy_g": 9000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "rudd",
@@ -1799,7 +2929,14 @@
     "ru": "Краснопёрка"
    },
    "record_g": 2376,
-   "record_water": "seversky_donets_river"
+   "record_water": "seversky_donets_river",
+   "trophy_g": 1500,
+   "super_trophy_g": 2000,
+   "waters": [
+    "akhtuba_river",
+    "seversky_donets_river",
+    "sura_river"
+   ]
   },
   {
    "id": "ruffe",
@@ -1809,7 +2946,26 @@
     "ru": "Ёрш"
    },
    "record_g": 249,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 140,
+   "super_trophy_g": 220,
+   "waters": [
+    "akhtuba_river",
+    "bear_lake",
+    "belaya_river",
+    "copper_lake",
+    "kuori_lake",
+    "ladoga_archipelago",
+    "ladoga_lake",
+    "lower_tunguska_river",
+    "mosquito_lake",
+    "old_burg_lake",
+    "seversky_donets_river",
+    "sura_river",
+    "the_amber_lake",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "ruffe_n",
@@ -1819,7 +2975,13 @@
     "ru": "Ёрш-носарь"
    },
    "record_g": 434,
-   "record_water": "seversky_donets_river"
+   "record_water": "seversky_donets_river",
+   "trophy_g": 250,
+   "super_trophy_g": 350,
+   "waters": [
+    "seversky_donets_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "s.bream",
@@ -1829,7 +2991,25 @@
     "ru": "Густера"
    },
    "record_g": 1398,
-   "record_water": "winding_rivulet"
+   "record_water": "winding_rivulet",
+   "trophy_g": 800,
+   "super_trophy_g": 1200,
+   "waters": [
+    "akhtuba_river",
+    "bear_lake",
+    "belaya_river",
+    "copper_lake",
+    "kuori_lake",
+    "ladoga_archipelago",
+    "ladoga_lake",
+    "mosquito_lake",
+    "old_burg_lake",
+    "seversky_donets_river",
+    "sura_river",
+    "the_amber_lake",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "s.orfe",
@@ -1839,7 +3019,20 @@
     "ru": "Язь"
    },
    "record_g": 7892,
-   "record_water": "belaya_river"
+   "record_water": "belaya_river",
+   "trophy_g": 4000,
+   "super_trophy_g": 6500,
+   "waters": [
+    "akhtuba_river",
+    "belaya_river",
+    "copper_lake",
+    "lower_tunguska_river",
+    "mosquito_lake",
+    "sura_river",
+    "the_amber_lake",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "s_bass",
@@ -1849,7 +3042,12 @@
     "ru": "Лаврак полосатый"
    },
    "record_g": 48575,
-   "record_water": "elk_lake"
+   "record_water": "elk_lake",
+   "trophy_g": 30000,
+   "super_trophy_g": 45000,
+   "waters": [
+    "elk_lake"
+   ]
   },
   {
    "id": "s_carp",
@@ -1859,7 +3057,13 @@
     "ru": "Толстолобик белый"
    },
    "record_g": 47979,
-   "record_water": "sura_river"
+   "record_water": "sura_river",
+   "trophy_g": 25000,
+   "super_trophy_g": 40000,
+   "waters": [
+    "akhtuba_river",
+    "sura_river"
+   ]
   },
   {
    "id": "s_freaks",
@@ -1869,7 +3073,12 @@
     "ru": "Карп Супер Фрикс"
    },
    "record_g": 47622,
-   "record_water": "copper_lake"
+   "record_water": "copper_lake",
+   "trophy_g": 30000,
+   "super_trophy_g": 40000,
+   "waters": [
+    "copper_lake"
+   ]
   },
   {
    "id": "s_lamprey",
@@ -1879,7 +3088,12 @@
     "ru": "Минога сибирская"
    },
    "record_g": 36,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 40,
+   "super_trophy_g": 45,
+   "waters": [
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "s_saurus",
@@ -1889,7 +3103,12 @@
     "ru": "Сайра атлантическая"
    },
    "record_g": 999,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 600,
+   "super_trophy_g": 750,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "sabrefish",
@@ -1899,7 +3118,14 @@
     "ru": "Чехонь"
    },
    "record_g": 2474,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 1500,
+   "super_trophy_g": 2000,
+   "waters": [
+    "akhtuba_river",
+    "seversky_donets_river",
+    "sura_river"
+   ]
   },
   {
    "id": "salvel_l",
@@ -1909,7 +3135,14 @@
     "ru": "Палия обыкновенная"
    },
    "record_g": 9620,
-   "record_water": "ladoga_archipelago"
+   "record_water": "ladoga_archipelago",
+   "trophy_g": 5000,
+   "super_trophy_g": 7600,
+   "waters": [
+    "kuori_lake",
+    "ladoga_archipelago",
+    "ladoga_lake"
+   ]
   },
   {
    "id": "sardina_p",
@@ -1919,7 +3152,12 @@
     "ru": "Сардина европейская"
    },
    "record_g": 299,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 180,
+   "super_trophy_g": 240,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "sea_kambala",
@@ -1929,7 +3167,12 @@
     "ru": "Камбала морская"
    },
    "record_g": 6997,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 4500,
+   "super_trophy_g": 5500,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "sebastes_m",
@@ -1939,7 +3182,12 @@
     "ru": "Окунь-клювач"
    },
    "record_g": 8897,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 5500,
+   "super_trophy_g": 7000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "sebastes_n",
@@ -1949,7 +3197,12 @@
     "ru": "Окунь морской золотистый"
    },
    "record_g": 14736,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 9000,
+   "super_trophy_g": 11000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "sevan_trout",
@@ -1959,7 +3212,12 @@
     "ru": "Форель севанская"
    },
    "record_g": 17663,
-   "record_water": "kuori_lake"
+   "record_water": "kuori_lake",
+   "trophy_g": 9000,
+   "super_trophy_g": 15000,
+   "waters": [
+    "kuori_lake"
+   ]
   },
   {
    "id": "sgar",
@@ -1969,7 +3227,12 @@
     "ru": "Панцирник пятнистый"
    },
    "record_g": 3495,
-   "record_water": "elk_lake"
+   "record_water": "elk_lake",
+   "trophy_g": 3000,
+   "super_trophy_g": 4000,
+   "waters": [
+    "elk_lake"
+   ]
   },
   {
    "id": "sh_barbel",
@@ -1979,7 +3242,12 @@
     "ru": "Усач короткоголовый"
    },
    "record_g": 20984,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 13000,
+   "super_trophy_g": 18000,
+   "waters": [
+    "akhtuba_river"
+   ]
   },
   {
    "id": "shemaya",
@@ -1989,7 +3257,12 @@
     "ru": "Шемая каспийская"
    },
    "record_g": 1042,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 600,
+   "super_trophy_g": 900,
+   "waters": [
+    "akhtuba_river"
+   ]
   },
   {
    "id": "shemaya_cha",
@@ -1999,7 +3272,12 @@
     "ru": "Шемая черноморская"
    },
    "record_g": 791,
-   "record_water": "seversky_donets_river"
+   "record_water": "seversky_donets_river",
+   "trophy_g": 500,
+   "super_trophy_g": 700,
+   "waters": [
+    "seversky_donets_river"
+   ]
   },
   {
    "id": "sig",
@@ -2009,7 +3287,13 @@
     "ru": "Сиг волховский"
    },
    "record_g": 7543,
-   "record_water": "ladoga_lake"
+   "record_water": "ladoga_lake",
+   "trophy_g": 4000,
+   "super_trophy_g": 7000,
+   "waters": [
+    "ladoga_archipelago",
+    "ladoga_lake"
+   ]
   },
   {
    "id": "sig_black",
@@ -2019,7 +3303,12 @@
     "ru": "Сиг чёрный"
    },
    "record_g": 5827,
-   "record_water": "ladoga_archipelago"
+   "record_water": "ladoga_archipelago",
+   "trophy_g": 3500,
+   "super_trophy_g": 5000,
+   "waters": [
+    "ladoga_archipelago"
+   ]
   },
   {
    "id": "sig_kuor",
@@ -2029,7 +3318,12 @@
     "ru": "Сиг куорский"
    },
    "record_g": 5891,
-   "record_water": "kuori_lake"
+   "record_water": "kuori_lake",
+   "trophy_g": 3500,
+   "super_trophy_g": 5000,
+   "waters": [
+    "kuori_lake"
+   ]
   },
   {
    "id": "sig_ludoga",
@@ -2039,7 +3333,13 @@
     "ru": "Сиг-лудога"
    },
    "record_g": 5992,
-   "record_water": "ladoga_archipelago"
+   "record_water": "ladoga_archipelago",
+   "trophy_g": 3000,
+   "super_trophy_g": 5000,
+   "waters": [
+    "ladoga_archipelago",
+    "ladoga_lake"
+   ]
   },
   {
    "id": "sig_o_l",
@@ -2049,7 +3349,12 @@
     "ru": "Сиг ладожский озёрный"
    },
    "record_g": 4503,
-   "record_water": "ladoga_archipelago"
+   "record_water": "ladoga_archipelago",
+   "trophy_g": 3000,
+   "super_trophy_g": 4000,
+   "waters": [
+    "ladoga_archipelago"
+   ]
   },
   {
    "id": "sig_ostr",
@@ -2059,7 +3364,12 @@
     "ru": "Сиг острожский"
    },
    "record_g": 4662,
-   "record_water": "old_burg_lake"
+   "record_water": "old_burg_lake",
+   "trophy_g": 3000,
+   "super_trophy_g": 4000,
+   "waters": [
+    "old_burg_lake"
+   ]
   },
   {
    "id": "sig_p",
@@ -2069,7 +3379,13 @@
     "ru": "Сиг-пыжьян"
    },
    "record_g": 6260,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 4500,
+   "super_trophy_g": 6000,
+   "waters": [
+    "belaya_river",
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "sig_valaam",
@@ -2079,7 +3395,13 @@
     "ru": "Сиг валаамский"
    },
    "record_g": 2669,
-   "record_water": "ladoga_archipelago"
+   "record_water": "ladoga_archipelago",
+   "trophy_g": 1500,
+   "super_trophy_g": 2500,
+   "waters": [
+    "ladoga_archipelago",
+    "ladoga_lake"
+   ]
   },
   {
    "id": "sig_vouksa",
@@ -2089,7 +3411,13 @@
     "ru": "Сиг вуоксинский"
    },
    "record_g": 5829,
-   "record_water": "ladoga_archipelago"
+   "record_water": "ladoga_archipelago",
+   "trophy_g": 3000,
+   "super_trophy_g": 5000,
+   "waters": [
+    "ladoga_archipelago",
+    "ladoga_lake"
+   ]
   },
   {
    "id": "sm_bass",
@@ -2099,7 +3427,12 @@
     "ru": "Окунь малоротый"
    },
    "record_g": 5221,
-   "record_water": "elk_lake"
+   "record_water": "elk_lake",
+   "trophy_g": 3000,
+   "super_trophy_g": 4000,
+   "waters": [
+    "elk_lake"
+   ]
   },
   {
    "id": "somniosus_m",
@@ -2109,7 +3442,12 @@
     "ru": "Акула гренландская полярная"
    },
    "record_g": 905108,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 600000,
+   "super_trophy_g": 900000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "sp_bass",
@@ -2119,7 +3457,12 @@
     "ru": "Окунь пятнистый"
    },
    "record_g": 4538,
-   "record_water": "elk_lake"
+   "record_water": "elk_lake",
+   "trophy_g": 3000,
+   "super_trophy_g": 4500,
+   "waters": [
+    "elk_lake"
+   ]
   },
   {
    "id": "st_sturgeon",
@@ -2129,7 +3472,12 @@
     "ru": "Севрюга"
    },
    "record_g": 77870,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 50000,
+   "super_trophy_g": 70000,
+   "waters": [
+    "akhtuba_river"
+   ]
   },
   {
    "id": "sterlet",
@@ -2139,7 +3487,14 @@
     "ru": "Стерлядь"
    },
    "record_g": 15939,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 9000,
+   "super_trophy_g": 14000,
+   "waters": [
+    "akhtuba_river",
+    "belaya_river",
+    "sura_river"
+   ]
   },
   {
    "id": "stickleback_ninesp",
@@ -2149,7 +3504,12 @@
     "ru": "Колюшка девятииглая"
    },
    "record_g": 96,
-   "record_water": "yama_river"
+   "record_water": "yama_river",
+   "trophy_g": 70,
+   "super_trophy_g": 90,
+   "waters": [
+    "yama_river"
+   ]
   },
   {
    "id": "stickleback_ss",
@@ -2159,7 +3519,12 @@
     "ru": "Колюшка малая южная"
    },
    "record_g": 98,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 70,
+   "super_trophy_g": 90,
+   "waters": [
+    "akhtuba_river"
+   ]
   },
   {
    "id": "stickleback_threesp",
@@ -2169,7 +3534,14 @@
     "ru": "Колюшка трёхиглая"
    },
    "record_g": 99,
-   "record_water": "ladoga_lake"
+   "record_water": "ladoga_lake",
+   "trophy_g": 70,
+   "super_trophy_g": 90,
+   "waters": [
+    "ladoga_archipelago",
+    "ladoga_lake",
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "sv_sig",
@@ -2179,7 +3551,12 @@
     "ru": "Сиг свирский"
    },
    "record_g": 4195,
-   "record_water": "ladoga_archipelago"
+   "record_water": "ladoga_archipelago",
+   "trophy_g": 3500,
+   "super_trophy_g": 5000,
+   "waters": [
+    "ladoga_archipelago"
+   ]
   },
   {
    "id": "syb_elets",
@@ -2189,7 +3566,12 @@
     "ru": "Елец сибирский"
    },
    "record_g": 428,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 250,
+   "super_trophy_g": 390,
+   "waters": [
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "syb_gudgeon",
@@ -2199,7 +3581,12 @@
     "ru": "Пескарь сибирский"
    },
    "record_g": 227,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 150,
+   "super_trophy_g": 200,
+   "waters": [
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "syb_roach",
@@ -2209,7 +3596,12 @@
     "ru": "Плотва сибирская"
    },
    "record_g": 799,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 600,
+   "super_trophy_g": 700,
+   "waters": [
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "syb_sterlet",
@@ -2219,7 +3611,12 @@
     "ru": "Стерлядь сибирская"
    },
    "record_g": 17215,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 9000,
+   "super_trophy_g": 14000,
+   "waters": [
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "syb_vendace",
@@ -2229,7 +3626,12 @@
     "ru": "Ряпушка сибирская"
    },
    "record_g": 1297,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 800,
+   "super_trophy_g": 1100,
+   "waters": [
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "taimen",
@@ -2239,7 +3641,13 @@
     "ru": "Таймень"
    },
    "record_g": 99577,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 50000,
+   "super_trophy_g": 80000,
+   "waters": [
+    "belaya_river",
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "taran",
@@ -2249,7 +3657,12 @@
     "ru": "Тарань"
    },
    "record_g": 1998,
-   "record_water": "seversky_donets_river"
+   "record_water": "seversky_donets_river",
+   "trophy_g": 1300,
+   "super_trophy_g": 1800,
+   "waters": [
+    "seversky_donets_river"
+   ]
   },
   {
    "id": "tench",
@@ -2259,7 +3672,22 @@
     "ru": "Линь"
    },
    "record_g": 7470,
-   "record_water": "copper_lake"
+   "record_water": "copper_lake",
+   "trophy_g": 4000,
+   "super_trophy_g": 6000,
+   "waters": [
+    "akhtuba_river",
+    "bear_lake",
+    "copper_lake",
+    "lower_tunguska_river",
+    "mosquito_lake",
+    "old_burg_lake",
+    "seversky_donets_river",
+    "sura_river",
+    "the_amber_lake",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "thynnus_t",
@@ -2269,7 +3697,12 @@
     "ru": "Тунец голубой"
    },
    "record_g": 485207,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 250000,
+   "super_trophy_g": 400000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "tiulka",
@@ -2279,7 +3712,12 @@
     "ru": "Тюлька черноморская"
    },
    "record_g": 29,
-   "record_water": "seversky_donets_river"
+   "record_water": "seversky_donets_river",
+   "trophy_g": 24,
+   "super_trophy_g": 28,
+   "waters": [
+    "seversky_donets_river"
+   ]
   },
   {
    "id": "trib_h",
@@ -2289,7 +3727,12 @@
     "ru": "Краснопёр-Угай крупночешуйчатый"
    },
    "record_g": 1790,
-   "record_water": "yama_river"
+   "record_water": "yama_river",
+   "trophy_g": 1200,
+   "super_trophy_g": 1500,
+   "waters": [
+    "yama_river"
+   ]
   },
   {
    "id": "trid_lamprey",
@@ -2299,7 +3742,13 @@
     "ru": "Минога трёхзубая"
    },
    "record_g": 62,
-   "record_water": "yama_river"
+   "record_water": "yama_river",
+   "trophy_g": 70,
+   "super_trophy_g": 90,
+   "waters": [
+    "lower_tunguska_river",
+    "yama_river"
+   ]
   },
   {
    "id": "tugun",
@@ -2309,7 +3758,12 @@
     "ru": "Тугун"
    },
    "record_g": 79,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 60,
+   "super_trophy_g": 70,
+   "waters": [
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "turbot",
@@ -2319,7 +3773,12 @@
     "ru": "Тюрбо"
    },
    "record_g": 24783,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 14000,
+   "super_trophy_g": 18000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "u_lamprey",
@@ -2329,7 +3788,12 @@
     "ru": "Минога украинская"
    },
    "record_g": 75,
-   "record_water": "seversky_donets_river"
+   "record_water": "seversky_donets_river",
+   "trophy_g": 70,
+   "super_trophy_g": 90,
+   "waters": [
+    "seversky_donets_river"
+   ]
   },
   {
    "id": "v_bream",
@@ -2339,7 +3803,15 @@
     "ru": "Рыбец"
    },
    "record_g": 2887,
-   "record_water": "volkhov_river"
+   "record_water": "volkhov_river",
+   "trophy_g": 1500,
+   "super_trophy_g": 2400,
+   "waters": [
+    "ladoga_archipelago",
+    "ladoga_lake",
+    "sura_river",
+    "volkhov_river"
+   ]
   },
   {
    "id": "valyok",
@@ -2349,7 +3821,13 @@
     "ru": "Валёк"
    },
    "record_g": 1701,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 1200,
+   "super_trophy_g": 1600,
+   "waters": [
+    "lower_tunguska_river",
+    "yama_river"
+   ]
   },
   {
    "id": "vendace",
@@ -2359,7 +3837,15 @@
     "ru": "Ряпушка"
    },
    "record_g": 993,
-   "record_water": "ladoga_lake"
+   "record_water": "ladoga_lake",
+   "trophy_g": 500,
+   "super_trophy_g": 800,
+   "waters": [
+    "kuori_lake",
+    "ladoga_archipelago",
+    "ladoga_lake",
+    "volkhov_river"
+   ]
   },
   {
    "id": "vjun",
@@ -2369,7 +3855,13 @@
     "ru": "Вьюн"
    },
    "record_g": 297,
-   "record_water": "mosquito_lake"
+   "record_water": "mosquito_lake",
+   "trophy_g": 200,
+   "super_trophy_g": 250,
+   "waters": [
+    "akhtuba_river",
+    "mosquito_lake"
+   ]
   },
   {
    "id": "vobla",
@@ -2379,7 +3871,12 @@
     "ru": "Вобла"
    },
    "record_g": 986,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 500,
+   "super_trophy_g": 800,
+   "waters": [
+    "akhtuba_river"
+   ]
   },
   {
    "id": "vyrezub",
@@ -2389,7 +3886,12 @@
     "ru": "Вырезуб"
    },
    "record_g": 8949,
-   "record_water": "seversky_donets_river"
+   "record_water": "seversky_donets_river",
+   "trophy_g": 5500,
+   "super_trophy_g": 7500,
+   "waters": [
+    "seversky_donets_river"
+   ]
   },
   {
    "id": "w_catfish",
@@ -2399,7 +3901,22 @@
     "ru": "Сом"
    },
    "record_g": 251240,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 100000,
+   "super_trophy_g": 200000,
+   "waters": [
+    "akhtuba_river",
+    "belaya_river",
+    "ladoga_archipelago",
+    "ladoga_lake",
+    "mosquito_lake",
+    "old_burg_lake",
+    "seversky_donets_river",
+    "sura_river",
+    "the_amber_lake",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "w_catfish_a",
@@ -2409,7 +3926,12 @@
     "ru": "Сом альбинос"
    },
    "record_g": 94772,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 100000,
+   "super_trophy_g": 200000,
+   "waters": [
+    "akhtuba_river"
+   ]
   },
   {
    "id": "wa_bream",
@@ -2419,7 +3941,19 @@
     "ru": "Белоглазка"
    },
    "record_g": 1041,
-   "record_water": "winding_rivulet"
+   "record_water": "winding_rivulet",
+   "trophy_g": 600,
+   "super_trophy_g": 900,
+   "waters": [
+    "akhtuba_river",
+    "belaya_river",
+    "ladoga_archipelago",
+    "ladoga_lake",
+    "seversky_donets_river",
+    "sura_river",
+    "volkhov_river",
+    "winding_rivulet"
+   ]
   },
   {
    "id": "walleye",
@@ -2429,7 +3963,12 @@
     "ru": "Судак светлопёрый"
    },
    "record_g": 10789,
-   "record_water": "elk_lake"
+   "record_water": "elk_lake",
+   "trophy_g": 7000,
+   "super_trophy_g": 9000,
+   "waters": [
+    "elk_lake"
+   ]
   },
   {
    "id": "warm",
@@ -2439,7 +3978,12 @@
     "ru": "Вармоус"
    },
    "record_g": 1099,
-   "record_water": "elk_lake"
+   "record_water": "elk_lake",
+   "trophy_g": 650,
+   "super_trophy_g": 850,
+   "waters": [
+    "elk_lake"
+   ]
   },
   {
    "id": "wfish",
@@ -2449,7 +3993,12 @@
     "ru": "Белорыбица"
    },
    "record_g": 28682,
-   "record_water": "akhtuba_river"
+   "record_water": "akhtuba_river",
+   "trophy_g": 15000,
+   "super_trophy_g": 25000,
+   "waters": [
+    "akhtuba_river"
+   ]
   },
   {
    "id": "wh_bass",
@@ -2459,7 +4008,12 @@
     "ru": "Окунь белый"
    },
    "record_g": 3096,
-   "record_water": "elk_lake"
+   "record_water": "elk_lake",
+   "trophy_g": 1750,
+   "super_trophy_g": 2500,
+   "waters": [
+    "elk_lake"
+   ]
   },
   {
    "id": "white_crappie",
@@ -2469,7 +4023,12 @@
     "ru": "Краппи белый"
    },
    "record_g": 2491,
-   "record_water": "elk_lake"
+   "record_water": "elk_lake",
+   "trophy_g": 1350,
+   "super_trophy_g": 2000,
+   "waters": [
+    "elk_lake"
+   ]
   },
   {
    "id": "x_gladius",
@@ -2479,7 +4038,12 @@
     "ru": "Меч-рыба"
    },
    "record_g": 622342,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 300000,
+   "super_trophy_g": 450000,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "yotsushiro",
@@ -2489,7 +4053,12 @@
     "ru": "Карп Кои Ёцусиро"
    },
    "record_g": 36596,
-   "record_water": "copper_lake"
+   "record_water": "copper_lake",
+   "trophy_g": 25000,
+   "super_trophy_g": 32000,
+   "waters": [
+    "copper_lake"
+   ]
   },
   {
    "id": "zoarces_v",
@@ -2499,7 +4068,12 @@
     "ru": "Бельдюга европейская"
    },
    "record_g": 1495,
-   "record_water": "norwegian_sea"
+   "record_water": "norwegian_sea",
+   "trophy_g": 900,
+   "super_trophy_g": 1300,
+   "waters": [
+    "norwegian_sea"
+   ]
   },
   {
    "id": "zs_grayling",
@@ -2509,7 +4083,13 @@
     "ru": "Хариус западносибирский"
    },
    "record_g": 2990,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 2000,
+   "super_trophy_g": 2500,
+   "waters": [
+    "belaya_river",
+    "lower_tunguska_river"
+   ]
   },
   {
    "id": "zs_sturgeon",
@@ -2519,7 +4099,12 @@
     "ru": "Осётр восточносибирский"
    },
    "record_g": 176135,
-   "record_water": "lower_tunguska_river"
+   "record_water": "lower_tunguska_river",
+   "trophy_g": 100000,
+   "super_trophy_g": 150000,
+   "waters": [
+    "lower_tunguska_river"
+   ]
   }
  ]
 }

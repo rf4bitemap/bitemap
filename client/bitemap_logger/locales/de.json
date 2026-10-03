@@ -75,5 +75,6 @@
  "auto_update": "Automatisch nach Updates suchen",
  "check_now": "Jetzt prüfen",
  "upload_outdated": "Update nötig, um Fänge zu teilen",
- "update_blocked": "Das Update wurde blockiert: Seine Dateien verschwanden direkt nach dem Entpacken - vermutlich hat dein Virenscanner sie entfernt (Fehlalarm, BiteMap ist nicht signiert). Bitte lade das Update manuell herunter oder füge den BiteMap-Ordner als Ausnahme im Virenscanner hinzu."
+ "update_blocked": "Das Update wurde blockiert: Seine Dateien verschwanden direkt nach dem Entpacken - vermutlich hat dein Virenscanner sie entfernt (Fehlalarm, BiteMap ist nicht signiert). Bitte lade das Update manuell herunter oder füge den BiteMap-Ordner als Ausnahme im Virenscanner hinzu.",
+ "fish_not_here": "{fish} kommt in {water} nicht vor - ist das richtige Gewässer gewählt? Solche Fänge werden nicht geteilt; mit Bearbeiten korrigieren."
 }

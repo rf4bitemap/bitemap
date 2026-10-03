@@ -112,7 +112,7 @@
     localStorage.setItem('bitemap.water', water);
     const req = ++spotReq;
     const data = await api('/stats/spots', { water, fish: $('#f-fish').value, days: $('#f-days').value,
-      trophy: $('#f-trophy').checked ? 'true' : '' });
+      level: $('#f-level').value });
     if (req !== spotReq) return;  // a newer filter change is already loading
     const spots = data.spots;
     drawBase(water, spots);
@@ -141,16 +141,22 @@
   }
   function spotPopup(s) {
     return `<div class="pop"><h4>${s.x}:${s.y}</h4>
-      <p>${s.count} ${t('catches')} · ${s.anglers} ${t('anglers')}${s.trophies ? ' · 🏆 ' + s.trophies : ''}</p>
+      <p>${s.count} ${t('catches')} · ${s.anglers} ${t('anglers')}${trophyCounts(s)}</p>
       <p>${t('biggest')}: ${fmtW(s.max_weight_g)}</p>
       <ul>${s.top_fish.map((f) => `<li>${esc(fishName(f.fish_id))} <b>×${f.count}</b></li>`).join('')}</ul></div>`;
   }
 
   // ------------------------------------------------------------------ fish + trophies
+  // trophy levels come from the fish's trophy / super trophy weights (super trophies count as trophies too)
+  const TROPHY = '🏆', SUPER = '👑';
+  function trophyCounts(s) {
+    const normal = (s.trophies || 0) - (s.super_trophies || 0);
+    return (normal > 0 ? ` · ${TROPHY} ${normal}` : '') + (s.super_trophies ? ` · ${SUPER} ${s.super_trophies}` : '');
+  }
   async function loadFish() {
     const data = await api('/stats/fish', { water: $('#fish-water').value, days: $('#fish-days').value });
     $('#fish-rows').innerHTML = data.fish.map((f) => `<tr><td>${esc(fishName(f.fish_id))}</td><td>${f.count}</td>
-      <td>${fmtW(f.avg_weight_g)}</td><td>${fmtW(f.max_weight_g)}</td><td>${f.trophies || ''}</td>
+      <td>${fmtW(f.avg_weight_g)}</td><td>${fmtW(f.max_weight_g)}</td><td>${trophyCounts(f).replace(/^ · /, '').replace(/ · /g, ' ')}</td>
       <td>${f.best_spot ? esc(waterName(f.best_spot.waterbody)) + ' ' + f.best_spot.x + ':' + f.best_spot.y : ''}</td></tr>`).join('')
       || `<tr><td colspan="6" class="muted">${t('no_data')}</td></tr>`;
   }
@@ -160,7 +166,7 @@
     $('#st-week').textContent = o.catches_7d.toLocaleString();
     $('#st-anglers').textContent = o.anglers_7d.toLocaleString();
     $('#trophy-rows').innerHTML = o.recent_trophies.map((c) => `<tr><td>${ago(c.caught_at)}</td>
-      <td>🏆 ${esc(fishName(c.fish_id))}</td><td>${fmtW(c.weight_g)}</td><td>${esc(waterName(c.waterbody))}</td>
+      <td title="${t(c.super ? 'lvl_2' : 'lvl_1')}">${c.super ? SUPER : TROPHY} ${esc(fishName(c.fish_id))}</td><td>${fmtW(c.weight_g)}</td><td>${esc(waterName(c.waterbody))}</td>
       <td>${c.x}:${c.y}</td></tr>`).join('') || `<tr><td colspan="5" class="muted">${t('no_data')}</td></tr>`;
   }
 
@@ -170,8 +176,15 @@
     const saved = localStorage.getItem('bitemap.water');
     fillSelect($('#f-water'), waters.map((w) => [w, waterName(w)]), $('#f-water').value || (state.waters[saved] ? saved : waters[0]));
     fillSelect($('#fish-water'), [['', t('all_waters')], ...waters.map((w) => [w, waterName(w)])], $('#fish-water').value);
-    const fish = Object.keys(state.fish).sort((a, b) => fishName(a).localeCompare(fishName(b)));
-    fillSelect($('#f-fish'), [['', t('all_fish')], ...fish.map((f) => [f, fishName(f)])], $('#f-fish').value);
+    fillFishFilter();
+  }
+  function fillFishFilter() {
+    // only the fish that live in the selected waterbody (fish without that data: everywhere)
+    const water = $('#f-water').value;
+    const fish = Object.keys(state.fish).filter((f) => !state.fish[f].waters || state.fish[f].waters.includes(water))
+      .sort((a, b) => fishName(a).localeCompare(fishName(b)));
+    const cur = $('#f-fish').value;
+    fillSelect($('#f-fish'), [['', t('all_fish')], ...fish.map((f) => [f, fishName(f)])], fish.includes(cur) ? cur : '');
   }
 
   async function boot() {
@@ -191,7 +204,8 @@
     state.meta.fish.forEach((f) => { state.fish[f.id] = f; });
     state.meta.waterbodies.forEach((w) => { state.waters[w.id] = w; });
     fillFilters();
-    ['#f-water', '#f-fish', '#f-days', '#f-trophy'].forEach((s) => $(s).addEventListener('change', loadSpots));
+    $('#f-water').addEventListener('change', fillFishFilter);   // registered first: the fish list must match the water
+    ['#f-water', '#f-fish', '#f-days', '#f-level'].forEach((s) => $(s).addEventListener('change', loadSpots));
     ['#fish-water', '#fish-days'].forEach((s) => $(s).addEventListener('change', loadFish));
     $('#lang').addEventListener('change', (e) => {
       state.lang = e.target.value; localStorage.setItem('bitemap.lang', state.lang);

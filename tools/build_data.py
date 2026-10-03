@@ -141,6 +141,10 @@ def main():
     for wid, w in sorted(waters.items()):
         o = old.get(wid, {})
         merged.append({**w, 'map': o.get('map'), 'coord_range': o.get('coord_range', [0, 999])})
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import build_trophies
+    for p in build_trophies.merge(fish, merged):   # trophy weights + where each fish lives (data/trophies.tsv)
+        print('!', p)
     with open(os.path.join(DATA, 'fish.json'), 'w', encoding='utf-8') as f:
         json.dump({'source': 'official RF4 absolute record tables', 'fish': fish}, f, ensure_ascii=False, indent=1)
     with open(wpath, 'w', encoding='utf-8') as f:

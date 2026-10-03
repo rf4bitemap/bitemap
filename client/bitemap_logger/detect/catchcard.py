@@ -1,7 +1,8 @@
-"""The catch card: fish name on top, then [weight] [length] [trophy badge] pills, keepnet/release buttons below.
+"""The catch card: fish name on top, then [weight] [length] [trophy label] pills, keepnet/release buttons below.
 
 Detection is language independent: we look for the weight icon with the ruler icon to its right on the same row.
-Then we read the name above that row and the numbers inside the two pills.
+Then we read the name above that row and the numbers inside the two pills. The trophy label isn't read: trophy and
+super trophy follow from fish + weight (GameData.trophy_level).
 """
 import re
 from concurrent.futures import ThreadPoolExecutor
@@ -50,7 +51,6 @@ class CardReading:
     weight_text: str
     length_cm: float
     length_text: str
-    badge: str        # '', 'trophy' or 'other' (coloured badge we don't know yet)
 
 
 class CatchCardDetector:
@@ -155,7 +155,7 @@ class CatchCardDetector:
         return float(np.abs(a - b)[bright].mean())
 
     # ------------------------------------------------------------------ reading
-    def read(self, frame, g, gamedata, langs):
+    def read(self, frame, g, gamedata, langs, water=None):
         H, W = frame.shape[:2]  # frame may be just the top band; all crops are relative to its top-left
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         ih = g.icon_h
@@ -179,7 +179,7 @@ class CatchCardDetector:
 
             def name_in(l):
                 t = ocr.read_line(prepared, (l,), psm=7)
-                return (t,) + gamedata.match_fish(t, langs=(l,))[:2]
+                return (t,) + gamedata.match_fish(t, langs=(l,), water=water)[:2]
             # the most likely language first (the last one that worked); the others only if that fails
             results = [(langs[0], name_in(langs[0]))] if langs else []
             if langs and not results[0][1][1]:
@@ -195,9 +195,7 @@ class CatchCardDetector:
         wtxt, weight_g = weight_job.result()
         ltxt = length_job.result()
         length_cm = parse_length(ltxt)
-
-        badge = self._badge(frame, l_end + int(0.3 * ih), l_end + int(8 * ih), py0, py1)
-        return CardReading(name_text, fish_id, fish_score, lang, weight_g, wtxt, length_cm, ltxt, badge)
+        return CardReading(name_text, fish_id, fish_score, lang, weight_g, wtxt, length_cm, ltxt)
 
     @staticmethod
     def _pill_end(gray, x_start, row_y, ih):
@@ -267,18 +265,6 @@ class CatchCardDetector:
         num = ocr.read_line(ocr.prepare(number, min_height=64), ('en',), whitelist='0123456789.,', psm=7)
         txt = f"{num} {'kg' if is_kg else 'g'}"
         return txt, parse_weight(txt)
-
-    @staticmethod
-    def _badge(frame, x0, x1, y0, y1):
-        x0, x1 = max(0, x0), min(frame.shape[1], x1)
-        if x1 - x0 < 8:
-            return ''
-        hsv = cv2.cvtColor(frame[y0:y1, x0:x1], cv2.COLOR_BGR2HSV)
-        sat = (hsv[..., 1] > 120) & (hsv[..., 2] > 140)
-        if sat.mean() < 0.15:
-            return ''
-        hue = np.median(hsv[..., 0][sat])
-        return 'trophy' if 15 <= hue <= 35 else 'other'
 
 
 # ---------------------------------------------------------------------- parsing

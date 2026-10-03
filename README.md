@@ -46,7 +46,7 @@ client/            BiteMap Logger (Python, customtkinter, OpenCV, Tesseract)
   bitemap_logger/  app code; detect/ = catch card, coordinates, bite icon
   tests/           detector + full engine replay tests on sample screenshots
 server/            FastAPI + PostgreSQL API, serves the website (server/web)
-data/              fish.json, waterbodies.json (shared by app and server), maps/
+data/              fish.json, waterbodies.json (shared by app and server), trophies.tsv, maps/
 tools/             build_data.py (fish list from official record tables), build_client.py (release build),
                    make_template.py, seed_demo.py, samples/
 deploy/            Caddyfile;  docker-compose.yml at the root
@@ -84,6 +84,10 @@ content into the secret.
 
 * **Fish list** – `python tools/build_data.py` rebuilds `data/fish.json` and `data/waterbodies.json` from the official
   RF4 absolute record tables (EN/DE/RU). Manual name fixes go to `data/overrides.json`.
+* **Trophies and where fish live** – `data/trophies.tsv` (fish, trophy weight, super trophy weight, waterbodies;
+  English names as in the game). `python tools/build_trophies.py` merges it into `data/fish.json`. Trophy and
+  super trophy are decided by these weights, not by the label on the catch card, and the server only accepts a
+  fish in the waterbodies listed for it.
 * **Maps** – one image per waterbody in `data/maps/<waterbody_id>.webp`. The image must span exactly the
   coordinate bounds stored in that waterbody's `"map"` entry in `data/waterbodies.json`
   (`min_x/max_x/min_y/max_y`, north up, y grows upwards – the same convention as the in-game map).

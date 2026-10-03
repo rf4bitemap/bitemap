@@ -18,7 +18,7 @@ from sqlalchemy import Integer, and_, cast, func, select
 from sqlalchemy.orm import Session
 
 from . import gamedata
-from .db import Catch, Install, SessionLocal, init_db
+from .db import Catch, Install, SessionLocal, apply_trophy_levels, init_db
 
 VERSION = '0.1.0'
 WEB_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'web')
@@ -42,9 +42,11 @@ def client_too_old(version):
     lo, have = parse_version(MIN_CLIENT), parse_version(version)
     return bool(lo and have and have < lo)
 
+
 @asynccontextmanager
 async def lifespan(_app):
     init_db()
+    apply_trophy_levels()
     yield
 
 
@@ -172,6 +174,8 @@ def validate(c: CatchIn, now):
         return 'unknown_fish', None
     if c.waterbody not in gamedata.WATERBODIES:
         return 'unknown_waterbody', None
+    if not gamedata.lives_in(c.fish_id, c.waterbody):
+        return 'not_in_waterbody', None   # usually the wrong waterbody is selected in the app
     lo, hi = gamedata.coord_range(c.waterbody)
     if not (lo <= c.x <= hi and lo <= c.y <= hi):
         return 'coords_out_of_range', None
@@ -212,7 +216,9 @@ def upload_catches(body: CatchBatch, request: Request, inst: Install = Depends(c
         bite = parse_time(c.bite_at) if c.bite_at else None
         row = existing or Catch(uuid=c.uuid, install_id=inst.id, received_at=now)
         row.fish_id, row.waterbody, row.x, row.y = c.fish_id, c.waterbody, c.x, c.y
-        row.weight_g, row.length_cm, row.trophy = c.weight_g, c.length_cm, c.badge == 'trophy'
+        row.weight_g, row.length_cm = c.weight_g, c.length_cm
+        level = gamedata.trophy_level(c.fish_id, c.weight_g)   # from the weight, the card's label isn't needed
+        row.trophy, row.super_trophy = level >= 1, level == 2
         row.caught_at, row.game_lang, row.client_version = t, c.game_lang, body.client_version
         row.bite_to_catch_s = int((t - bite).total_seconds()) if bite and 0 <= (t - bite).total_seconds() < 3600 else None
         if not existing:
@@ -249,7 +255,7 @@ def cached(key, fn):
     return val
 
 
-def _filters(water=None, fish=None, days=None, trophy=None):
+def _filters(water=None, fish=None, days=None, level=0):
     f = [Catch.hidden.is_(False)]
     if water:
         f.append(Catch.waterbody == water)
@@ -257,14 +263,17 @@ def _filters(water=None, fish=None, days=None, trophy=None):
         f.append(Catch.fish_id == fish)
     if days:
         f.append(Catch.caught_at >= utcnow() - timedelta(days=days))
-    if trophy:
+    if level >= 1:
         f.append(Catch.trophy.is_(True))
+    if level >= 2:
+        f.append(Catch.super_trophy.is_(True))
     return and_(*f)
 
 
 @app.get('/api/v1/meta')
 def meta():
-    return {'version': VERSION, 'min_client': MIN_CLIENT or None, 'fish':list(gamedata.FISH.values()), 'waterbodies': list(gamedata.WATERBODIES.values())}
+    return {'version': VERSION, 'min_client': MIN_CLIENT or None, 'fish': list(gamedata.FISH.values()),
+            'waterbodies': list(gamedata.WATERBODIES.values())}
 
 
 @app.get('/api/v1/stats/overview')
@@ -276,28 +285,32 @@ def overview(s: Session = Depends(db)):
         anglers = s.scalar(select(func.count(func.distinct(Catch.install_id))).where(Catch.caught_at >= week)) or 0
         per_water = s.execute(select(Catch.waterbody, func.count()).where(_filters(days=7))
                               .group_by(Catch.waterbody).order_by(func.count().desc())).all()
-        trophies = s.execute(select(Catch).where(_filters(trophy=True)).order_by(Catch.caught_at.desc()).limit(25)).scalars()
+        trophies = s.execute(select(Catch).where(_filters(level=1)).order_by(Catch.caught_at.desc()).limit(25)).scalars()
         return {
             'catches_total': total, 'catches_7d': week_n, 'anglers_7d': anglers,
             'waterbodies_7d': [{'waterbody': w, 'count': n} for w, n in per_water],
             'recent_trophies': [{'fish_id': c.fish_id, 'waterbody': c.waterbody, 'x': c.x, 'y': c.y,
-                                 'weight_g': c.weight_g, 'caught_at': c.caught_at.isoformat() + 'Z'} for c in trophies],
+                                 'weight_g': c.weight_g, 'super': bool(c.super_trophy),
+                                 'caught_at': c.caught_at.isoformat() + 'Z'} for c in trophies],
         }
     return cached('overview', run)
 
 
 @app.get('/api/v1/stats/spots')
 def spots(water: str = Query(...), fish: str | None = None, days: int | None = Query(30, ge=1, le=3650),
-          trophy: bool = False, limit: int = Query(500, le=5000), s: Session = Depends(db)):
-    """Catches grouped by map square: the heat map and the hotspot list."""
+          trophy: bool = False, level: int = Query(0, ge=0, le=2), limit: int = Query(500, le=5000),
+          s: Session = Depends(db)):
+    """Catches grouped by map square: the heat map and the hotspot list. level: 1 trophies, 2 super trophies."""
     if water not in gamedata.WATERBODIES:
         raise HTTPException(404, 'unknown waterbody')
+    level = max(level, 1 if trophy else 0)   # trophy=true: older website builds
 
     def run():
-        f = _filters(water, fish, days, trophy)
+        f = _filters(water, fish, days, level)
         rows = s.execute(
             select(Catch.x, Catch.y, func.count().label('n'), func.max(Catch.weight_g),
-                   func.sum(cast(Catch.trophy, Integer)), func.count(func.distinct(Catch.install_id)))
+                   func.sum(cast(Catch.trophy, Integer)), func.sum(cast(Catch.super_trophy, Integer)),
+                   func.count(func.distinct(Catch.install_id)))
             .where(f).group_by(Catch.x, Catch.y).order_by(func.count().desc()).limit(limit)).all()
         top = {}
         if rows:
@@ -306,10 +319,11 @@ def spots(water: str = Query(...), fish: str | None = None, days: int | None = Q
             for x, y, fid, n in fr:
                 top.setdefault((x, y), []).append((n, fid))
         return {'water': water, 'fish': fish, 'days': days, 'spots': [
-            {'x': x, 'y': y, 'count': n, 'max_weight_g': mw, 'trophies': int(tr or 0), 'anglers': a,
+            {'x': x, 'y': y, 'count': n, 'max_weight_g': mw, 'trophies': int(tr or 0), 'super_trophies': int(st or 0),
+             'anglers': a,
              'top_fish': [{'fish_id': fid, 'count': c} for c, fid in sorted(top.get((x, y), []), reverse=True)[:5]]}
-            for x, y, n, mw, tr, a in rows]}
-    return cached(f'spots:{water}:{fish}:{days}:{trophy}:{limit}', run)
+            for x, y, n, mw, tr, st, a in rows]}
+    return cached(f'spots:{water}:{fish}:{days}:{level}:{limit}', run)
 
 
 @app.get('/api/v1/stats/fish')
@@ -318,7 +332,7 @@ def fish_stats(water: str | None = None, days: int | None = Query(30, ge=1, le=3
     def run():
         f = _filters(water, None, days)
         rows = s.execute(select(Catch.fish_id, func.count(), func.avg(Catch.weight_g), func.max(Catch.weight_g),
-                                func.sum(cast(Catch.trophy, Integer)))
+                                func.sum(cast(Catch.trophy, Integer)), func.sum(cast(Catch.super_trophy, Integer)))
                          .where(f).group_by(Catch.fish_id).order_by(func.count().desc())).all()
         best = {}
         for fid, x, y, w, n in s.execute(select(Catch.fish_id, Catch.x, Catch.y, Catch.waterbody, func.count())
@@ -327,9 +341,10 @@ def fish_stats(water: str | None = None, days: int | None = Query(30, ge=1, le=3
                 best[fid] = (n, x, y, w)
         return {'water': water, 'days': days, 'fish': [
             {'fish_id': fid, 'count': n, 'avg_weight_g': round(avg or 0), 'max_weight_g': mx, 'trophies': int(tr or 0),
+             'super_trophies': int(st or 0),
              'best_spot': {'x': best[fid][1], 'y': best[fid][2], 'waterbody': best[fid][3], 'count': best[fid][0]}
              if fid in best else None}
-            for fid, n, avg, mx, tr in rows]}
+            for fid, n, avg, mx, tr, st in rows]}
     return cached(f'fish:{water}:{days}', run)
 
 

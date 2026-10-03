@@ -38,8 +38,8 @@ def register(client):
 
 def test_upload_and_stats(client):
     h = register(client)
-    good = [catch(), catch(x=73, y=48, fish_id='n.pike', weight_g=2100, badge=None), catch(x=45, y=60, badge=None)]
-    bad = [catch(fish_id='nope'), catch(weight_g=10_000_000), catch(x=5000), catch(caught_at=now(days=-60)),
+    good = [catch(), catch(x=73, y=48, fish_id='b_gill', weight_g=2100, badge=None), catch(x=45, y=60, badge=None)]
+    bad = [catch(fish_id='nope'), catch(fish_id='n.pike', weight_g=2100), catch(weight_g=10_000_000), catch(x=5000), catch(caught_at=now(days=-60)),
            catch(waterbody='atlantis'), catch(uuid='not-a-uuid-------------------------xx')]
     r = client.post('/api/v1/catches', json={'client_version': 't', 'catches': good + bad}, headers=h)
     assert r.status_code == 200, r.text
@@ -47,12 +47,16 @@ def test_upload_and_stats(client):
     assert sorted(d['accepted']) == sorted(c['uuid'] for c in good)
     reasons = {x['reason'] for x in d['rejected']}
     assert reasons == {'unknown_fish', 'implausible_weight', 'coords_out_of_range', 'time_out_of_range',
-                       'unknown_waterbody', 'bad_uuid'}
+                       'unknown_waterbody', 'bad_uuid', 'not_in_waterbody'}
     sp = client.get('/api/v1/stats/spots', params={'water': 'elk_lake', 'days': 7}).json()['spots']
-    assert sp[0]['x'] == 73 and sp[0]['count'] == 2 and sp[0]['trophies'] == 1
-    assert {f['fish_id'] for f in sp[0]['top_fish']} == {'lm_b_bass', 'n.pike'}
+    # trophy levels come from the weights: bass 6722 g >= 6 kg (trophy), bluegill 2100 g >= 1.7 kg (super trophy)
+    assert sp[0]['x'] == 73 and sp[0]['count'] == 2 and sp[0]['trophies'] == 2 and sp[0]['super_trophies'] == 1
+    assert {f['fish_id'] for f in sp[0]['top_fish']} == {'lm_b_bass', 'b_gill'}
+    sup = client.get('/api/v1/stats/spots', params={'water': 'elk_lake', 'days': 7, 'level': 2}).json()['spots']
+    assert [(s['x'], s['count']) for s in sup] == [(73, 1)]
     ov = client.get('/api/v1/stats/overview').json()
-    assert ov['catches_7d'] == 3 and ov['recent_trophies'][0]['fish_id'] == 'lm_b_bass'
+    assert ov['catches_7d'] == 3
+    assert sorted((t['fish_id'], t['super']) for t in ov['recent_trophies']) == [('b_gill', True), ('lm_b_bass', False), ('lm_b_bass', False)]  # label or not: weight decides
     fs = client.get('/api/v1/stats/fish', params={'water': 'elk_lake'}).json()['fish']
     assert fs[0]['fish_id'] == 'lm_b_bass' and fs[0]['count'] == 2
 
@@ -86,3 +90,30 @@ def test_min_client_version(client, monkeypatch):
     r = client.post('/api/v1/catches', json={'client_version': '0.1.10', 'catches': [catch()]}, headers=h)
     assert r.status_code == 200 and len(r.json()['accepted']) == 1
     assert client.get('/api/v1/meta').json()['min_client'] == '0.1.4'
+
+
+def test_trophy_levels_recomputed_on_start(client):
+    """Catches stored before (or with other thresholds) get their level from the current weights at start-up."""
+    from app.db import SessionLocal, apply_trophy_levels
+    from app.main import Catch
+    h = register(client)
+    c = catch(fish_id='b_gill', weight_g=1300, badge=None)          # 1.2 kg trophy, 1.7 kg super trophy
+    assert client.post('/api/v1/catches', json={'client_version': 't', 'catches': [c]}, headers=h).status_code == 200
+    with SessionLocal() as s:
+        row = s.get(Catch, c['uuid'])
+        assert row.trophy and not row.super_trophy
+        row.trophy, row.weight_g = False, 1800
+        s.commit()
+    apply_trophy_levels()
+    with SessionLocal() as s:
+        row = s.get(Catch, c['uuid'])
+        assert row.trophy and row.super_trophy
+
+
+def test_migration_adds_super_trophy(client):
+    from sqlalchemy import inspect, text
+    from app.db import engine, init_db
+    with engine.begin() as con:
+        con.execute(text('ALTER TABLE catches DROP COLUMN super_trophy'))   # the table as the first release made it
+    init_db()
+    assert 'super_trophy' in {c['name'] for c in inspect(engine).get_columns('catches')}

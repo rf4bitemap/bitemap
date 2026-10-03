@@ -31,7 +31,7 @@ def test_catch_card(size):
     g = det.find(f)
     assert g is not None
     r = det.read(f, g, GameData(), ('de', 'en', 'ru'))
-    assert (r.fish_id, r.weight_g, r.length_cm, r.badge, r.lang) == ('lm_b_bass', 6722, 79, 'trophy', 'de')
+    assert (r.fish_id, r.weight_g, r.length_cm, r.lang) == ('lm_b_bass', 6722, 79, 'de')
 
 
 @needs_samples
@@ -121,7 +121,7 @@ def test_small_card_without_badge(size):
     g = det.find(f)
     assert g is not None
     r = det.read(f, g, GameData(), ('de', 'en', 'ru'))
-    assert (r.fish_id, r.weight_g, r.length_cm, r.badge) == ('e.chub', 68, 16, '')
+    assert (r.fish_id, r.weight_g, r.length_cm) == ('e.chub', 68, 16)
 
 
 @needs_samples
@@ -143,3 +143,27 @@ def test_no_coords_when_covered(size):
     f = scaled('bite_de_2000.webp', size)
     x, y, w, h = coords.region(*size)
     assert coords.read_coords(f[y:y + h, x:x + w], size[1]) is None
+
+
+def test_trophy_levels_by_weight():
+    from bitemap_logger.gamedata import GameData
+    gd = GameData()
+    # Largemouth bass: trophy 6 kg, super trophy 7.5 kg
+    assert [gd.trophy_level('lm_b_bass', w) for w in (5999, 6000, 7499, 7500)] == [0, 1, 1, 2]
+    assert gd.trophy_level('chimaera', 9000) == 1          # European chimaera has no super trophy
+    assert gd.trophy_level('bs_salmon', 50000) == 0        # Black Sea trout: no trophy data
+    assert gd.trophy_level(None, 5000) == 0
+
+
+def test_fish_per_waterbody():
+    from bitemap_logger.gamedata import GameData
+    gd = GameData()
+    assert gd.lives_in('lm_b_bass', 'elk_lake') and not gd.lives_in('lm_b_bass', 'belaya_river')
+    assert gd.lives_in('bs_salmon', 'norwegian_sea')       # no data: allowed anywhere
+    # a garbled name prefers the fish that lives here (anywhere these match Beluga-Stör / Neiva) ...
+    name = lambda fid: gd.fish[fid]['names']
+    assert name(gd.match_fish('Lauga-Stör', langs=('de',), water='ladoga_archipelago')[0])['de'] == 'Ladoga-Stör'
+    assert name(gd.match_fish('Nemva', langs=('en',), water='lower_tunguska_river')[0])['en'] == 'Nelma'
+    assert name(gd.match_fish('Nemva', langs=('en',))[0])['en'] == 'Neiva'
+    # ... but a clear match from elsewhere still wins (then the wrong waterbody is selected)
+    assert gd.match_fish('Forellenbarsch', water='belaya_river')[0] == 'lm_b_bass'

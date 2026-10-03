@@ -2,7 +2,8 @@
 import os
 from datetime import datetime
 
-from sqlalchemy import (Boolean, DateTime, Float, ForeignKey, Index, Integer, String, create_engine)
+from sqlalchemy import (Boolean, DateTime, Float, ForeignKey, Index, Integer, String, create_engine, inspect,
+                        text)
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, sessionmaker
 
 DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:///./bitemap.db')
@@ -39,6 +40,7 @@ class Catch(Base):
     weight_g: Mapped[int] = mapped_column(Integer)
     length_cm: Mapped[float | None] = mapped_column(Float, nullable=True)
     trophy: Mapped[bool] = mapped_column(Boolean, default=False)
+    super_trophy: Mapped[bool] = mapped_column(Boolean, default=False)   # implies trophy
     caught_at: Mapped[datetime] = mapped_column(DateTime, index=True)
     received_at: Mapped[datetime] = mapped_column(DateTime)
     bite_to_catch_s: Mapped[int | None] = mapped_column(Integer, nullable=True)
@@ -54,3 +56,21 @@ class Catch(Base):
 
 def init_db():
     Base.metadata.create_all(engine)
+    # columns added after the first release (create_all doesn't touch existing tables)
+    have = {c['name'] for c in inspect(engine).get_columns('catches')}
+    with engine.begin() as con:
+        if 'super_trophy' not in have:
+            con.execute(text('ALTER TABLE catches ADD COLUMN super_trophy BOOLEAN NOT NULL DEFAULT FALSE'))
+
+
+def apply_trophy_levels():
+    """Trophy / super trophy from fish + weight for all catches - the thresholds can change with game updates."""
+    from .gamedata import FISH
+    with engine.begin() as con:
+        for fid, f in FISH.items():
+            t, st = f.get('trophy_g'), f.get('super_trophy_g')
+            # no NULL parameters: PostgreSQL can't infer their type
+            tr = '(weight_g >= :t)' if t else 'FALSE'
+            sup = '(weight_g >= :st)' if t and st else 'FALSE'
+            params = {'f': fid, **({'t': t} if t else {}), **({'st': st} if t and st else {})}
+            con.execute(text(f'UPDATE catches SET trophy = {tr}, super_trophy = {sup} WHERE fish_id = :f'), params)

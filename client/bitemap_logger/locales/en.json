@@ -75,5 +75,6 @@
  "auto_update": "Check for updates automatically",
  "check_now": "Check now",
  "upload_outdated": "Update required to share catches",
- "update_blocked": "The update was blocked: its files disappeared right after unpacking - most likely your antivirus removed them (a false alarm, BiteMap is not code-signed). Please download the update manually, or add the BiteMap folder as an exception in your antivirus."
+ "update_blocked": "The update was blocked: its files disappeared right after unpacking - most likely your antivirus removed them (a false alarm, BiteMap is not code-signed). Please download the update manually, or add the BiteMap folder as an exception in your antivirus.",
+ "fish_not_here": "{fish} doesn’t live in {water} - is the right waterbody selected? Such catches aren’t shared; fix it with Edit."
 }

@@ -13,12 +13,14 @@ from tkinter import messagebox, ttk
 import customtkinter as ctk
 
 from . import APP_NAME, PROJECT_URL, __version__, sound, updater
+from .gamedata import LEVELS
 from .i18n import LANGS, t
 from .paths import USER_DIR
 
 log = logging.getLogger(__name__)
 GAME_LANGS = ('auto', 'en', 'de', 'ru')
 ACCENT = '#3fb68b'
+LEVEL_ICON = {1: '🏆 ', 2: '👑 '}   # trophy / super trophy (by weight)
 HELPER_TIMEOUT_S = 45
 
 
@@ -46,6 +48,7 @@ class App(ctk.CTk):
         self.coords = None            # last (x, y) from the engine
         self._last_status = None      # last status event, re-applied after a language switch
         self.bite_flash_until = 0
+        self._not_here = None         # (fish_id, waterbody) of the last catch if that fish doesn't live there
         # update bar: None | available | downloading | installing | failed | rolled_back | done
         self.update_state, self.update_rel, self.update_info = None, None, ''
         if '--updated' in sys.argv:
@@ -145,6 +148,7 @@ class App(ctk.CTk):
             self.tree.heading(c, text=t('col_' + c))
             self.tree.column(c, width=w, anchor=anchor, stretch=(c == 'fish'))
         self.tree.tag_configure('trophy', foreground='#ffcc33')
+        self.tree.tag_configure('super', foreground='#ff9f43')
         self.tree.tag_configure('unknown', foreground='#ff8a65')
         sb = ttk.Scrollbar(table, orient='vertical', command=self.tree.yview)
         self.tree.configure(yscrollcommand=sb.set)
@@ -206,6 +210,10 @@ class App(ctk.CTk):
             self.bite_flash_until = time.time() + 6
         elif kind == 'catch':
             self.bite_lbl.configure(text='')
+            # a fish that doesn't live here: most likely the wrong waterbody is selected (the server rejects it)
+            fid, water = data.get('fish_id'), data.get('waterbody')
+            self._not_here = (fid, water) if fid and water and not self.gd.lives_in(fid, water) else None
+            self._update_warning()
             self.refresh_table()
             self.uploader.kick()
             self.after(3000, self.refresh_table)
@@ -345,11 +353,11 @@ class App(ctk.CTk):
         lang = self._lang()
         for c in self.store.recent(300):
             fish = self.gd.fish_name(c['fish_id'], lang) if c['fish_id'] else f"{t('unknown_fish')} ({c['name_text'] or ''})"
-            if c['badge'] == 'trophy':
-                fish = '🏆 ' + fish
+            level = self.gd.trophy_level(c['fish_id'], c['weight_g'])
+            fish = LEVEL_ICON.get(level, '') + fish
             spot = f"{c['x']}:{c['y']}" if c['x'] is not None else '–'
             cloud = {1: '✓', -1: '✗'}.get(c['uploaded'], '…' if self.settings.get('upload') else '')
-            tags = ('trophy',) if c['badge'] == 'trophy' else ('unknown',) if not c['fish_id'] else ()
+            tags = ('super',) if level == 2 else ('trophy',) if level else ('unknown',) if not c['fish_id'] else ()
             self.tree.insert('', 'end', iid=c['uuid'], tags=tags, values=(
                 local_time(c['caught_at']), fish, fmt_weight(c['weight_g']),
                 f"{c['length_cm']:.0f} {t('cm')}" if c['length_cm'] else '–', spot, cloud))
@@ -362,7 +370,8 @@ class App(ctk.CTk):
         hours = max((time.time() - self.session_t0) / 3600, 1 / 60)
         self.stat_vals['stat_catches'].configure(text=str(len(rows)))
         self.stat_vals['stat_per_hour'].configure(text=f'{len(rows) / hours:.1f}')
-        self.stat_vals['stat_trophies'].configure(text=str(sum(1 for r in rows if r['badge'] == 'trophy')))
+        self.stat_vals['stat_trophies'].configure(
+            text=str(sum(1 for r in rows if self.gd.trophy_level(r['fish_id'], r['weight_g']))))
         m = int((time.time() - self.session_t0) // 60)
         self.stat_vals['stat_session'].configure(text=f'{m // 60}:{m % 60:02d}')
         if not self.settings.get('upload'):
@@ -392,13 +401,20 @@ class App(ctk.CTk):
     def _on_water(self, name):
         wid = self.water_ids[self.water_names.index(name)]
         self.settings.set('waterbody', wid)
+        self._not_here = None
         self._update_warning()
 
     def _update_warning(self):
-        if self.settings.get('waterbody') in self.gd.waterbodies:
-            self.warn.pack_forget()
+        if self.settings.get('waterbody') not in self.gd.waterbodies:
+            self.warn.configure(text=t('waterbody_missing'))
+        elif self._not_here:
+            fid, water = self._not_here
+            self.warn.configure(text=t('fish_not_here', fish=self.gd.fish_name(fid, self._lang()),
+                                       water=self.gd.water_name(water, self._lang())))
         else:
-            self.warn.pack(fill='x', padx=14, after=self.status_lbl.master)
+            self.warn.pack_forget()
+            return
+        self.warn.pack(fill='x', padx=14, after=self.status_lbl.master)
 
     def _on_game_lang(self, label):
         key = next(k for k, v in self.gl_labels.items() if v == label)
@@ -483,9 +499,11 @@ class EditDialog(ctk.CTkToplevel):
         fish_id = self.fish_ids[self.fish_names.index(v['fish'])] if v['fish'] in self.fish_names else self.c['fish_id']
         water = self.app.water_ids[self.app.water_names.index(v['water'])] if v['water'] in self.app.water_names \
             else self.c['waterbody']
-        self.app.store.update(self.c['uuid'], fish_id=fish_id, weight_g=num(v['weight_g'], int),
+        weight = num(v['weight_g'], int)
+        self.app.store.update(self.c['uuid'], fish_id=fish_id, weight_g=weight,
                               length_cm=num(v['length_cm'], float), x=num(v['x'], int), y=num(v['y'], int),
-                              waterbody=water, uploaded=0, upload_note=None)
+                              waterbody=water, badge=LEVELS[self.app.gd.trophy_level(fish_id, weight)],
+                              uploaded=0, upload_note=None)
         self.app.refresh_table()
         self.app.uploader.kick()
         self.destroy()
