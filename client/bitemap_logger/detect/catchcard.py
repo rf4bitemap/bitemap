@@ -14,8 +14,18 @@ from . import load_template, match_multiscale, template_base_h
 
 TEMPLATE_BASE_H = 1125          # client-area height the icon templates were cut at
 SCALE_STEPS = (0.7, 0.8, 0.9, 1.0, 1.1, 1.25, 1.4)
-WEIGHT_THRESHOLD = 0.72
-RULER_THRESHOLD = 0.62
+WEIGHT_THRESHOLD = 0.80   # real cards score 0.88-0.98, foliage false positives ~0.68
+RULER_THRESHOLD = 0.70
+
+# Where the card's weight/length row sits, measured on real cards at 720p-4K (in units of the client height H):
+# row at 0.14 H from the top, weight icon 0.12 H left of the centre, ruler 0.03 H left of it, icons 5.5 icon
+# heights apart. The tolerances allow other UI scales, longer weights ("1 234,567 kg") and cards without a badge.
+ROW_Y = (0.08, 0.22)            # row centre / H
+WEIGHT_LEFT_OF_CENTRE = (0.02, 0.26)
+RULER_FROM_CENTRE = (-0.16, 0.14)
+ICON_GAP = (3.0, 10.5)          # (ruler x - weight x) / weight icon height
+PILL_MAX_STD = 9.0              # the dark pill around the icons is flat; foliage/water is not
+PILL_GRAY = (30, 110)
 
 
 @dataclass
@@ -56,8 +66,14 @@ class CatchCardDetector:
             return None
         W = frame.shape[1]
         H = client_h or frame.shape[0]
-        x0, x1, y1 = int(W * 0.2), int(W * 0.8), min(frame.shape[0], int(H * 0.32))
-        band = cv2.cvtColor(frame[0:y1, x0:x1], cv2.COLOR_BGR2GRAY)
+        # search only where the card's row can be (centred horizontally, upper part of the screen)
+        x0 = max(0, int(W / 2 - 0.36 * H))
+        x1 = min(W, int(W / 2 + 0.30 * H))
+        y0 = int(H * (ROW_Y[0] - 0.04))
+        y1 = min(frame.shape[0], int(H * (ROW_Y[1] + 0.04)))
+        if y1 - y0 < 20 or x1 - x0 < 40:
+            return None
+        band = cv2.cvtColor(frame[y0:y1, x0:x1], cv2.COLOR_BGR2GRAY)
         base = H / self.base_h
         scales = [base * s for s in SCALE_STEPS]
         if self._last_h != H:
@@ -78,15 +94,45 @@ class CatchCardDetector:
         r = match_multiscale(sub, self.ruler_tpl, [scale * f for f in (0.9, 1.0, 1.1)], RULER_THRESHOLD)
         if r is None:
             return None
-        self._last_scale = scale
         rscore, rx, ry, rw, rh, _ = r
-        return CardGeometry(
-            row_y=wy + wh // 2,
+        g = CardGeometry(
+            row_y=y0 + wy + wh // 2,
             icon_h=icon_h,
-            weight_box=(x0 + wx, wy, ww, wh),
-            ruler_box=(x0 + rx0 + rx, ry0 + ry, rw, rh),
+            weight_box=(x0 + wx, y0 + wy, ww, wh),
+            ruler_box=(x0 + rx0 + rx, y0 + ry0 + ry, rw, rh),
             score=min(score, rscore),
         )
+        if not self._plausible(frame, g, W, H):
+            return None
+        self._last_scale = scale
+        return g
+
+    @staticmethod
+    def _plausible(frame, g, W, H):
+        """Reject matches that don't sit where and how a real catch card's row does."""
+        wx, wy, ww, wh = g.weight_box
+        rx, ry, rw, rh = g.ruler_box
+        if not ROW_Y[0] <= g.row_y / H <= ROW_Y[1]:
+            return False
+        if not WEIGHT_LEFT_OF_CENTRE[0] <= (W / 2 - wx) / H <= WEIGHT_LEFT_OF_CENTRE[1]:
+            return False
+        if not RULER_FROM_CENTRE[0] <= (rx - W / 2) / H <= RULER_FROM_CENTRE[1]:
+            return False
+        if not ICON_GAP[0] <= (rx - wx) / max(1, wh) <= ICON_GAP[1]:
+            return False
+        if abs((ry + rh / 2) - (wy + wh / 2)) > 0.6 * wh:
+            return False
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        pill = gray[max(0, wy - wh // 2):max(1, wy - 1), wx:wx + ww]  # pill area just above the weight icon
+        if pill.size < 4 or pill.std() > PILL_MAX_STD or not PILL_GRAY[0] <= pill.mean() <= PILL_GRAY[1]:
+            return False
+        # the fish name: large bright text above the row
+        ih = max(6, int(round(wh * 0.75)))
+        cx = (wx + rx + rw) // 2
+        name = gray[max(0, g.row_y - int(7.5 * ih)):max(1, g.row_y - int(1.6 * ih)),
+                    max(0, cx - int(0.3 * W)):min(W, cx + int(0.3 * W))]
+        bb = ocr.text_bbox(name, thresh=200, pad=0) if name.size else None
+        return bool(bb) and (bb[3] - bb[1]) >= 0.8 * ih
 
     # ------------------------------------------------------------------ reading
     def read(self, frame, g, gamedata, langs):

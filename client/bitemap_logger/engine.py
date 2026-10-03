@@ -146,6 +146,12 @@ class Engine(threading.Thread):
         # best reading: identified fish with a weight, else whatever has the highest name score
         r, band = max(readings, key=lambda rb: (bool(rb[0].fish_id), bool(rb[0].weight_g), rb[0].fish_score))
         self._card_logged = True
+        if not r.fish_id and not r.weight_g:
+            # nothing readable: almost certainly not a catch card (foliage, menus, ...) - don't log anything
+            log.info('ignored card-like match: name %r, weight %r', r.name_text, r.weight_text)
+            if self.settings.get('save_debug_images'):
+                self._save_debug(band, 'ignored-' + time.strftime('%Y%m%d-%H%M%S'))
+            return
         if r.lang and r.lang not in self._lang_pref[:1]:
             self._lang_pref = [r.lang] + [l for l in self._lang_pref if l != r.lang]
 

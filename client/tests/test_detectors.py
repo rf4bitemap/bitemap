@@ -96,3 +96,15 @@ def test_bite_fires_once_per_bite():
     seq = [(0, bite), (0.5, bite), (1.0, hud), (1.5, bite), (2.0, hud), (5.0, hud), (6.0, bite)]
     fired = [t for t, f in seq if d.update(crop(f), 1080, now=100 + t)]
     assert fired == [0, 6.0]  # a short flicker doesn't re-trigger; a new bite after the re-arm time does
+
+
+@needs_samples
+def test_no_false_cards_on_live_frames():
+    """Frames from a live session (2560x1440 top band) that earlier versions mistook for catch cards."""
+    import glob
+    from bitemap_logger.detect.catchcard import CatchCardDetector
+    frames = glob.glob(os.path.join(SAMPLES, 'false_cards', '*.png'))
+    if not frames:
+        pytest.skip('no false-card samples')
+    for f in frames:
+        assert CatchCardDetector().find(cv2.imread(f), 1440) is None, os.path.basename(f)
