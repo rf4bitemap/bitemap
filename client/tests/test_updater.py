@@ -229,3 +229,31 @@ def test_apply_update_refuses_odd_targets(tmp_path):
     assert os.listdir(tmp_path / 'desktop') == ['file.txt']
     assert updater.self_update_blocker(str(tmp_path / 'desktop')) == 'layout'
     assert updater.self_update_blocker(src) is None
+
+
+def test_extract_reports_quarantined_files(tmp_path, monkeypatch):
+    """A scanner deleting the new exe right after unpacking is reported as 'blocked', not as a broken package."""
+    monkeypatch.setattr(updater, 'STAGING', str(tmp_path))
+    zp = tmp_path / 'u.zip'
+    zp.write_bytes(make_zip({'BiteMapLogger/BiteMapLogger.exe': 'new', 'BiteMapLogger/_internal/a.dll': 'a'}))
+    real = zipfile.ZipFile.extractall
+
+    def quarantine(self, path=None, *a, **kw):
+        real(self, path, *a, **kw)
+        os.remove(os.path.join(path, 'BiteMapLogger', 'BiteMapLogger.exe'))
+    monkeypatch.setattr(zipfile.ZipFile, 'extractall', quarantine)
+    with pytest.raises(updater.UpdateError) as e:
+        updater.extract(str(zp), release(b''))
+    assert e.value.code == 'blocked' and 'BiteMapLogger.exe' in str(e.value)
+
+
+def test_staging_next_to_the_app(tmp_path, monkeypatch):
+    install = str(tmp_path / 'BiteMapLogger')
+    make_install(install, 'old')
+    monkeypatch.setattr(updater, 'install_dir', lambda: install)
+    assert updater.staging_dir() == os.path.join(install, '.bitemap-update')
+    os.makedirs(os.path.join(install, '.bitemap-update', '9.9.9'))
+    updater.cleanup()
+    assert sorted(os.listdir(install)) == ['BiteMapLogger.exe', '_internal']
+    monkeypatch.setattr(updater, 'self_update_blocker', lambda target=None: 'readonly')
+    assert updater.staging_dir() == updater.TEMP_STAGING

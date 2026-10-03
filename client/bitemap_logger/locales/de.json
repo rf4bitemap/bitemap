@@ -74,5 +74,6 @@
  "update_check_failed": "Suche nach Updates fehlgeschlagen: {error}",
  "auto_update": "Automatisch nach Updates suchen",
  "check_now": "Jetzt prüfen",
- "upload_outdated": "Update nötig, um Fänge zu teilen"
+ "upload_outdated": "Update nötig, um Fänge zu teilen",
+ "update_blocked": "Das Update wurde blockiert: Seine Dateien verschwanden direkt nach dem Entpacken - vermutlich hat dein Virenscanner sie entfernt (Fehlalarm, BiteMap ist nicht signiert). Bitte lade das Update manuell herunter oder füge den BiteMap-Ordner als Ausnahme im Virenscanner hinzu."
 }

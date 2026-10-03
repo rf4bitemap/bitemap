@@ -4,7 +4,7 @@ Every release carries a latest.json: a manifest (version, zip URL, size, SHA-256
 The app only installs a zip that matches a manifest signed by PUBLIC_KEY.
 
 Installing, in short:
-  1. the running app downloads + checks the zip and unpacks it to %TEMP%\\BiteMapUpdate\\<version>\\BiteMapLogger
+  1. the running app downloads + checks the zip and unpacks it to <app folder>\\.bitemap-update\\<version>\\BiteMapLogger
   2. it starts the *new* BiteMapLogger.exe from there with --apply-update and closes itself
   3. that helper waits for the old app to exit, moves the old files aside (*.old), copies the new ones in, starts the
      updated app and exits; if anything fails it puts the old files back
@@ -37,14 +37,18 @@ EXE = 'BiteMapLogger.exe'
 INTERNAL = '_internal'
 # BITEMAP_UPDATE_URL: test a manifest from somewhere else (it still has to be signed with the release key)
 MANIFEST_URL = os.environ.get('BITEMAP_UPDATE_URL') or PROJECT_URL + '/releases/latest/download/latest.json'
-STAGING = os.path.join(tempfile.gettempdir(), 'BiteMapUpdate')
+UPDATE_DIR = '.bitemap-update'
+TEMP_STAGING = os.path.join(tempfile.gettempdir(), 'BiteMapUpdate')
+STAGING = None   # fixed staging folder (tests); normally staging_dir() decides
 UPDATE_LOG = os.path.join(USER_DIR, 'update.log')
 CHECK_EVERY_S = 6 * 3600
 DETACHED = 0x00000008 | 0x00000200   # DETACHED_PROCESS | CREATE_NEW_PROCESS_GROUP
 
 
 class UpdateError(Exception):
-    pass
+    def __init__(self, message, code=None):
+        super().__init__(message)
+        self.code = code   # 'blocked': files vanished right after unpacking (antivirus)
 
 
 @dataclass
@@ -115,10 +119,21 @@ def self_update_blocker(target=None):
     return None
 
 
+def staging_dir():
+    """Where updates are downloaded and unpacked: next to the installed app. Antivirus scanners are far more
+    suspicious of a new exe in %TEMP%, and an exclusion the user set for the app folder covers this too."""
+    if STAGING:
+        return STAGING
+    target = install_dir()
+    if target and not self_update_blocker(target):
+        return os.path.join(target, UPDATE_DIR)
+    return TEMP_STAGING
+
+
 def download(rel, progress=None, session=None):
     """Download the release zip to the staging folder and check size + SHA-256. Returns the zip path."""
-    os.makedirs(STAGING, exist_ok=True)
-    dest = os.path.join(STAGING, rel.file)
+    os.makedirs(staging_dir(), exist_ok=True)
+    dest = os.path.join(staging_dir(), rel.file)
     part = dest + '.part'
     h, got, last = hashlib.sha256(), 0, -1
     s = session or requests
@@ -143,15 +158,21 @@ def download(rel, progress=None, session=None):
 
 
 def extract(zip_path, rel):
-    """Unpack to %TEMP%\\BiteMapUpdate\\<version>; returns the folder holding the new BiteMapLogger.exe."""
-    root = os.path.join(STAGING, rel.version)
+    """Unpack to <staging>\\<version>; returns the folder holding the new BiteMapLogger.exe."""
+    root = os.path.join(staging_dir(), rel.version)
     _remove(root)
     with zipfile.ZipFile(zip_path) as z:
+        files = [n for n in z.namelist() if not n.endswith('/')]
         z.extractall(root)   # extractall drops absolute paths and '..'
-    app = os.path.join(root, 'BiteMapLogger')
-    if not (os.path.isfile(os.path.join(app, EXE)) and os.path.isdir(os.path.join(app, INTERNAL))):
+    if f'BiteMapLogger/{EXE}' not in files or not any(n.startswith(f'BiteMapLogger/{INTERNAL}/') for n in files):
         raise UpdateError('update package has an unexpected layout')
-    return app
+    # unpacked fine but gone right away: an antivirus scanner quarantined it (unsigned exe, common false positive)
+    missing = [n for n in files if not os.path.isfile(os.path.join(root, *n.split('/')))]
+    if missing:
+        log.error('%d of %d files vanished after unpacking to %s: %s', len(missing), len(files), root, missing[:20])
+        first = f'BiteMapLogger/{EXE}' if f'BiteMapLogger/{EXE}' in missing else missing[0]
+        raise UpdateError(f'{os.path.basename(first)} was removed right after unpacking (antivirus?)', code='blocked')
+    return os.path.join(root, 'BiteMapLogger')
 
 
 def _child_env():
@@ -165,7 +186,9 @@ def _child_env():
 def launch_helper(app_dir, target):
     """Start the new version's exe as the installer. Returns (process, ready_file); the helper creates ready_file
     once it is running and waiting for us to exit."""
-    ready = os.path.join(STAGING, f'ready-{os.getpid()}')
+    if not os.path.isfile(os.path.join(app_dir, EXE)):
+        raise UpdateError(f'{EXE} was removed right after unpacking (antivirus?)', code='blocked')
+    ready = os.path.join(os.path.dirname(os.path.dirname(app_dir)), f'ready-{os.getpid()}')   # in <staging>
     _remove(ready)
     proc = subprocess.Popen([os.path.join(app_dir, EXE), '--apply-update', target, str(os.getpid()), ready],
                             cwd=app_dir, env=_child_env(), creationflags=DETACHED, close_fds=True)
@@ -173,10 +196,11 @@ def launch_helper(app_dir, target):
 
 
 def cleanup(target=None):
-    """After an update: remove the staging folder and any *.old leftovers. Errors are ignored."""
-    _remove(STAGING)
+    """After an update: remove the staging folders and any *.old leftovers. Errors are ignored."""
+    _remove(STAGING or TEMP_STAGING)
     target = target or install_dir()
     if target:
+        _remove(os.path.join(target, UPDATE_DIR))
         for name in (EXE, INTERNAL):
             _remove(os.path.join(target, name + '.old'))
 

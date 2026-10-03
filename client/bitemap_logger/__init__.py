@@ -1,5 +1,5 @@
 """BiteMap Logger - logs your Russian Fishing 4 catches (fish, weight, length, spot) by reading the screen."""
-__version__ = '0.1.5'
+__version__ = '0.1.6'
 APP_NAME = 'BiteMap Logger'
 
 # Change these before publishing a release:

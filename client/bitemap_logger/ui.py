@@ -228,7 +228,7 @@ class App(ctk.CTk):
         elif kind == 'update_ready':
             self._launch_helper(data)
         elif kind == 'update_failed':
-            self._set_update_state('failed', str(data)[:160])
+            self._update_failed(data)
 
     # ------------------------------------------------------------------ updates (see updater.py)
     def _auto_check(self):
@@ -244,6 +244,11 @@ class App(ctk.CTk):
                 log.info('update check failed: %s', e)
                 self.events.put(('update_check', (None, manual, str(e)[:160])))
         threading.Thread(target=work, daemon=True, name='update-check').start()
+
+    def _update_failed(self, err):
+        # 'blocked': the new exe vanished right after unpacking - an antivirus quarantined it
+        blocked = getattr(err, 'code', None) == 'blocked'
+        self._set_update_state('blocked' if blocked else 'failed', str(err)[:160])
 
     def _set_update_state(self, state, info=''):
         self.update_state, self.update_info = state, info
@@ -263,6 +268,7 @@ class App(ctk.CTk):
             'downloading': t('update_downloading', pct=self.update_info or 0),
             'installing': t('update_installing'),
             'failed': t('update_failed', error=self.update_info),
+            'blocked': t('update_blocked'),
             'rolled_back': t('update_rolled_back'),
             'done': t('update_done', version=__version__),
         }[st]
@@ -277,12 +283,12 @@ class App(ctk.CTk):
                           ).pack(side='right', padx=(0, 8), pady=6)
         if st == 'done':
             button('✕', lambda: self._set_update_state(None), width=28)
-        elif st in ('available', 'failed', 'rolled_back'):
+        elif st in ('available', 'failed', 'blocked', 'rolled_back'):
             button(t('update_later'), lambda: self._set_update_state(None))
         if st == 'available' and not blocker:
             button(t('update_whats_new'), lambda: webbrowser.open(rel.page))
             button(t('update_now'), self._start_update, accent=True, width=150)
-        elif st in ('available', 'failed', 'rolled_back'):
+        elif st in ('available', 'failed', 'blocked', 'rolled_back'):
             page = rel.page if rel else PROJECT_URL + '/releases/latest'
             button(t('update_download'), lambda: webbrowser.open(page), accent=True)
         bar.pack(fill='x', padx=14, pady=(2, 4), after=self._header)
@@ -305,9 +311,9 @@ class App(ctk.CTk):
         self._set_update_state('installing')
         try:
             proc, ready = updater.launch_helper(app_dir, updater.install_dir())
-        except OSError as e:
+        except (OSError, updater.UpdateError) as e:
             log.exception('could not start the update')
-            self._set_update_state('failed', str(e)[:160])
+            self._update_failed(e)
             return
         t0 = time.time()
 
@@ -318,7 +324,10 @@ class App(ctk.CTk):
             elif proc.poll() is not None or time.time() - t0 > HELPER_TIMEOUT_S:
                 if proc.poll() is None:
                     proc.kill()
-                self._set_update_state('failed', 'installer did not start')
+                if not os.path.isfile(os.path.join(app_dir, updater.EXE)):
+                    self._update_failed(updater.UpdateError('installer removed', code='blocked'))
+                else:
+                    self._set_update_state('failed', f'installer did not start (exit code {proc.poll()})')
             else:
                 self.after(200, wait)
         self.after(200, wait)
