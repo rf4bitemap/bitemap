@@ -11,7 +11,7 @@ from datetime import datetime, timedelta, timezone
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request
 from fastapi.middleware.gzip import GZipMiddleware
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 from sqlalchemy import Integer, and_, cast, func, select
@@ -327,9 +327,29 @@ app.mount('/maps', StaticFiles(directory=os.path.join(gamedata.DATA_DIR, 'maps')
 app.mount('/static', StaticFiles(directory=WEB_DIR), name='static')
 
 
+def _asset_version():
+    """Changes whenever a website file changes, so CDNs (Cloudflare) never serve stale JS/CSS after a deploy."""
+    h = hashlib.sha256()
+    for f in sorted(os.listdir(WEB_DIR)):
+        if f.endswith(('.js', '.css', '.svg')):
+            with open(os.path.join(WEB_DIR, f), 'rb') as fh:
+                h.update(fh.read())
+    return h.hexdigest()[:10]
+
+
+_INDEX = None
+
+
 @app.get('/', include_in_schema=False)
 def index():
-    return FileResponse(os.path.join(WEB_DIR, 'index.html'))
+    global _INDEX
+    if _INDEX is None:
+        v = _asset_version()
+        html = open(os.path.join(WEB_DIR, 'index.html'), encoding='utf-8').read()
+        for name in ('app.js', 'i18n.js', 'style.css', 'favicon.svg'):
+            html = html.replace(f'/static/{name}"', f'/static/{name}?v={v}"')
+        _INDEX = html
+    return HTMLResponse(_INDEX, headers={'Cache-Control': 'no-cache'})
 
 
 @app.get('/calibrate', include_in_schema=False)
