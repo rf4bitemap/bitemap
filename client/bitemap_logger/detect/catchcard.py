@@ -24,8 +24,7 @@ ROW_Y = (0.08, 0.22)            # row centre / H
 WEIGHT_LEFT_OF_CENTRE = (0.02, 0.26)
 RULER_FROM_CENTRE = (-0.16, 0.14)
 ICON_GAP = (3.0, 10.5)          # (ruler x - weight x) / weight icon height
-PILL_MAX_STD = 9.0              # the dark pill around the icons is flat; foliage/water is not
-PILL_GRAY = (30, 110)
+
 
 
 @dataclass
@@ -109,7 +108,8 @@ class CatchCardDetector:
 
     @staticmethod
     def _plausible(frame, g, W, H):
-        """Reject matches that don't sit where and how a real catch card's row does."""
+        """Reject matches that don't sit where and how a real catch card's row does.
+        (Small cards have small pills, so the background around the icons can't be used as a check.)"""
         wx, wy, ww, wh = g.weight_box
         rx, ry, rw, rh = g.ruler_box
         if not ROW_Y[0] <= g.row_y / H <= ROW_Y[1]:
@@ -123,9 +123,6 @@ class CatchCardDetector:
         if abs((ry + rh / 2) - (wy + wh / 2)) > 0.6 * wh:
             return False
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        pill = gray[max(0, wy - wh // 2):max(1, wy - 1), wx:wx + ww]  # pill area just above the weight icon
-        if pill.size < 4 or pill.std() > PILL_MAX_STD or not PILL_GRAY[0] <= pill.mean() <= PILL_GRAY[1]:
-            return False
         # the fish name: large bright text above the row
         ih = max(6, int(round(wh * 0.75)))
         cx = (wx + rx + rw) // 2
@@ -164,8 +161,7 @@ class CatchCardDetector:
         # --- weight / length pills: text between the icon and the end of the pill's dark background
         py0, py1 = max(0, g.row_y - ih), min(H, g.row_y + ih)
         w_end = min(self._pill_end(gray, wx + ww, g.row_y, ih), rx - int(0.8 * ih))
-        wtxt = self._read_pill(gray, wx + ww, w_end, py0, py1, '0123456789.,kgKGкг ')
-        weight_g = parse_weight(wtxt)
+        wtxt, weight_g = self._read_weight(gray, wx + ww, w_end, py0, py1)
         l_end = self._pill_end(gray, rx + rw, g.row_y, ih)
         ltxt = self._read_pill(gray, rx + rw, l_end, py0, py1, '0123456789.,cmсм ')
         length_cm = parse_length(ltxt)
@@ -199,6 +195,48 @@ class CatchCardDetector:
         if bb:
             crop = crop[bb[1]:bb[3], bb[0]:bb[2]]
         return ocr.read_line(ocr.prepare(crop, min_height=56), ('en', 'ru'), whitelist=whitelist, psm=7)
+
+    @classmethod
+    def _read_weight(cls, gray, x0, x1, y0, y1):
+        """'6,722 kg' / '68 g': OCR only the number; tell g from kg by the unit's width.
+
+        OCR on the whole text confuses a lone 'g' with a '9' ('68 g' -> '689'), so the unit is split off at the
+        widest gap and never read as text. 'g'/'г' is about half a digit-height wide, 'kg'/'кг' about one.
+        """
+        if x1 - x0 < 8:
+            return '', None
+        crop = gray[y0:y1, x0:x1]
+        bb = ocr.text_bbox(crop, thresh=160, pad=0)
+        if not bb:
+            return '', None
+        crop = crop[bb[1]:bb[3], bb[0]:bb[2]]
+        h = crop.shape[0]
+        cols = (crop > 160).any(axis=0)
+        # runs of empty columns between glyphs
+        gaps, start = [], None
+        for i, filled in enumerate(cols):
+            if not filled and start is None:
+                start = i
+            elif filled and start is not None:
+                gaps.append((i - start, start, i))
+                start = None
+        split = max(gaps) if gaps else None
+        if not split or split[0] < max(2, h * 0.18):
+            # no clear space before the unit: fall back to reading the whole thing
+            txt = cls._read_pill(gray, x0, x1, y0, y1, '0123456789.,kgKGкг ')
+            return txt, parse_weight(txt)
+        number, unit = crop[:, :split[1]], crop[:, split[2]:]
+        unit_cols = np.nonzero((unit > 160).any(axis=0))[0]
+        unit_w = (unit_cols[-1] - unit_cols[0] + 1) if len(unit_cols) else 0
+        is_kg = unit_w > 0.8 * h
+        # OCR needs some background around the digits: re-cut the number from the pill with a margin
+        m = max(2, h // 4)
+        nx0, nx1 = x0 + bb[0], x0 + bb[0] + split[1]
+        ny0, ny1 = y0 + bb[1], y0 + bb[3]
+        number = gray[max(0, ny0 - m):ny1 + m, max(0, nx0 - m):nx1 + max(1, m // 2)]
+        num = ocr.read_line(ocr.prepare(number, min_height=64), ('en',), whitelist='0123456789.,', psm=7)
+        txt = f"{num} {'kg' if is_kg else 'g'}"
+        return txt, parse_weight(txt)
 
     @staticmethod
     def _badge(frame, x0, x1, y0, y1):

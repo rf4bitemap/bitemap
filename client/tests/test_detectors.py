@@ -108,3 +108,17 @@ def test_no_false_cards_on_live_frames():
         pytest.skip('no false-card samples')
     for f in frames:
         assert CatchCardDetector().find(cv2.imread(f), 1440) is None, os.path.basename(f)
+
+
+@needs_samples
+@pytest.mark.parametrize('size', SIZES)
+def test_small_card_without_badge(size):
+    """'Döbel 68 g 16 cm': short weight, no trophy badge -> the icon row sits further right than on big cards."""
+    from bitemap_logger.detect.catchcard import CatchCardDetector
+    from bitemap_logger.gamedata import GameData
+    f = scaled('catch_de_small_nobadge_2000.webp', size)
+    det = CatchCardDetector()
+    g = det.find(f)
+    assert g is not None
+    r = det.read(f, g, GameData(), ('de', 'en', 'ru'))
+    assert (r.fish_id, r.weight_g, r.length_cm, r.badge) == ('e.chub', 68, 16, '')
