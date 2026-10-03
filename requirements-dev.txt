@@ -6,3 +6,4 @@ pyinstaller>=6.10
 pefile>=2024.8
 pillow>=10
 cryptography>=43
+pytest-github-actions-annotate-failures>=0.2
