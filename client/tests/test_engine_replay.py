@@ -81,3 +81,32 @@ def test_replay(engine_env, size, monkeypatch):
     assert c['bite_at'] is not None
     assert [k for k, _ in events].count('bite') == 1
     assert store.pending_upload()[0]['uuid'] == c['uuid']
+
+
+def test_card_read_after_fade_in(engine_env, monkeypatch):
+    """The card is read once it has stopped fading in, not on the first (half transparent) frame."""
+    eng, store, events = engine_env
+    W, H = 1920, 1080
+    hud = cv2.resize(cv2.imread(os.path.join(SAMPLES, 'hud_de_2000.webp')), (W, H), interpolation=cv2.INTER_AREA)
+    card = cv2.resize(cv2.imread(os.path.join(SAMPLES, 'catch_de_2000.webp')), (W, H), interpolation=cv2.INTER_AREA)
+    clock = {'t': 0.0}
+    alphas = []
+
+    class FadeGrab:
+        def grab(self, rect, region=None):
+            a = min(1.0, 0.3 + clock['t'] / 0.4)   # detected at 30 % opacity, fully visible after 0.28 s
+            alphas.append(a)
+            x, y, w, h = region
+            return cv2.addWeighted(card, a, hud, 1 - a, 0)[y:y + h, x:x + w].copy()
+
+    from bitemap_logger import engine as engine_mod
+    monkeypatch.setattr(eng, 'grab', FadeGrab())
+    monkeypatch.setattr(engine_mod.time, 'sleep', lambda s: clock.__setitem__('t', clock['t'] + s))
+    monkeypatch.setattr(engine_mod.time, 'time', lambda: clock['t'])
+    rect = {'left': 0, 'top': 0, 'width': W, 'height': H}
+    geom = eng.card.find(card[:int(H * 0.32)], H)
+    eng._settled_band(rect, geom)
+    assert alphas[-1] == 1.0, alphas   # the band that gets read is the fully visible one
+    eng._handle_card(rect, geom)
+    c = [d for k, d in events if k == 'catch'][0]
+    assert (c['fish_id'], c['weight_g'], c['length_cm']) == ('lm_b_bass', 6722, 79)

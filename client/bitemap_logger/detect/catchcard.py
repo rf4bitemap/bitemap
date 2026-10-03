@@ -4,6 +4,7 @@ Detection is language independent: we look for the weight icon with the ruler ic
 Then we read the name above that row and the numbers inside the two pills.
 """
 import re
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 
 import cv2
@@ -11,6 +12,9 @@ import numpy as np
 
 from .. import ocr
 from . import load_template, match_multiscale, template_base_h
+
+# every OCR call is its own tesseract.exe (~0.2 s, mostly start-up), so name, weight and length run side by side
+_POOL = ThreadPoolExecutor(max_workers=4, thread_name_prefix='ocr')
 
 TEMPLATE_BASE_H = 1125          # client-area height the icon templates were cut at
 SCALE_STEPS = (0.7, 0.8, 0.9, 1.0, 1.1, 1.25, 1.4)
@@ -122,14 +126,33 @@ class CatchCardDetector:
             return False
         if abs((ry + rh / 2) - (wy + wh / 2)) > 0.6 * wh:
             return False
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         # the fish name: large bright text above the row
-        ih = max(6, int(round(wh * 0.75)))
-        cx = (wx + rx + rw) // 2
-        name = gray[max(0, g.row_y - int(7.5 * ih)):max(1, g.row_y - int(1.6 * ih)),
-                    max(0, cx - int(0.3 * W)):min(W, cx + int(0.3 * W))]
+        name = CatchCardDetector._name_region(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY), g)
         bb = ocr.text_bbox(name, thresh=200, pad=0) if name.size else None
-        return bool(bb) and (bb[3] - bb[1]) >= 0.8 * ih
+        return bool(bb) and (bb[3] - bb[1]) >= 0.8 * g.icon_h
+
+    @staticmethod
+    def _name_region(gray, g, below=-1.6):
+        """Above the weight/length row and centred on it: the fish name (with below=1: down to the pills too)."""
+        W, ih = gray.shape[1], g.icon_h
+        cx = (g.weight_box[0] + g.ruler_box[0] + g.ruler_box[2]) // 2
+        return gray[max(0, g.row_y - int(7.5 * ih)):max(1, g.row_y + int(below * ih)),
+                    max(0, cx - int(0.3 * W)):min(W, cx + int(0.3 * W))]
+
+    def text_region(self, frame, g):
+        """Grayscale of the name and the pills - stops changing once the card has finished fading in."""
+        return self._name_region(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY), g, below=1)
+
+    @staticmethod
+    def text_change(a, b):
+        """How much the bright parts (text) differ between two text_region()s, in gray levels."""
+        if a.shape != b.shape:
+            return 255.0
+        a, b = a.astype(np.int16), b.astype(np.int16)
+        bright = np.maximum(a, b) > 150
+        if not bright.any():
+            return 255.0
+        return float(np.abs(a - b)[bright].mean())
 
     # ------------------------------------------------------------------ reading
     def read(self, frame, g, gamedata, langs):
@@ -139,31 +162,38 @@ class CatchCardDetector:
         wx, wy, ww, wh = g.weight_box
         rx, ry, rw, rh = g.ruler_box
 
-        # --- fish name: big white text centred above the row
-        cx = (wx + rx + rw) // 2
-        ny0, ny1 = max(0, g.row_y - int(7.5 * ih)), max(0, g.row_y - int(1.6 * ih))
-        nx0, nx1 = max(0, cx - int(W * 0.3)), min(W, cx + int(W * 0.3))
-        name_img = gray[ny0:ny1, nx0:nx1]
+        # --- weight / length pills: text between the icon and the end of the pill's dark background
+        py0, py1 = max(0, g.row_y - ih), min(H, g.row_y + ih)
+        w_end = min(self._pill_end(gray, wx + ww, g.row_y, ih), rx - int(0.8 * ih))
+        l_end = self._pill_end(gray, rx + rw, g.row_y, ih)
+        weight_job = _POOL.submit(self._read_weight, gray, wx + ww, w_end, py0, py1)
+        length_job = _POOL.submit(self._read_pill, gray, rx + rw, l_end, py0, py1, '0123456789.,cmсм ')
+
+        # --- fish name: big white text centred above the row (meanwhile the pills are being read)
+        name_img = self._name_region(gray, g)
         bb = ocr.text_bbox(name_img, thresh=200, pad=6)
         name_text, fish_id, fish_score, lang = '', None, 0, None
         if bb:
             crop = name_img[bb[1]:bb[3], bb[0]:bb[2]]
             prepared = ocr.prepare(crop, min_height=48)
-            for l in langs:
+
+            def name_in(l):
                 t = ocr.read_line(prepared, (l,), psm=7)
-                fid, score, ml = gamedata.match_fish(t, langs=(l,))
+                return (t,) + gamedata.match_fish(t, langs=(l,))[:2]
+            # the most likely language first (the last one that worked); the others only if that fails
+            results = [(langs[0], name_in(langs[0]))] if langs else []
+            if langs and not results[0][1][1]:
+                jobs = [(l, _POOL.submit(name_in, l)) for l in langs[1:]]
+                results += [(l, j.result()) for l, j in jobs]
+            for l, (t, fid, score) in results:
                 if score > fish_score:
                     name_text, fish_score = t, score
                 if fid:
                     name_text, fish_id, fish_score, lang = t, fid, score, l
                     break
 
-        # --- weight / length pills: text between the icon and the end of the pill's dark background
-        py0, py1 = max(0, g.row_y - ih), min(H, g.row_y + ih)
-        w_end = min(self._pill_end(gray, wx + ww, g.row_y, ih), rx - int(0.8 * ih))
-        wtxt, weight_g = self._read_weight(gray, wx + ww, w_end, py0, py1)
-        l_end = self._pill_end(gray, rx + rw, g.row_y, ih)
-        ltxt = self._read_pill(gray, rx + rw, l_end, py0, py1, '0123456789.,cmсм ')
+        wtxt, weight_g = weight_job.result()
+        ltxt = length_job.result()
         length_cm = parse_length(ltxt)
 
         badge = self._badge(frame, l_end + int(0.3 * ih), l_end + int(8 * ih), py0, py1)

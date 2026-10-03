@@ -16,11 +16,15 @@ from .store import utcnow
 
 log = logging.getLogger(__name__)
 
-TICK = 0.25            # seconds between card checks
+TICK = 0.15            # seconds between card checks (one check is ~10-25 ms)
 COORD_EVERY = 1.5      # seconds between coordinate reads
 CARD_GONE_AFTER = 1.0  # card must be absent this long before the next one counts
 COORD_MAX_AGE = 900    # don't attach coordinates older than this to a catch
 BITE_MAX_AGE = 900
+SETTLE_STEP = 0.06     # card fade-in: compare the card's text this often ...
+SETTLE_MAX = 0.8       # ... but read after this long at the latest
+SETTLED_BELOW = 3.0    # mean change of the bright (text) pixels between two grabs, gray levels
+CONFIDENT_SCORE = 90   # fish name match that needs no second reading (with a plausible weight and a length)
 
 
 class Engine(threading.Thread):
@@ -153,20 +157,41 @@ class Engine(threading.Thread):
         # notifications ("bail closed" etc.) often cover the coordinates right now: fall back to the last value
         self._bite_spot = self.coords.get(COORD_MAX_AGE, now)
 
+    def _settled_band(self, rect, geom):
+        """Grab the card until its text stops changing (fade-in done) - usually 1-3 grabs."""
+        W, H = rect['width'], rect['height']
+        t0, prev = time.time(), None
+        while True:
+            band = self.grab.grab(rect, (0, 0, W, int(H * 0.32)))
+            text = self.card.text_region(band, geom)
+            if prev is not None and self.card.text_change(prev, text) < SETTLED_BELOW:
+                return band
+            if time.time() - t0 >= SETTLE_MAX:
+                return band
+            prev = text
+            time.sleep(SETTLE_STEP)
+
+    def _confident(self, r):
+        return bool(r.fish_id and r.fish_score >= CONFIDENT_SCORE and r.length_cm
+                    and self.gd.plausible_weight(r.fish_id, r.weight_g))
+
     def _handle_card(self, rect, geom):
         W, H = rect['width'], rect['height']
-        time.sleep(0.35)  # let the card's fade-in finish
+        band = self._settled_band(rect, geom)
         readings = []
         for attempt in range(3):
-            band = self.grab.grab(rect, (0, 0, W, int(H * 0.32)))
+            if attempt:
+                time.sleep(0.2)
+                band = self.grab.grab(rect, (0, 0, W, int(H * 0.32)))
             g = self.card.find(band, H) or geom
             r = self.card.read(band, g, self.gd, self.langs())
             readings.append((r, band))
+            if self._confident(r):
+                break  # clear name, plausible weight, length read: no need to confirm
             if r.fish_id and r.weight_g and len(readings) >= 2:
                 prev = readings[-2][0]
                 if prev.fish_id == r.fish_id and prev.weight_g == r.weight_g:
                     break
-            time.sleep(0.3)
         # best reading: identified fish with a weight, else whatever has the highest name score
         r, band = max(readings, key=lambda rb: (bool(rb[0].fish_id), bool(rb[0].weight_g), rb[0].fish_score))
         self._card_logged = True
