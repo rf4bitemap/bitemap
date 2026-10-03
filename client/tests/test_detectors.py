@@ -159,7 +159,7 @@ def test_fish_per_waterbody():
     from bitemap_logger.gamedata import GameData
     gd = GameData()
     assert gd.lives_in('lm_b_bass', 'elk_lake') and not gd.lives_in('lm_b_bass', 'belaya_river')
-    assert gd.lives_in('bs_salmon', 'norwegian_sea')       # waterbodies unknown: allowed anywhere
+    assert gd.lives_in('bs_salmon', 'seversky_donets_river') and not gd.lives_in('bs_salmon', 'norwegian_sea')
     assert gd.lives_in('c_bleak', 'old_burg_lake')
     # a garbled name prefers the fish that lives here (anywhere these match Beluga-Stör / Neiva) ...
     name = lambda fid: gd.fish[fid]['names']

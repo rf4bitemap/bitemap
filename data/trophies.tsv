@@ -39,11 +39,11 @@ Black scabbardfish	4 kg	5.5 kg	Norwegian Sea
 Black Sea Beluga	500 kg	1000 kg	Seversky Donets
 Black Sea Kutum	5.5 kg	7.5 kg	Seversky Donets
 Black Sea Shemaya	500 g	700 g	Seversky Donets
-Black Sea trout	14 kg	20 kg	
+Black Sea trout	14 kg	20 kg	Seversky Donets
 Black whitefish	3.5 kg	5 kg	Ladoga Archipelago
 Black-spined Herring	250 g	340 g	Akhtuba River
-Bleak	110 g	160 g	Akhtuba River, Bear Lake, Belaya River, Ladoga Lake, Mosquito Lake, Old Burg, Sura River, Volkhov River, Winding Rivulet
-Blue Bream	750 g	1.1 kg	Akhtuba River, Ladoga Archipelago, Ladoga Lake, Sura River, Volkhov River, Winding Rivulet
+Bleak	110 g	160 g	Akhtuba River, Amber Lake, Bear Lake, Belaya River, Copper Lake, Ladoga Archipelago, Ladoga Lake, Mosquito Lake, Old Burg, Seversky Donets, Sura River, Volkhov River, Winding Rivulet
+Blue Bream	750 g	1.1 kg	Akhtuba River, Belaya River, Ladoga Archipelago, Ladoga Lake, Sura River, Volkhov River, Winding Rivulet
 Blue ling	25 kg	35 kg	Norwegian Sea
 Blue whiting	900 g	1.2 kg	Norwegian Sea
 Bluegill	1.2 kg	1.7 kg	Elk Lake
@@ -51,7 +51,7 @@ Blunt-snouted lenok	7.5 kg	9 kg	Yama River
 Brazhnikov Herring	700 g	1 kg	Akhtuba River
 Bream	4.4 kg	7 kg	Akhtuba River, Amber Lake, Bear Lake, Belaya River, Copper Lake, Kuori Lake, Ladoga Archipelago, Ladoga Lake, Mosquito Lake, Old Burg, Seversky Donets, Sura River, Volkhov River, Winding Rivulet
 Broad Whitefish	7 kg	10 kg	Lower Tunguska
-Brown Trout	3 kg	5 kg	Belaya River, Lower Tunguska
+Brown Trout	3 kg	5 kg	Belaya River, Kuori Lake, Lower Tunguska
 Buffalo	15 kg	20 kg	Akhtuba River
 Burbot	9 kg	14 kg	Akhtuba River, Amber Lake, Bear Lake, Belaya River, Copper Lake, Kuori Lake, Ladoga Archipelago, Ladoga Lake, Lower Tunguska, Old Burg, Seversky Donets, Sura River, Volkhov River, Winding Rivulet, Yama River
 Butterfly Peacock bass	4 kg	5.5 kg	Elk Lake
@@ -90,7 +90,7 @@ East Siberian Grayling	2 kg	2.5 kg	Lower Tunguska, Yama River
 East Siberian Sturgeon	100 kg	150 kg	Lower Tunguska
 Eastern Bream	4.4 kg	7 kg	Akhtuba River, Lower Tunguska
 Edible crab	1.8 kg	2.2 kg	Norwegian Sea
-Eel	4 kg	7.5 kg	Old Burg, Volkhov River
+Eel	4 kg	7.5 kg	Amber Lake, Ladoga Archipelago, Ladoga Lake, Old Burg, Sura River, Volkhov River
 Esmark's eelpout	2.5 kg	3.3 kg	Norwegian Sea
 European Angler	35 kg	45 kg	Norwegian Sea
 European chimaera	1.5 kg	—	Norwegian Sea
@@ -112,7 +112,7 @@ Gizzard shad	1.1 kg	1.6 kg	Elk Lake
 Golden Tench	4 kg	6 kg	Bear Lake, Mosquito Lake
 Grass Carp	28 kg	40 kg	Akhtuba River, Amber Lake, Bear Lake, Old Burg, Seversky Donets
 Gray Char	3 kg	4.5 kg	Ladoga Archipelago, Ladoga Lake
-Grayling	3.2 kg	5.5 kg	Belaya River
+Grayling	3.2 kg	5.5 kg	Belaya River, Kuori Lake, Ladoga Archipelago, Ladoga Lake
 Greenland Halibut	25 kg	32 kg	Norwegian Sea
 Greenland shark	600 kg	900 kg	Norwegian Sea
 Gudgeon	100 g	160 g	Akhtuba River, Belaya River, Seversky Donets, Sura River, Volkhov River, Winding Rivulet
@@ -121,7 +121,7 @@ Hi Utsuri	25 kg	32 kg	Copper Lake
 Humpback Whitefish	4.5 kg	6 kg	Belaya River, Lower Tunguska
 Hybrid Striped Bass (Whiterock Bass)	8 kg	10 kg	Elk Lake
 Icelandic scallop	350 g	450 g	Norwegian Sea
-Ide	4 kg	6.5 kg	Akhtuba River, Amber Lake, Belaya River, Copper Lake, Lower Tunguska, Mosquito Lake, Sura River, Volkhov River, Winding Rivulet
+Ide	4 kg	6.5 kg	Akhtuba River, Amber Lake, Bear Lake, Belaya River, Copper Lake, Kuori Lake, Ladoga Archipelago, Ladoga Lake, Lower Tunguska, Mosquito Lake, Old Burg, Seversky Donets, Sura River, Volkhov River, Winding Rivulet
 Kaluga	500 kg	1000 kg	Yama River
 Kamchatkan Rainbow Trout	8 kg	10 kg	Yama River
 Kessler's Herring	1.2 kg	1.7 kg	Akhtuba River
@@ -170,7 +170,7 @@ Oyster	300 g	370 g	Norwegian Sea
 Peled	3 kg	4 kg	Kuori Lake, Lower Tunguska
 Perch	1.6 kg	2.7 kg	Akhtuba River, Amber Lake, Bear Lake, Belaya River, Copper Lake, Kuori Lake, Ladoga Archipelago, Ladoga Lake, Lower Tunguska, Mosquito Lake, Old Burg, Seversky Donets, Sura River, Volkhov River, Winding Rivulet, Yama River
 Persian Sturgeon	100 kg	150 kg	Akhtuba River
-Pike	12 kg	20 kg	Akhtuba River, Belaya River, Copper Lake, Ladoga Archipelago, Ladoga Lake, Lower Tunguska, Mosquito Lake, Old Burg, Seversky Donets, Sura River, Volkhov River, Winding Rivulet
+Pike	12 kg	20 kg	Akhtuba River, Amber Lake, Bear Lake, Belaya River, Copper Lake, Kuori Lake, Ladoga Archipelago, Ladoga Lake, Lower Tunguska, Mosquito Lake, Old Burg, Seversky Donets, Sura River, Volkhov River, Winding Rivulet
 Pink Salmon	3 kg	4 kg	Lower Tunguska, Yama River
 Pollock	11 kg	14 kg	Norwegian Sea
 Pontic shad	650 g	900 g	Seversky Donets
@@ -187,7 +187,7 @@ Roughhead grenadier	3 kg	4 kg	Norwegian Sea
 Round Whitefish	1.2 kg	1.6 kg	Lower Tunguska, Yama River
 Rudd	1.5 kg	2 kg	Akhtuba River, Seversky Donets, Sura River
 Ruffe	140 g	220 g	Akhtuba River, Amber Lake, Bear Lake, Belaya River, Copper Lake, Kuori Lake, Ladoga Archipelago, Ladoga Lake, Lower Tunguska, Mosquito Lake, Old Burg, Seversky Donets, Sura River, Volkhov River, Winding Rivulet
-Russian Sturgeon	50 kg	100 kg	Akhtuba River, Seversky Donets
+Russian Sturgeon	50 kg	100 kg	Akhtuba River, Seversky Donets, Sura River
 Saithe	19 kg	25 kg	Norwegian Sea
 Sardine	180 g	240 g	Norwegian Sea
 Scaleless Albino Carp	30 kg	45 kg	Amber Lake
@@ -249,5 +249,5 @@ Whitespotted Char	10 kg	14 kg	Yama River
 Whiting	3 kg	4 kg	Norwegian Sea
 Wild Carp	25 kg	35 kg	Akhtuba River, Seversky Donets, Sura River
 Yotsushiro	25 kg	32 kg	Copper Lake
-Zander	8 kg	12 kg	Akhtuba River, Belaya River, Ladoga Archipelago, Ladoga Lake, Seversky Donets, Sura River, Volkhov River
+Zander	8 kg	12 kg	Akhtuba River, Belaya River, Ladoga Archipelago, Ladoga Lake, Seversky Donets, Sura River, Volkhov River, Winding Rivulet
 Zebra Mussel	150 g	210 g	Akhtuba River, Seversky Donets, Sura River, Volkhov River, Winding Rivulet
