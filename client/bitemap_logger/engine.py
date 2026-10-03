@@ -37,6 +37,9 @@ class Engine(threading.Thread):
         self._card_logged = False
         self._card_last_seen = 0.0
         self._coord_at = 0.0
+        self._coord_thread = None     # coordinates are read on their own thread (OCR takes ~0.3 s)
+        self._coord_lock = threading.Lock()
+        self._last_rect = None
         self._last_bite = None
         self._bite_spot = None
         self._lang_pref = []
@@ -69,6 +72,8 @@ class Engine(threading.Thread):
         if not ocr.setup():
             self._set_status('no_ocr')
             return
+        self._coord_thread = threading.Thread(target=self._coord_loop, daemon=True, name='coords')
+        self._coord_thread.start()
         while not self._halt.is_set():
             t0 = time.time()
             try:
@@ -89,6 +94,7 @@ class Engine(threading.Thread):
             time.sleep(1)
             return
         W, H = rect['width'], rect['height']
+        self._last_rect = rect
         self._set_status('watching', size=f'{W}x{H}')
 
         band = self.grab.grab(rect, (0, 0, W, int(H * 0.32)))
@@ -101,19 +107,36 @@ class Engine(threading.Thread):
         if self._card_logged and now - self._card_last_seen > CARD_GONE_AFTER:
             self._card_logged = False
 
-        if now - self._coord_at >= COORD_EVERY:
+        if self._coord_thread is None and now - self._coord_at >= COORD_EVERY:  # no worker (tests): inline
             self._coord_at = now
-            x, y, w, h = coord_region(W, H)
-            xy = read_coords(self.grab.grab(rect, (x, y, w, h)))
-            before = self.coords.value
-            self.coords.feed(xy, now)
-            if self.coords.value != before:
-                self.emit('coords', self.coords.value)
+            self._coord_step(rect, now)
 
         if self.bite.enabled:
             bx, by, bw, bh = self.bite.region(W, H)
             if self.bite.update(self.grab.grab(rect, (bx, by, bw, bh)), H, now):
                 self._on_bite(rect, now)
+
+    def _coord_loop(self):
+        while not self._halt.is_set():
+            t0 = time.time()
+            try:
+                rect = self._last_rect
+                card_open = t0 - self._card_last_seen < CARD_GONE_AFTER  # the card hides the HUD
+                if rect and not self.paused and not card_open:
+                    self._coord_step(rect, t0)
+            except Exception:
+                log.exception('coordinate read failed')
+            self._halt.wait(max(0.1, COORD_EVERY - (time.time() - t0)))
+
+    def _coord_step(self, rect, now):
+        x, y, w, h = coord_region(rect['width'], rect['height'])
+        xy = read_coords(self.grab.grab(rect, (x, y, w, h)), rect['height'])
+        with self._coord_lock:
+            before = self.coords.value
+            self.coords.feed(xy, now)
+            changed = self.coords.value != before
+        if changed:
+            self.emit('coords', self.coords.value)
 
     def _on_bite(self, rect, now):
         """A fish bit: alert, and pin the spot *now* - the catch card comes later and hides the HUD."""
@@ -122,10 +145,11 @@ class Engine(threading.Thread):
         if self.settings.get('bite_alert', True):
             sound.play('bite')
         x, y, w, h = coord_region(rect['width'], rect['height'])
-        xy = read_coords(self.grab.grab(rect, (x, y, w, h)))
-        if xy and (self.coords.value is None or xy == self.coords.value):
-            self.coords.feed(xy, now)
-            self.coords.feed(xy, now)  # a clean read at bite time confirms on its own
+        xy = read_coords(self.grab.grab(rect, (x, y, w, h)), rect['height'])
+        with self._coord_lock:
+            if xy and (self.coords.value is None or xy == self.coords.value):
+                self.coords.feed(xy, now)
+                self.coords.feed(xy, now)  # a clean read at bite time confirms on its own
         # notifications ("bail closed" etc.) often cover the coordinates right now: fall back to the last value
         self._bite_spot = self.coords.get(COORD_MAX_AGE, now)
 

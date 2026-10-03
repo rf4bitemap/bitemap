@@ -47,13 +47,13 @@ def test_coords(size):
     from bitemap_logger.detect import coords
     f = scaled('hud_de_2000.webp', size)
     x, y, w, h = coords.region(*size)
-    assert coords.read_coords(f[y:y + h, x:x + w]) == (73, 48)
+    assert coords.read_coords(f[y:y + h, x:x + w], size[1]) == (73, 48)
 
 
 @needs_samples
 def test_coords_dim_night_hud():
     from bitemap_logger.detect import coords
-    assert coords.read_coords(cv2.imread(os.path.join(SAMPLES, 'hud_live_2560_dim_coords.png'))) == (71, 37)
+    assert coords.read_coords(cv2.imread(os.path.join(SAMPLES, 'hud_live_2560_dim_coords.png')), 1440) == (71, 37)
 
 
 @pytest.mark.parametrize('text,grams', [('6,722kg', 6722), ('6.722 kg', 6722), ('722 g', 722), ('6722kg', 6722),
@@ -122,3 +122,24 @@ def test_small_card_without_badge(size):
     assert g is not None
     r = det.read(f, g, GameData(), ('de', 'en', 'ru'))
     assert (r.fish_id, r.weight_g, r.length_cm, r.badge) == ('e.chub', 68, 16, '')
+
+
+@needs_samples
+@pytest.mark.parametrize('size', SIZES)
+def test_coords_on_bought_minimap(size):
+    """With a bought map the compass shows the map texture behind '41:57' and sits a bit higher;
+    the keepnet counter '8/100' just above must not be taken for coordinates."""
+    from bitemap_logger.detect import coords
+    f = scaled('hud_minimap_de.webp', size)
+    x, y, w, h = coords.region(*size)
+    assert coords.read_coords(f[y:y + h, x:x + w], size[1]) == (41, 57)
+
+
+@needs_samples
+@pytest.mark.parametrize('size', SIZES)
+def test_no_coords_when_covered(size):
+    """At the bite a notification covers the coordinates: read nothing rather than something wrong."""
+    from bitemap_logger.detect import coords
+    f = scaled('bite_de_2000.webp', size)
+    x, y, w, h = coords.region(*size)
+    assert coords.read_coords(f[y:y + h, x:x + w], size[1]) is None
