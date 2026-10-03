@@ -58,5 +58,21 @@
  "g": "g",
  "cm": "cm",
  "auto_system": "Automatisch (System)",
- "alert_volume": "Lautstärke der Signale"
+ "alert_volume": "Lautstärke der Signale",
+ "update_available": "BiteMap Logger {version} ist verfügbar.",
+ "update_now": "Aktualisieren & neu starten",
+ "update_later": "Später",
+ "update_whats_new": "Was ist neu",
+ "update_download": "Herunterladen",
+ "update_readonly": "Dieser Ordner ist schreibgeschützt, bitte von Hand installieren.",
+ "update_downloading": "Update wird heruntergeladen… {pct} %",
+ "update_installing": "Update wird installiert - BiteMap startet gleich neu…",
+ "update_failed": "Update fehlgeschlagen: {error}",
+ "update_rolled_back": "Das Update konnte nicht installiert werden, die bisherige Version wurde behalten.",
+ "update_done": "Auf {version} aktualisiert.",
+ "update_latest": "Du hast die neueste Version ({version}).",
+ "update_check_failed": "Suche nach Updates fehlgeschlagen: {error}",
+ "auto_update": "Automatisch nach Updates suchen",
+ "check_now": "Jetzt prüfen",
+ "upload_outdated": "Update nötig, um Fänge zu teilen"
 }

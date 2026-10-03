@@ -27,6 +27,20 @@ MAX_CATCHES_PER_HOUR = 400          # per install; RF4 rarely exceeds ~200 fish/
 MAX_INSTALLS_PER_IP_HOUR = 10
 MAX_AGE_DAYS = 30
 TRUST_PROXY = os.environ.get('TRUST_PROXY', '1') == '1'
+# uploads from older BiteMap Logger versions are refused with 426 (e.g. after a detection bug); empty = accept all
+MIN_CLIENT = os.environ.get('BITEMAP_MIN_CLIENT', '').strip()
+
+
+def parse_version(v):
+    try:
+        return tuple(int(p) for p in str(v).strip().lstrip('v').split('.'))
+    except ValueError:
+        return None
+
+
+def client_too_old(version):
+    lo, have = parse_version(MIN_CLIENT), parse_version(version)
+    return bool(lo and have and have < lo)
 
 @asynccontextmanager
 async def lifespan(_app):
@@ -180,6 +194,8 @@ def upload_catches(body: CatchBatch, request: Request, inst: Install = Depends(c
                    s: Session = Depends(db)):
     if not limiter.allow('ip:' + client_ip(request), 120, 60):
         raise HTTPException(429, 'slow down')
+    if client_too_old(body.client_version):
+        raise HTTPException(426, f'BiteMap Logger {MIN_CLIENT} or newer required')
     now = utcnow()
     accepted, rejected = [], []
     for c in body.catches:
@@ -248,7 +264,7 @@ def _filters(water=None, fish=None, days=None, trophy=None):
 
 @app.get('/api/v1/meta')
 def meta():
-    return {'version': VERSION, 'fish': list(gamedata.FISH.values()), 'waterbodies': list(gamedata.WATERBODIES.values())}
+    return {'version': VERSION, 'min_client': MIN_CLIENT or None, 'fish':list(gamedata.FISH.values()), 'waterbodies': list(gamedata.WATERBODIES.values())}
 
 
 @app.get('/api/v1/stats/overview')

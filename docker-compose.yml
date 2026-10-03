@@ -24,6 +24,7 @@ services:
     environment:
       DATABASE_URL: postgresql+psycopg://bitemap:${POSTGRES_PASSWORD}@db:5432/bitemap
       TRUST_PROXY: "1"
+      BITEMAP_MIN_CLIENT: ${BITEMAP_MIN_CLIENT:-}
     volumes:
       - ./data/maps:/app/data/maps:ro      # add/replace map images without rebuilding
     depends_on:

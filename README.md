@@ -34,6 +34,11 @@ Unreadable catch cards are kept as `? unknown` and can be fixed with **Edit** (d
 RF4 can run windowed, borderless or fullscreen; the logger reads the game window's area of the screen,
 so the catch card and the bottom-right HUD must not be covered by other windows.
 
+**Updates:** from 0.1.4 on, the logger checks GitHub for new versions and shows a bar when one is out.
+*Update & restart* downloads it, checks its signature and checksum, replaces the app files and restarts;
+settings and your catch list (in `%APPDATA%\BiteMap`) stay untouched. In a write-protected folder
+(e.g. Program Files) it only offers the download. Can be turned off in the settings.
+
 ## Repository layout
 
 ```
@@ -68,6 +73,12 @@ Local server with demo data:
 
 Before publishing a release, set `DEFAULT_SERVER` / `PROJECT_URL` in `client/bitemap_logger/__init__.py`
 and `RELEASES_URL` in `server/web/app.js`. Pushing a tag `v*` builds and publishes the release on GitHub.
+
+The release also gets a `latest.json` for the in-app updater, signed with an Ed25519 key from the
+`BITEMAP_SIGNING_KEY` Actions secret; the app only accepts manifests signed with the matching
+`PUBLIC_KEY` in `client/bitemap_logger/updater.py`. A fork makes its own pair with
+`python tools/sign_release.py --keygen <file>`, puts the public key into `updater.py` and the file's
+content into the secret.
 
 ## Contributing data
 

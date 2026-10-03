@@ -19,6 +19,7 @@ class Uploader(threading.Thread):
         self._wake = threading.Event()
         self._halt = threading.Event()
         self.last_error = None
+        self.outdated = False
         self.session = requests.Session()
         self.session.headers['User-Agent'] = f'BiteMapLogger/{__version__}'
 
@@ -65,6 +66,9 @@ class Uploader(threading.Thread):
         if r.status_code == 401:  # token unknown to the server (e.g. database reset) -> register again
             self.settings.set('install_token', '')
             raise RuntimeError('install token rejected, re-registering')
+        self.outdated = r.status_code == 426   # server no longer accepts this version; catches wait for the update
+        if self.outdated:
+            raise RuntimeError('this version is too old for the server, update required')
         r.raise_for_status()
         d = r.json()
         for uid in d.get('accepted', []):
@@ -83,5 +87,5 @@ class Uploader(threading.Thread):
             except Exception as e:
                 self.last_error = str(e)
                 log.info('upload failed: %s', e)
-            self._wake.wait(self.interval)
+            self._wake.wait(600 if self.outdated else self.interval)
             self._wake.clear()

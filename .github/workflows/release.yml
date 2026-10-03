@@ -22,7 +22,14 @@ jobs:
         run: |
           $p = Start-Process dist/BiteMapLogger/BiteMapLogger.exe -ArgumentList '--selftest' -Wait -PassThru
           if ($p.ExitCode -ne 0) { Get-Content "$env:APPDATA/BiteMap/selftest.txt"; exit 1 }
+      - name: Sign for the in-app updater (latest.json)
+        shell: pwsh
+        env:
+          BITEMAP_SIGNING_KEY: ${{ secrets.BITEMAP_SIGNING_KEY }}
+        run: python tools/sign_release.py (Get-Item dist/*.zip).FullName
       - uses: softprops/action-gh-release@v2
         with:
-          files: dist/*.zip
+          files: |
+            dist/*.zip
+            dist/latest.json
           generate_release_notes: true

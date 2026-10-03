@@ -55,6 +55,10 @@ docker compose up -d --build
 Map images are not in the git repository. Copy them once to the server:
 `scp data/maps/*.webp root@<server>:/root/bitemap/data/maps/` – the folder is mounted into the container.
 
+To stop accepting catches from old app versions (e.g. after a detection bug), set
+`BITEMAP_MIN_CLIENT=0.1.4` in `.env` and run `docker compose up -d`. Older apps then get
+HTTP 426, keep their catches and upload them once updated.
+
 ## Backups
 
 ```bash

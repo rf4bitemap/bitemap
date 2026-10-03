@@ -58,5 +58,21 @@
  "g": "г",
  "cm": "см",
  "auto_system": "Авто (системный)",
- "alert_volume": "Громкость сигналов"
+ "alert_volume": "Громкость сигналов",
+ "update_available": "Доступна версия BiteMap Logger {version}.",
+ "update_now": "Обновить и перезапустить",
+ "update_later": "Позже",
+ "update_whats_new": "Что нового",
+ "update_download": "Скачать",
+ "update_readonly": "Папка защищена от записи, установите обновление вручную.",
+ "update_downloading": "Загрузка обновления… {pct} %",
+ "update_installing": "Установка обновления - BiteMap сейчас перезапустится…",
+ "update_failed": "Ошибка обновления: {error}",
+ "update_rolled_back": "Не удалось установить обновление, оставлена прежняя версия.",
+ "update_done": "Обновлено до {version}.",
+ "update_latest": "У вас последняя версия ({version}).",
+ "update_check_failed": "Не удалось проверить обновления: {error}",
+ "auto_update": "Автоматически проверять обновления",
+ "check_now": "Проверить",
+ "upload_outdated": "Чтобы делиться уловом, нужно обновление"
 }

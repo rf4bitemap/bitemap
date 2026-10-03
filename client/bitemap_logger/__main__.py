@@ -35,6 +35,10 @@ def selftest():
 
 
 def main():
+    if len(sys.argv) >= 4 and sys.argv[1] == '--apply-update':
+        # this is the new version, started by the old one to install itself - see updater.py
+        from .updater import apply_update_main
+        sys.exit(apply_update_main(sys.argv[2:]))
     if '--selftest' in sys.argv:
         selftest()
     from .paths import LOG_FILE

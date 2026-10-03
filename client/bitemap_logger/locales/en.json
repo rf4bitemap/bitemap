@@ -58,5 +58,21 @@
  "g": "g",
  "cm": "cm",
  "auto_system": "Auto (system)",
- "alert_volume": "Alert volume"
+ "alert_volume": "Alert volume",
+ "update_available": "BiteMap Logger {version} is available.",
+ "update_now": "Update & restart",
+ "update_later": "Later",
+ "update_whats_new": "What's new",
+ "update_download": "Download",
+ "update_readonly": "This folder is write-protected, so please install it by hand.",
+ "update_downloading": "Downloading update… {pct} %",
+ "update_installing": "Installing update - BiteMap restarts in a moment…",
+ "update_failed": "Update failed: {error}",
+ "update_rolled_back": "The update could not be installed, the previous version was kept.",
+ "update_done": "Updated to {version}.",
+ "update_latest": "You have the latest version ({version}).",
+ "update_check_failed": "Could not check for updates: {error}",
+ "auto_update": "Check for updates automatically",
+ "check_now": "Check now",
+ "upload_outdated": "Update required to share catches"
 }

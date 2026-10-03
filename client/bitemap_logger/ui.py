@@ -1,19 +1,25 @@
 """Main window (customtkinter)."""
+import logging
 import os
 import queue
+import sys
+import threading
 import time
 import tkinter as tk
+import webbrowser
 from datetime import datetime, timezone
 from tkinter import messagebox, ttk
 
 import customtkinter as ctk
 
-from . import APP_NAME, __version__, sound
+from . import APP_NAME, PROJECT_URL, __version__, sound, updater
 from .i18n import LANGS, t
 from .paths import USER_DIR
 
+log = logging.getLogger(__name__)
 GAME_LANGS = ('auto', 'en', 'de', 'ru')
 ACCENT = '#3fb68b'
+HELPER_TIMEOUT_S = 45
 
 
 def fmt_weight(g):
@@ -40,6 +46,12 @@ class App(ctk.CTk):
         self.coords = None            # last (x, y) from the engine
         self._last_status = None      # last status event, re-applied after a language switch
         self.bite_flash_until = 0
+        # update bar: None | available | downloading | installing | failed | rolled_back | done
+        self.update_state, self.update_rel, self.update_info = None, None, ''
+        if '--updated' in sys.argv:
+            self.update_state = 'done'
+        elif '--update-failed' in sys.argv:
+            self.update_state = 'rolled_back'
 
         ctk.set_appearance_mode('dark')
         self.title(f'{APP_NAME} {__version__}')
@@ -54,6 +66,15 @@ class App(ctk.CTk):
         self.protocol('WM_DELETE_WINDOW', self.on_close)
         self.engine.start()
         self.after(100, self._poll)
+        if updater.install_dir():
+            # leftovers of the last update (the helper may still be closing, so not right away)
+            cleanup = threading.Timer(20, updater.cleanup)
+            cleanup.daemon = True   # must not keep the process alive - an update helper may be waiting for us
+            cleanup.start()
+        if self.update_state == 'done':
+            self.after(15000, lambda: self.update_state == 'done' and self._set_update_state(None))
+        if self.settings.get('auto_update', True) and updater.auto_check_enabled():
+            self.after(5000, self._auto_check)
 
     # ------------------------------------------------------------------ layout
     def _build(self):
@@ -72,6 +93,8 @@ class App(ctk.CTk):
         self.bite_lbl.pack(side='right', padx=(10, 0))
         self.coord_lbl = ctk.CTkLabel(top, text='📍 ' + self._coord_text(), font=ctk.CTkFont(size=15, weight='bold'))
         self.coord_lbl.pack(side='right')
+        self.update_bar = ctk.CTkFrame(self, fg_color='#24463b')
+        self._header = top
 
         row = ctk.CTkFrame(self, fg_color='transparent')
         row.pack(fill='x', padx=14, pady=4)
@@ -138,6 +161,7 @@ class App(ctk.CTk):
         self.upload_lbl.pack(side='right')
         if self._last_status:
             self._show_status(self._last_status)
+        self._render_update_bar()
 
     def _coord_text(self):
         return f'{self.coords[0]}:{self.coords[1]}' if self.coords else t('spot_unknown')
@@ -189,6 +213,115 @@ class App(ctk.CTk):
             self.refresh_table()
         elif kind == 'error':
             self.status_lbl.configure(text=str(data)[:120])
+        elif kind == 'update_check':
+            rel, manual, err = data
+            if rel and self.update_state not in ('downloading', 'installing'):
+                self.update_rel = rel
+                self._set_update_state('available')
+            if manual and not rel:
+                msg = t('update_check_failed', error=err) if err else t('update_latest', version=__version__)
+                messagebox.showinfo(APP_NAME, msg, parent=self)
+        elif kind == 'update_progress':
+            if self.update_state == 'downloading':
+                self.update_info = data
+                self.update_lbl.configure(text=t('update_downloading', pct=data))
+        elif kind == 'update_ready':
+            self._launch_helper(data)
+        elif kind == 'update_failed':
+            self._set_update_state('failed', str(data)[:160])
+
+    # ------------------------------------------------------------------ updates (see updater.py)
+    def _auto_check(self):
+        if self.settings.get('auto_update', True):
+            self.check_updates()
+        self.after(updater.CHECK_EVERY_S * 1000, self._auto_check)
+
+    def check_updates(self, manual=False):
+        def work():
+            try:
+                self.events.put(('update_check', (updater.fetch_latest(), manual, None)))
+            except Exception as e:
+                log.info('update check failed: %s', e)
+                self.events.put(('update_check', (None, manual, str(e)[:160])))
+        threading.Thread(target=work, daemon=True, name='update-check').start()
+
+    def _set_update_state(self, state, info=''):
+        self.update_state, self.update_info = state, info
+        self._render_update_bar()
+
+    def _render_update_bar(self):
+        bar = self.update_bar
+        for w in bar.winfo_children():
+            w.destroy()
+        st, rel = self.update_state, self.update_rel
+        if not st:
+            bar.pack_forget()
+            return
+        blocker = updater.self_update_blocker() if rel else None
+        text = {
+            'available': t('update_available', version=rel.version if rel else ''),
+            'downloading': t('update_downloading', pct=self.update_info or 0),
+            'installing': t('update_installing'),
+            'failed': t('update_failed', error=self.update_info),
+            'rolled_back': t('update_rolled_back'),
+            'done': t('update_done', version=__version__),
+        }[st]
+        if st == 'available' and blocker == 'readonly':
+            text += ' ' + t('update_readonly')
+        self.update_lbl = ctk.CTkLabel(bar, text=text, anchor='w', wraplength=440, justify='left')
+        self.update_lbl.pack(side='left', padx=10, pady=6, fill='x', expand=True)
+
+        def button(text, cmd, accent=False, width=90):
+            ctk.CTkButton(bar, text=text, command=cmd, height=28, width=width,
+                          fg_color=ACCENT if accent else '#3a4a44', hover_color='#2f8f6d' if accent else '#46594f'
+                          ).pack(side='right', padx=(0, 8), pady=6)
+        if st == 'done':
+            button('✕', lambda: self._set_update_state(None), width=28)
+        elif st in ('available', 'failed', 'rolled_back'):
+            button(t('update_later'), lambda: self._set_update_state(None))
+        if st == 'available' and not blocker:
+            button(t('update_whats_new'), lambda: webbrowser.open(rel.page))
+            button(t('update_now'), self._start_update, accent=True, width=150)
+        elif st in ('available', 'failed', 'rolled_back'):
+            page = rel.page if rel else PROJECT_URL + '/releases/latest'
+            button(t('update_download'), lambda: webbrowser.open(page), accent=True)
+        bar.pack(fill='x', padx=14, pady=(2, 4), after=self._header)
+
+    def _start_update(self):
+        rel = self.update_rel
+        self._set_update_state('downloading')
+
+        def work():
+            try:
+                zip_path = updater.download(rel, progress=lambda pct: self.events.put(('update_progress', pct)))
+                self.events.put(('update_ready', updater.extract(zip_path, rel)))
+            except Exception as e:
+                log.exception('update download failed')
+                self.events.put(('update_failed', e))
+        threading.Thread(target=work, daemon=True, name='update-download').start()
+
+    def _launch_helper(self, app_dir):
+        """Start the new version as installer, then close as soon as it is running (it waits for us to exit)."""
+        self._set_update_state('installing')
+        try:
+            proc, ready = updater.launch_helper(app_dir, updater.install_dir())
+        except OSError as e:
+            log.exception('could not start the update')
+            self._set_update_state('failed', str(e)[:160])
+            return
+        t0 = time.time()
+
+        def wait():
+            if os.path.exists(ready):
+                log.info('update helper running, closing for the update')
+                self.on_close()
+            elif proc.poll() is not None or time.time() - t0 > HELPER_TIMEOUT_S:
+                if proc.poll() is None:
+                    proc.kill()
+                self._set_update_state('failed', 'installer did not start')
+            else:
+                self.after(200, wait)
+        self.after(200, wait)
 
     def _show_status(self, data):
         st = data['state']
@@ -235,7 +368,9 @@ class App(ctk.CTk):
                 parts.append(t('upload_pending', n=pend))
             if rej:
                 parts.append(t('upload_rejected', n=rej))
-            if self.uploader.last_error:
+            if self.uploader.outdated:
+                parts.append(t('upload_outdated'))
+            elif self.uploader.last_error:
                 parts.append(t('upload_error'))
             txt = '☁ ' + ' · '.join(parts)
         self.upload_lbl.configure(text=txt)
@@ -353,7 +488,7 @@ class SettingsDialog(ctk.CTkToplevel):
         self.app = app
         s = app.settings
         self.title(t('settings_title'))
-        self.geometry('560x430')
+        self.geometry('560x480')
         self.transient(app)
         frm = ctk.CTkFrame(self, fg_color='transparent')
         frm.pack(fill='both', expand=True, padx=18, pady=14)
@@ -394,8 +529,15 @@ class SettingsDialog(ctk.CTkToplevel):
         ctk.CTkCheckBox(frm, text=t('debug_images'), variable=self.dbg,
                         command=lambda: s.set('save_debug_images', self.dbg.get())
                         ).grid(row=7, column=0, columnspan=2, sticky='w', pady=(14, 2))
+        self.auto_upd = tk.BooleanVar(value=s.get('auto_update', True))
+        uf = ctk.CTkFrame(frm, fg_color='transparent')
+        uf.grid(row=8, column=0, columnspan=2, sticky='w', pady=(14, 2))
+        ctk.CTkCheckBox(uf, text=t('auto_update'), variable=self.auto_upd,
+                        command=lambda: s.set('auto_update', self.auto_upd.get())).pack(side='left')
+        ctk.CTkButton(uf, text=t('check_now'), width=90, command=lambda: app.check_updates(manual=True)
+                      ).pack(side='left', padx=10)
         ctk.CTkButton(frm, text=t('open_folder'), command=lambda: os.startfile(USER_DIR)
-                      ).grid(row=8, column=0, sticky='w', pady=(18, 0))
+                      ).grid(row=9, column=0, sticky='w', pady=(18, 0))
         self.protocol('WM_DELETE_WINDOW', self._close)
 
     def _on_volume(self, value):

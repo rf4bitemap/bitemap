@@ -15,6 +15,7 @@ DEFAULTS = {
     'bite_alert': True,           # play a sound when a bite is detected
     'alert_volume': 0.5,          # 0..1, bite + catch sounds
     'save_debug_images': False,   # keep screenshots of unreadable catch cards in %APPDATA%\\BiteMap\\debug
+    'auto_update': True,          # look for new versions (the update itself is only installed when the user agrees)
     'install_id': '',
     'install_token': '',
     'window': None,

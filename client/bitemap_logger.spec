@@ -19,7 +19,8 @@ a = Analysis(
     pathex=[HERE],
     datas=datas,
     hiddenimports=['bitemap_logger'],
-    excludes=['matplotlib', 'pandas', 'scipy', 'PyQt5', 'PySide6', 'IPython', 'pytest'],
+    excludes=['matplotlib', 'pandas', 'scipy', 'PyQt5', 'PySide6', 'IPython', 'pytest',
+              'cryptography', 'OpenSSL'],   # optional imports of requests/urllib3; Python's ssl is enough
 )
 # Tesseract goes in as plain data (a Tree) so PyInstaller doesn't re-collect its DLLs next to Python's
 a.datas += Tree(os.path.join(HERE, 'vendor', 'tesseract'), prefix='tesseract')

@@ -75,3 +75,14 @@ def test_auth_and_ownership(client):
 def test_website(client):
     assert client.get('/').status_code == 200
     assert client.get('/api/v1/meta').json()['waterbodies']
+
+
+def test_min_client_version(client, monkeypatch):
+    from app import main
+    h = register(client)
+    monkeypatch.setattr(main, 'MIN_CLIENT', '0.1.4')
+    r = client.post('/api/v1/catches', json={'client_version': '0.1.3', 'catches': [catch()]}, headers=h)
+    assert r.status_code == 426
+    r = client.post('/api/v1/catches', json={'client_version': '0.1.10', 'catches': [catch()]}, headers=h)
+    assert r.status_code == 200 and len(r.json()['accepted']) == 1
+    assert client.get('/api/v1/meta').json()['min_client'] == '0.1.4'
