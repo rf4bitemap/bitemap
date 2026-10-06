@@ -13,10 +13,17 @@ import numpy as np
 from ..paths import ASSETS
 from . import template_base_h
 
-SCALE_STEPS = (0.85, 0.92, 1.0, 1.08, 1.16)
-THRESHOLD = 0.60          # bite frames score 0.72-0.82, frames without a bite <= 0.40 (samples)
+# relative to the template's size at the client height: the game's interface scale setting makes the icon
+# smaller or larger (a bite at ~1.3x was missed when only 0.85-1.16 was searched)
+SCALE_STEPS = (0.7, 0.78, 0.86, 0.93, 1.0, 1.08, 1.16, 1.25, 1.34, 1.44, 1.55)
+THRESHOLD = 0.60          # bite frames score 0.72-1.0, frames without a bite <= 0.40 (samples)
 REARM_AFTER = 2.0     # seconds the icon must be gone before a new bite counts
-WHITE = 200           # the icon's white is ~240 on any background
+WHITE = 200           # the icon's white: ~240 on most backgrounds, but only ~220 in fog/rain
+
+
+def _white(gray):
+    """Threshold for the icon's white: a bit below the brightest pixel, between 160 and WHITE."""
+    return float(np.clip(gray.max() - 30, 160, WHITE))
 
 
 class BiteDetector:
@@ -30,7 +37,7 @@ class BiteDetector:
                 if img.ndim == 3 and img.shape[2] == 4:
                     img = img[:, :, :3]
                 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) if img.ndim == 3 else img
-                self.tpl = np.where(gray > WHITE, 255, 0).astype(np.uint8)
+                self.tpl = np.where(gray > _white(gray), 255, 0).astype(np.uint8)
             self.base_h = template_base_h('bite_icon.png', 1125)
         self._present = False
         self._last_seen = 0.0
@@ -44,15 +51,16 @@ class BiteDetector:
 
     @staticmethod
     def region(width, height):
-        """Left of the (centred) line-tension bar, bottom of the screen. Works for 16:9 and ultrawide."""
-        x0 = int(width / 2 - 0.45 * height)
+        """Left of the (centred) line-tension bar, bottom of the screen. Works for 16:9 and ultrawide, and for
+        larger interface scales (the bar and icon grow outwards from the centre)."""
+        x0 = int(width / 2 - 0.55 * height)
         x1 = int(width / 2 - 0.15 * height)
-        y0 = int(height * 0.88)
+        y0 = int(height * 0.86)
         return max(0, x0), y0, max(1, x1 - max(0, x0)), height - y0
 
     def score(self, region_bgr, client_height):
         gray = cv2.cvtColor(region_bgr, cv2.COLOR_BGR2GRAY)
-        bw = np.where(gray > WHITE, 255, 0).astype(np.uint8)
+        bw = np.where(gray > _white(gray), 255, 0).astype(np.uint8)
         if bw.max() == 0:
             return 0.0
         if self._h != client_height:

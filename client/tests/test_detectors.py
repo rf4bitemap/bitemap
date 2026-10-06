@@ -78,7 +78,9 @@ def test_fish_matching():
 @pytest.mark.parametrize('size', SIZES)
 def test_bite_icon(size):
     from bitemap_logger.detect.bite import BiteDetector
-    for name, expected in (('bite_de_2000.webp', True), ('hud_de_2000.webp', False), ('catch_de_2000.webp', False)):
+    # bite_sea_boat: fog on the Norwegian Sea, larger interface scale (icon ~1.3x), dimmer white (~220)
+    for name, expected in (('bite_de_2000.webp', True), ('bite_sea_boat_1920.webp', True), ('hud_de_2000.webp', False),
+                           ('catch_de_2000.webp', False), ('hud_minimap_de.webp', False)):
         f = scaled(name, size)
         d = BiteDetector()
         assert d.enabled
