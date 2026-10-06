@@ -110,8 +110,9 @@
 
   // Heat map only - no markers. The list (and a click into the map) shows hotspots: neighbouring squares the
   // server merged into one fishing spot (one good spot covers several coordinates).
-  const HEAT_GRADIENT = { 0.25: '#ffe08a', 0.5: '#ffb347', 0.75: '#f26b3a', 1: '#c8243c' };  // warm: stands out on blue/green water
-  const HEAT_UNITS = 2.1;     // heat radius in game units, so it keeps its size relative to the lake when zooming
+  const HEAT_GRADIENT = { 0.15: '#ffc94d', 0.4: '#ff9a2e', 0.65: '#f2542d', 0.9: '#c8143c' };  // warm: stands out on blue/green water
+  const HEAT_UNITS = 2.3;     // heat radius in game units, so it keeps its size relative to the lake when zooming
+  const HEAT_MAX = 0.9;       // intensity that already counts as full colour (leaflet.heat default 1.0)
   const NEAREST_UNITS = 6;    // a click this close to a hotspot opens it
   const view = { spots: new Map(), hotspots: [], heat: null, pulse: null, range: null };
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
@@ -119,7 +120,7 @@
   function sizeHeat() {
     if (!view.heat || !state.map.hasLayer(view.heat)) return;
     const z = state.map.getZoom(), px = HEAT_UNITS * Math.pow(2, z);   // CRS.Simple: 2^zoom pixels per unit
-    view.heat.setOptions({ radius: clamp(px, 8, 70), blur: clamp(px * 0.85, 8, 60), maxZoom: z });
+    view.heat.setOptions({ radius: clamp(px, 9, 72), blur: clamp(px * 0.75, 6, 54), maxZoom: z });
   }
 
   let spotReq = 0;
@@ -142,8 +143,9 @@
     const max = Math.max(1, ...spots.map((s) => s.count));
     if (spots.length && L.heatLayer && state.map.getSize().x > 0) {  // leaflet.heat can't draw into a 0px map
       try {
-        view.heat = L.heatLayer(spots.map((s) => [...P(s.x, s.y), s.count / max]),
-          { radius: 20, blur: 18, minOpacity: 0.3, gradient: HEAT_GRADIENT });
+        // square root: a spot with a tenth of the catches still shows clearly next to the busiest one
+        view.heat = L.heatLayer(spots.map((s) => [...P(s.x, s.y), Math.sqrt(s.count / max)]),
+          { radius: 20, blur: 15, minOpacity: 0.45, max: HEAT_MAX, gradient: HEAT_GRADIENT });
         state.layers.push(view.heat.addTo(state.map));
         sizeHeat();
       } catch (e) { console.warn('heat layer', e); }
