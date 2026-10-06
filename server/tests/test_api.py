@@ -117,3 +117,18 @@ def test_migration_adds_super_trophy(client):
         con.execute(text('ALTER TABLE catches DROP COLUMN super_trophy'))   # the table as the first release made it
     init_db()
     assert 'super_trophy' in {c['name'] for c in inspect(engine).get_columns('catches')}
+
+
+def test_hotspots_merge_neighbouring_squares(client):
+    """One fishing spot covers several neighbouring squares: they form one hotspot, anglers counted once."""
+    a, b = register(client), register(client)
+    mine = [catch(x=73, y=48), catch(x=74, y=49, badge=None), catch(x=73, y=50, fish_id='b_gill', weight_g=300)]
+    theirs = [catch(x=74, y=48, weight_g=1000), catch(x=45, y=60, weight_g=1000)]
+    for h, cs in ((a, mine), (b, theirs)):
+        assert client.post('/api/v1/catches', json={'client_version': 't', 'catches': cs}, headers=h).status_code == 200
+    d = client.get('/api/v1/stats/spots', params={'water': 'elk_lake', 'days': 7}).json()
+    assert len(d['spots']) == 5                       # the heat map still gets every square
+    hs = d['hotspots']
+    assert [(h['count'], h['squares'], h['anglers']) for h in hs] == [(4, 4, 2), (1, 1, 1)]
+    assert abs(hs[0]['x'] - 73.5) <= 0.5 and abs(hs[0]['y'] - 48.75) <= 0.75
+    assert hs[0]['trophies'] == 2 and hs[0]['top_fish'][0] == {'fish_id': 'lm_b_bass', 'count': 3}

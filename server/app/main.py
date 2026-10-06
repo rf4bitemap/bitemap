@@ -312,18 +312,55 @@ def spots(water: str = Query(...), fish: str | None = None, days: int | None = Q
                    func.sum(cast(Catch.trophy, Integer)), func.sum(cast(Catch.super_trophy, Integer)),
                    func.count(func.distinct(Catch.install_id)))
             .where(f).group_by(Catch.x, Catch.y).order_by(func.count().desc()).limit(limit)).all()
-        top = {}
+        top, who = {}, {}
         if rows:
             fr = s.execute(select(Catch.x, Catch.y, Catch.fish_id, func.count()).where(f)
                            .group_by(Catch.x, Catch.y, Catch.fish_id)).all()
             for x, y, fid, n in fr:
                 top.setdefault((x, y), []).append((n, fid))
-        return {'water': water, 'fish': fish, 'days': days, 'spots': [
+            for x, y, inst in s.execute(select(Catch.x, Catch.y, Catch.install_id).where(f).distinct()).all():
+                who.setdefault((x, y), set()).add(inst)
+        squares = [
             {'x': x, 'y': y, 'count': n, 'max_weight_g': mw, 'trophies': int(tr or 0), 'super_trophies': int(st or 0),
              'anglers': a,
              'top_fish': [{'fish_id': fid, 'count': c} for c, fid in sorted(top.get((x, y), []), reverse=True)[:5]]}
-            for x, y, n, mw, tr, st, a in rows]}
+            for x, y, n, mw, tr, st, a in rows]
+        return {'water': water, 'fish': fish, 'days': days, 'spots': squares,
+                'hotspots': hotspots(squares, top, who)}
     return cached(f'spots:{water}:{fish}:{days}:{level}:{limit}', run)
+
+
+HOTSPOT_RADIUS = 3   # squares this close to a hotspot's busiest square belong to it (one fishing spot covers several)
+
+
+def hotspots(squares, top, who, n=25):
+    """Merge neighbouring squares into fishing spots: the busiest square takes everything within HOTSPOT_RADIUS,
+    then the next unclaimed one, ... Anglers are counted once per hotspot."""
+    out, taken = [], set()
+    for i, sq in enumerate(squares):          # sorted by count, busiest first
+        if i in taken:
+            continue
+        members = [j for j in range(i, len(squares)) if j not in taken
+                   and (squares[j]['x'] - sq['x']) ** 2 + (squares[j]['y'] - sq['y']) ** 2 <= HOTSPOT_RADIUS ** 2]
+        taken.update(members)
+        ms = [squares[j] for j in members]
+        count = sum(m['count'] for m in ms)
+        fish, anglers = {}, set()
+        for m in ms:
+            for c, fid in top.get((m['x'], m['y']), []):
+                fish[fid] = fish.get(fid, 0) + c
+            anglers |= who.get((m['x'], m['y']), set())
+        out.append({
+            'x': round(sum(m['x'] * m['count'] for m in ms) / count),
+            'y': round(sum(m['y'] * m['count'] for m in ms) / count),
+            'count': count, 'squares': len(ms), 'anglers': len(anglers),
+            'max_weight_g': max(m['max_weight_g'] or 0 for m in ms),
+            'trophies': sum(m['trophies'] for m in ms), 'super_trophies': sum(m['super_trophies'] for m in ms),
+            'top_fish': [{'fish_id': fid, 'count': c} for fid, c in sorted(fish.items(), key=lambda kv: -kv[1])[:5]],
+        })
+        if len(out) >= n:
+            break
+    return sorted(out, key=lambda h: -h['count'])
 
 
 @app.get('/api/v1/stats/fish')

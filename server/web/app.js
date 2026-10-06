@@ -65,13 +65,16 @@
   function fit(b) {
     state.fitBounds = b;
     const map = state.map;
+    map.stop();
     map.invalidateSize(false);
     map.setMinZoom(-8);   // getBoundsZoom clamps to the current limits, which belong to the previous map
     map.setMaxZoom(12);
     const z = map.getBoundsZoom(b, false, [20, 20]);
+    map.fitBounds(b, { padding: [20, 20], animate: false });
+    // limits only after fitting: raising minZoom above the current zoom starts an animated zoom to it, which
+    // finished after the fit and left the new map zoomed out (e.g. Akhtuba -> Mosquito Lake)
     map.setMinZoom(z - 1);
     map.setMaxZoom(z + 4);
-    map.fitBounds(b, { padding: [20, 20], animate: false });
   }
   function drawBase(waterId, spots) {
     const map = state.map;
@@ -105,6 +108,20 @@
     $('#map').dataset.nomap = t('no_map');
   }
 
+  // Heat map only - no markers. The list (and a click into the map) shows hotspots: neighbouring squares the
+  // server merged into one fishing spot (one good spot covers several coordinates).
+  const HEAT_GRADIENT = { 0.25: '#ffe08a', 0.5: '#ffb347', 0.75: '#f26b3a', 1: '#c8243c' };  // warm: stands out on blue/green water
+  const HEAT_UNITS = 2.1;     // heat radius in game units, so it keeps its size relative to the lake when zooming
+  const NEAREST_UNITS = 6;    // a click this close to a hotspot opens it
+  const view = { spots: new Map(), hotspots: [], heat: null, pulse: null, range: null };
+  const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+  function sizeHeat() {
+    if (!view.heat || !state.map.hasLayer(view.heat)) return;
+    const z = state.map.getZoom(), px = HEAT_UNITS * Math.pow(2, z);   // CRS.Simple: 2^zoom pixels per unit
+    view.heat.setOptions({ radius: clamp(px, 8, 70), blur: clamp(px * 0.85, 8, 60), maxZoom: z });
+  }
+
   let spotReq = 0;
   async function loadSpots() {
     const water = $('#f-water').value;
@@ -116,34 +133,72 @@
     if (req !== spotReq) return;  // a newer filter change is already loading
     const spots = data.spots;
     drawBase(water, spots);
+    const w = state.waters[water], m = w && w.map, cr = (w && w.coord_range) || [0, 999];
+    view.range = m ? [m.min_x, m.max_x, m.min_y, m.max_y] : [cr[0], cr[1], cr[0], cr[1]];
+    view.spots = new Map(spots.map((s) => [s.x + ':' + s.y, s]));
+    view.hotspots = data.hotspots || [];
+    view.heat = null;
+    view.pulse = null;
     const max = Math.max(1, ...spots.map((s) => s.count));
     if (spots.length && L.heatLayer && state.map.getSize().x > 0) {  // leaflet.heat can't draw into a 0px map
       try {
-        const heat = L.heatLayer(spots.map((s) => [...P(s.x, s.y), s.count / max]),
-          { radius: 28, blur: 22, maxZoom: 2, minOpacity: 0.25 });
-        state.layers.push(heat.addTo(state.map));
+        view.heat = L.heatLayer(spots.map((s) => [...P(s.x, s.y), s.count / max]),
+          { radius: 20, blur: 18, minOpacity: 0.3, gradient: HEAT_GRADIENT });
+        state.layers.push(view.heat.addTo(state.map));
+        sizeHeat();
       } catch (e) { console.warn('heat layer', e); }
     }
-    const markers = spots.slice(0, 60).map((s) => {
-      const r = 5 + 10 * Math.sqrt(s.count / max);
-      return L.circleMarker(P(s.x, s.y), { radius: r, color: '#ffd166', weight: 1.5, fillColor: '#ef8354', fillOpacity: 0.55 })
-        .bindPopup(spotPopup(s));
-    });
-    state.layers.push(L.layerGroup(markers).addTo(state.map));
-    $('#spot-list').innerHTML = spots.slice(0, 25).map((s, i) =>
-      `<li data-i="${i}"><b>${s.x}:${s.y}</b> <span>${s.count} ${t('catches')}</span><br><small>${
-        s.top_fish.slice(0, 3).map((f) => esc(fishName(f.fish_id)) + ' ×' + f.count).join(', ')}</small></li>`).join('');
+    $('#spot-list').innerHTML = view.hotspots.map((h, i) =>
+      `<li data-i="${i}" tabindex="0"><b>${h.x}:${h.y}</b> <span>${h.count} ${t('catches')}${trophyCounts(h)}</span><br><small>${
+        h.top_fish.slice(0, 3).map((f) => esc(fishName(f.fish_id)) + ' ×' + f.count).join(', ')}</small></li>`).join('');
     $('#spot-empty').hidden = spots.length > 0;
-    document.querySelectorAll('#spot-list li').forEach((li) => li.addEventListener('click', () => {
-      const m = markers[+li.dataset.i];
-      if (m) { state.map.setView(m.getLatLng(), Math.max(state.map.getZoom(), 1)); m.openPopup(); }
-    }));
+    document.querySelectorAll('#spot-list li').forEach((li) => {
+      const go = () => showHotspot(+li.dataset.i);
+      li.addEventListener('click', go);
+      li.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+    });
   }
-  function spotPopup(s) {
-    return `<div class="pop"><h4>${s.x}:${s.y}</h4>
-      <p>${s.count} ${t('catches')} · ${s.anglers} ${t('anglers')}${trophyCounts(s)}</p>
-      <p>${t('biggest')}: ${fmtW(s.max_weight_g)}</p>
-      <ul>${s.top_fish.map((f) => `<li>${esc(fishName(f.fish_id))} <b>×${f.count}</b></li>`).join('')}</ul></div>`;
+  function hotspotPopup(h, rank) {
+    return `<div class="pop"><h4>${rank ? '#' + rank + ' · ' : ''}${h.x}:${h.y}</h4>
+      <p>${h.count} ${t('catches')} · ${h.anglers} ${t('anglers')}${trophyCounts(h)}</p>
+      <p>${t('biggest')}: ${fmtW(h.max_weight_g)}${h.squares > 1 ? ' · ' + t('squares', { n: h.squares }) : ''}</p>
+      <ul>${h.top_fish.map((f) => `<li>${esc(fishName(f.fish_id))} <b>×${f.count}</b></li>`).join('')}</ul></div>`;
+  }
+  function openHotspot(h) {
+    const map = state.map;
+    if (view.pulse) map.removeLayer(view.pulse);
+    view.pulse = L.marker(P(h.x, h.y), { icon: L.divIcon({ className: '', html: '<div class="pulse"></div>', iconSize: [0, 0] }),
+      interactive: false, keyboard: false }).addTo(map);
+    state.layers.push(view.pulse);
+    L.popup({ offset: [0, -4] }).setLatLng(P(h.x, h.y)).setContent(hotspotPopup(h, view.hotspots.indexOf(h) + 1)).openOn(map);
+  }
+  function showHotspot(i) {
+    const h = view.hotspots[i];
+    if (!h) return;
+    const map = state.map, target = P(h.x, h.y), zoom = Math.max(map.getZoom(), map.getMinZoom() + 2);
+    if (map.getCenter().distanceTo(L.latLng(target)) < 0.5 && map.getZoom() >= zoom) { openHotspot(h); return; }
+    map.once('moveend', () => openHotspot(h));
+    map.flyTo(target, zoom, { duration: 0.6 });
+  }
+  function nearestHotspot(ll) {
+    let best = null, bd = NEAREST_UNITS;
+    view.hotspots.forEach((h) => { const d = Math.hypot(h.x - ll.lng, h.y - ll.lat); if (d < bd) { bd = d; best = h; } });
+    return best;
+  }
+  function initMapInteraction() {
+    const map = state.map;
+    map.on('zoomend', sizeHeat);
+    map.on('click', (e) => { const h = nearestHotspot(e.latlng); if (h) openHotspot(h); });
+    // where am I pointing at: game coordinates (and that square's catches) next to the cursor
+    const tip = L.tooltip({ className: 'xy-tip', direction: 'right', offset: [14, 0] });
+    map.on('mousemove', (e) => {
+      const x = Math.round(e.latlng.lng), y = Math.round(e.latlng.lat), r = view.range;
+      if (!r || x < r[0] || x > r[1] || y < r[2] || y > r[3]) { map.closeTooltip(tip); return; }
+      const sq = view.spots.get(x + ':' + y);
+      tip.setLatLng(e.latlng).setContent(`${x}:${y}${sq ? ' · ' + sq.count + ' ' + t('catches') : ''}`);
+      map.openTooltip(tip);
+    });
+    map.on('mouseout', () => map.closeTooltip(tip));
   }
 
   // ------------------------------------------------------------------ fish + trophies
@@ -200,6 +255,7 @@
       else if (w && Math.abs(w - lastW) > 40 && state.fitBounds) fit(state.fitBounds);
       lastW = w;
     }).observe($('#map'));
+    initMapInteraction();
     state.meta = await api('/meta');
     state.meta.fish.forEach((f) => { state.fish[f.id] = f; });
     state.meta.waterbodies.forEach((w) => { state.waters[w.id] = w; });
